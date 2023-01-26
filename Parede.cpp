@@ -2,7 +2,9 @@
 
 Parede::Parede(){}
 
-Parede::Parede(const unsigned int x, const unsigned int y, unsigned short int tamanhoSprite, unsigned short int vida):Objeto{x,y,tamanhoSprite}{
+Parede::Parede(const unsigned int x, const unsigned int y, unsigned short int tamanhoSprite, const unsigned short imortal,
+    const unsigned short estado, 
+    unsigned short int vida):Objeto{x,y,tamanhoSprite,imortal,estado}{
     this->vida = (unsigned char)vida; 
 }
 

@@ -20,7 +20,7 @@ class Objeto {
          * @param y (unsigned int) : ponto y.
          * @param tamanhoSprite x (unsigned short int) : tamanho da sprite.
          */
-        Objeto(const unsigned int x, const unsigned int y, unsigned short int tamanhoSprite);
+        Objeto(const unsigned int x, const unsigned int y, const unsigned short int tamanhoSprite, const unsigned short imortal, const unsigned short estado);
 
         /**
          * @brief Destrutor
@@ -69,10 +69,27 @@ class Objeto {
          */
         void setTamanhoSprite(unsigned short int);
 
-    private:
+
+
+
+        /**
+         * @brief Função para ver se um objeto colidiu com o outro.
+         * Como cada colisão é diferente para cada tipo de objeto,
+         * a classe responsável por herdar da classe objeto de implementá-la. 
+         * 
+         * @param objeto (Objeto&) : Objeto para ver se a colisão aconteceu.
+         * @return true (bool) : Se colidiu.
+         * @return false (bool) : Se não colidiu.
+         */
+        virtual const bool colisao(const Objeto& objeto) const = 0; 
+
+
+    protected:
         Coordenada *coordenada;
         std::vector<ALLEGRO_BITMAP*>sprites;
-        unsigned char tamanhoSprite;    
+        unsigned char tamanhoSprite;
+        unsigned char imortal;
+        unsigned char estado;
 
 };
 

@@ -2,10 +2,12 @@
 
 Objeto::Objeto(){}
 
-Objeto::Objeto(const unsigned int x, const unsigned int y, unsigned short int tamanhoSprite){
+Objeto::Objeto(const unsigned int x, const unsigned int y, unsigned short int tamanhoSprite, const unsigned short imortal, const unsigned short estado){
     Coordenada *c{new Coordenada{x, y}};
     this->coordenada = c;
     this->tamanhoSprite = tamanhoSprite;
+    this->imortal = (unsigned char)imortal;
+    this->estado = (unsigned char)estado;
 }
 
 Objeto::~Objeto(){}

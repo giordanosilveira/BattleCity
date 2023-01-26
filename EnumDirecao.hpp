@@ -2,7 +2,7 @@
 #define ENUM_DIRECAO_HPP
 
 enum class Direcao : unsigned short int {
-    DIREITA,
+    DIREITA = 48,
     ESQUERDA,
     CIMA,
     BAIXO

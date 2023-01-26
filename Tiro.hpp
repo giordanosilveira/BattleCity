@@ -6,7 +6,7 @@
 class Tiro : public Objeto{
     public:
         Tiro();
-        Tiro(const unsigned int x, const unsigned int y, const unsigned short int tamanhoSprite, const unsigned short int velocidade, const unsigned short int direcao);
+        Tiro(const unsigned int x, const unsigned int y, const unsigned short int tamanhoSprite, const unsigned short imortal, const unsigned short estado, const unsigned short int velocidade, const unsigned short int direcao);
         virtual ~Tiro();
 
         const unsigned short int getVelocidade() const;
