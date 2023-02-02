@@ -2,6 +2,9 @@
 #define TIRO_HPP
 
 #include "Objeto.hpp"
+#include "Tanque.hpp"
+
+class Tanque;
 
 class Tiro : public Objeto{
     public:
@@ -15,7 +18,12 @@ class Tiro : public Objeto{
         const unsigned short int getDirecao() const;
         void setDirecao(const unsigned short int direcao);
 
+        void setTanque(Tanque *tanque);
+
+        virtual const bool colisao(const Objeto& objeto) const override; 
+
     private:
+        Tanque *tanque;
         unsigned char velocidade;
         unsigned char direcao;
 

@@ -1,4 +1,5 @@
 #include "Tiro.hpp"
+#include "Tanque.hpp"
 
 Tiro::Tiro(){}
 
@@ -22,4 +23,13 @@ const unsigned short int Tiro::getDirecao() const {
 }
 void Tiro::setDirecao(const unsigned short int direcao){
     this->direcao = (unsigned char)direcao;
+}
+
+void Tiro::setTanque (Tanque *tanque) {
+    if (tanque == nullptr)
+        throw std::runtime_error{"Ponteiro nulo: setTanque"};
+        
+    this->tanque = tanque;
+    if (this->tanque != nullptr)
+        this->tanque->tiros.push_back(this)
 }
