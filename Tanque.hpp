@@ -23,7 +23,7 @@ class Tanque : public Objeto{
 
         virtual void setDirecao();
 
-    private:
+    protected:
         std::list<Tiro*>tiros;
         unsigned char velocidade;
         unsigned char direcao;

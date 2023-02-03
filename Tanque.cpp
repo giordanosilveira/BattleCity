@@ -83,5 +83,5 @@ void Tanque::mover() {
 void Tanque::setDirecao() {
 
     unsigned short int direcao = rand()%(51 - 48 + 1) + 48;
-    this->direcao = direcao
+    this->direcao = direcao;
 }
