@@ -8,6 +8,8 @@
 #include <vector>
 
 #include "Coordenada.hpp"
+#include "EnumDirecao.hpp"
+
 class Objeto {
     public:
         /**
@@ -20,7 +22,7 @@ class Objeto {
          * @param y (unsigned int) : ponto y.
          * @param tamanhoSprite x (unsigned short int) : tamanho da sprite.
          */
-        Objeto(const unsigned int x, const unsigned int y, const unsigned short int tamanhoSprite, const unsigned short imortal, const unsigned short estado);
+        Objeto(const unsigned int x, const unsigned int y, const unsigned short int tamanhoSprite, const unsigned short imortal, const unsigned short estado, const unsigned short velocidade, const unsigned short direcao);
 
         /**
          * @brief Destrutor
@@ -49,6 +51,16 @@ class Objeto {
          */
         const ALLEGRO_BITMAP* getSprite(const int index) const;
 
+
+        const unsigned short int getVelocidade() const;
+
+        void setVelocidade(const unsigned short int);
+
+        const unsigned short int getDirecao() const;
+
+        void setDirecao(const unsigned short int direcao);
+
+
         /**
          * @brief Adiciona uma sprite na lista de sprites
          * 
@@ -70,8 +82,9 @@ class Objeto {
         void setTamanhoSprite(unsigned short int);
 
 
+        void mover();
 
-
+        
         /**
          * @brief Função para ver se um objeto colidiu com o outro.
          * Como cada colisão é diferente para cada tipo de objeto,
@@ -82,6 +95,8 @@ class Objeto {
          * @return false (bool) : Se não colidiu.
          */
         virtual const bool colisao(const Objeto& objeto) const = 0; 
+    
+        virtual void setDirecao() = 0;
 
 
     protected:
@@ -90,7 +105,11 @@ class Objeto {
         unsigned char tamanhoSprite;
         unsigned char imortal;
         unsigned char estado;
+        unsigned char velocidade;
+        unsigned char direcao;
 
 };
+
+
 
 #endif
