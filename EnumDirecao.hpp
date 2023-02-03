@@ -5,7 +5,8 @@ enum class EnumDirecao : unsigned short int {
     DIREITA = 48,
     ESQUERDA,
     CIMA,
-    BAIXO
+    BAIXO,
+    PARADO,
 };
 
 #endif
