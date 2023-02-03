@@ -19,14 +19,11 @@ class Tanque : public Objeto{
 
         virtual void atirar();
 
-        virtual void mover();
-
         virtual void setDirecao();
 
     protected:
         std::list<Tiro*>tiros;
-        unsigned char velocidade;
-        unsigned char direcao;
+
 };
 
 Tanque::Tanque(){}
