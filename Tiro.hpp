@@ -12,20 +12,14 @@ class Tiro : public Objeto{
         Tiro(const unsigned int x, const unsigned int y, const unsigned short int tamanhoSprite, const unsigned short imortal, const unsigned short estado, const unsigned short int velocidade, const unsigned short int direcao);
         virtual ~Tiro();
 
-        const unsigned short int getVelocidade() const;
-        void setVelocidade(const unsigned short int velocidade);
-
-        const unsigned short int getDirecao() const;
-        void setDirecao(const unsigned short int direcao);
-
         void setTanque(Tanque *tanque);
 
         virtual const bool colisao(const Objeto& objeto) const override; 
 
+        virtual void setDirecao() override; 
+
     private:
         Tanque *tanque;
-        unsigned char velocidade;
-        unsigned char direcao;
 
         
 };
