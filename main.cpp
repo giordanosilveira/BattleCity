@@ -17,6 +17,7 @@ int main(int argc, char **argv){
                 break;
             default: 
                 printf("Algo deu errado no estado\n");
+                exit(1);
         }
     }
 
