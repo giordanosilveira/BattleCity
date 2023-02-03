@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <iostream>
 
 #include "Estado.hpp"
 
@@ -16,7 +16,7 @@ int main(int argc, char **argv){
                 Estado::encerrar();
                 break;
             default: 
-                printf("Algo deu errado no estado\n");
+                std::cerr << "Algo deu errado no estado\n" << std::endl;
                 exit(1);
         }
     }
