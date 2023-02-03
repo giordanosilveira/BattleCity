@@ -14,9 +14,14 @@ class Tanque : public Objeto{
     public:
         Tanque();
         Tanque(const unsigned int x, const unsigned int y, unsigned short int tamanhoSprite, const unsigned short imortal, const unsigned short estado, const unsigned short velocidade, const unsigned short direcao);
+        
         virtual ~Tanque();
 
-        void atirar();
+        virtual void atirar();
+
+        virtual void mover();
+
+        virtual void setDirecao();
 
     private:
         std::list<Tiro*>tiros;
@@ -24,9 +29,9 @@ class Tanque : public Objeto{
         unsigned char direcao;
 };
 
-Tanque::Tanque(/* args */)
-{
-}
+Tanque::Tanque(){}
+
+Tanque::Tanque(const unsigned int x, const unsigned int y, unsigned short int tamanhoSprite, const unsigned short imortal, const unsigned short estado, const unsigned short velocidade, const unsigned short direcao){}
 
 Tanque::~Tanque()
 {
