@@ -1,10 +1,17 @@
 #include "Parede.hpp"
+#include "EnumDirecao.hpp"
 
 Parede::Parede(){}
 
-Parede::Parede(const unsigned int x, const unsigned int y, unsigned short int tamanhoSprite, const unsigned short imortal,
+Parede::Parede(
+    const unsigned int x, 
+    const unsigned int y, 
+    unsigned short int tamanhoSprite, 
+    const unsigned short imortal,
     const unsigned short estado, 
-    unsigned short int vida):Objeto{x,y,tamanhoSprite,imortal,estado}{
+    const unsigned short velocidade, 
+    const unsigned short direcao, 
+    unsigned short int vida):Objeto{x,y,tamanhoSprite,imortal,estado, velocidade, direcao}{
     this->vida = (unsigned char)vida; 
 }
 
