@@ -1,8 +1,9 @@
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
+#include <allegro5/events.h>
 #include <stdlib.h>
 
-#include "Allegro.hpp"
+#include "ControleJogo.hpp"
 #include "AllegroInitException.hpp"
 
 
@@ -86,7 +87,7 @@ void ControleJogo::soltarTecla(){
 }
 
 bool ControleJogo::sairJogo(){
-    return this->key[ALLEGRO_KEY_ESCAPE];
+    return this->key[ALLEGRO_KEY_ESCAPE] || (this->event.type == ALLEGRO_EVENT_DISPLAY_CLOSE);
 }
 
 void ControleJogo::limparTelaCor(){ // n pode ser const

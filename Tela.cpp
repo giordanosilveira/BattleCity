@@ -1,8 +1,8 @@
 #include "Tela.hpp"
-#include "Allegro.hpp"
+#include "ControleJogo.hpp"
 
 void Tela::desenharTela() {
-    Allegro *al = Allegro::getInstancia();
+    Allegro::ControleJogo *al = Allegro::ControleJogo::getInstancia();
     al->limparTelaCor();
     al->desenharTexto();
     al->trocarDisplay();

@@ -4,8 +4,8 @@ EXEC= battle_city
 
 all: $(EXEC)
 
-$(EXEC): main.o Estado.o Allegro.o Tela.o AllegroInitException.o
-	g++ main.o Estado.o Allegro.o Tela.o AllegroInitException.o -o $(EXEC) $(CFLAGS) $(PKG_CONFIG)
+$(EXEC): main.o Estado.o ControleJogo.o Tela.o AllegroInitException.o
+	g++ main.o Estado.o ControleJogo.o Tela.o AllegroInitException.o -o $(EXEC) $(CFLAGS) $(PKG_CONFIG)
 
 main.o: main.cpp
 	g++ -c main.cpp -o main.o $(CFLAGS)
@@ -13,8 +13,8 @@ main.o: main.cpp
 Estado.o: Estado.cpp Estado.hpp
 	g++ -c Estado.cpp -o Estado.o $(CFLAGS)
 
-Allegro.o: Allegro.cpp Allegro.hpp
-	g++ -c Allegro.cpp -o Allegro.o $(CFLAGS)
+ControleJogo.o: ControleJogo.cpp ControleJogo.hpp
+	g++ -c ControleJogo.cpp -o ControleJogo.o $(CFLAGS)
 
 Tela.o: Tela.cpp Tela.hpp
 	g++ -c Tela.cpp -o Tela.o $(CFLAGS)
