@@ -6,7 +6,7 @@
 #include <iostream>
 
 #include "Estado.hpp"
-#include "Allegro.hpp"
+#include "ControleJogo.hpp"
 #include "Tela.hpp"
 
 short int Estado::atual = Estado::INICIALIZAR;
@@ -18,7 +18,7 @@ void Estado::inicializar(){
 
 void Estado::jogo(){
     bool done = false;
-    Allegro *al = Allegro::getInstancia();
+    Allegro::ControleJogo *al = Allegro::ControleJogo::getInstancia();
 
     al->esvaziarFila();
     for (;;){
@@ -47,7 +47,7 @@ void Estado::jogo(){
 }
 
 void Estado::encerrar(){
-    Allegro *al = Allegro::getInstancia();
+    Allegro::ControleJogo *al = Allegro::ControleJogo::getInstancia();
     delete al; // TODO ver se faz sentido
 
     exit(0);

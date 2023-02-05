@@ -10,18 +10,13 @@
 #include <vector>
 #include <string>
 
-// ALLEGRO_DISPLAY* Allegro::display{nullptr};
-// ALLEGRO_FONT* Allegro::font{nullptr};
-// ALLEGRO_TIMER* Allegro::timer{nullptr};
-// ALLEGRO_EVENT Allegro::event;
-// ALLEGRO_EVENT_QUEUE* Allegro::queue{nullptr};
+using namespace Allegro;
 
+ControleJogo* ControleJogo::instancia{nullptr};
 
-Allegro* Allegro::instancia{nullptr};
+ControleJogo::ControleJogo(){
 
-Allegro::Allegro(){
-
-    // Inicializa Allegro
+    // Inicializa ControleJogo
     al_init();
 
     // inicializa fila de eventos
@@ -55,58 +50,58 @@ Allegro::Allegro(){
     this->instancia = nullptr;
 }
 
-Allegro *Allegro::getInstancia(){
-    if (Allegro::instancia == nullptr)
-        Allegro::instancia = new Allegro();
-    return Allegro::instancia;
+ControleJogo *ControleJogo::getInstancia(){
+    if (ControleJogo::instancia == nullptr)
+        ControleJogo::instancia = new ControleJogo();
+    return ControleJogo::instancia;
 }
 
-void Allegro::testInit(bool test, const std::string message)
-// Testa retorno de função de inicialização do Allegro
+void ControleJogo::testInit(bool test, const std::string message)
+// Testa retorno de função de inicialização do ControleJogo
 {
     if (test) return;
     throw AllegroInitException();
 }
 
-void Allegro::esvaziarFila(){
+void ControleJogo::esvaziarFila(){
     al_flush_event_queue(this->queue);
 }
 
-void Allegro::esperarEvento(){
+void ControleJogo::esperarEvento(){
     al_wait_for_event(this->queue, &this->event);
 }
 
-void Allegro::visualizarTeclas(){
+void ControleJogo::visualizarTeclas(){
     // seta todas as teclas como vistas
     for(int i = 0; i < ALLEGRO_KEY_MAX; ++i)
         this->key[i] &= this->KEY_SEEN;
 }
 
-void Allegro::pressionarTecla(){
+void ControleJogo::pressionarTecla(){
     this->key[this->event.keyboard.keycode] = this->KEY_SEEN | this->KEY_RELEASED;
 }
 
-void Allegro::soltarTecla(){
+void ControleJogo::soltarTecla(){
     this->key[this->event.keyboard.keycode] &= KEY_RELEASED;
 }
 
-bool Allegro::sairJogo(){
+bool ControleJogo::sairJogo(){
     return this->key[ALLEGRO_KEY_ESCAPE];
 }
 
-void Allegro::limparTelaCor(){ // n pode ser const
+void ControleJogo::limparTelaCor(){ // n pode ser const
     al_clear_to_color(al_map_rgb(107, 63, 160));
 }
 
-void Allegro::desenharTexto(){ // n pode ser const
+void ControleJogo::desenharTexto(){ // n pode ser const
     al_draw_text(this->font, al_map_rgb(0, 255, 0), 10, 10, 0, "Hello, world!");
 }
 
-void Allegro::trocarDisplay(){ // n pode ser const
+void ControleJogo::trocarDisplay(){ // n pode ser const
     al_flip_display();
 }
 
-unsigned short int Allegro::getEvento(){
+unsigned short int ControleJogo::getEvento(){
     if (this->event.type == ALLEGRO_EVENT_TIMER) 
         return TEMPO_QUADRO;
     if (this->event.type == ALLEGRO_EVENT_KEY_DOWN) 
@@ -116,14 +111,14 @@ unsigned short int Allegro::getEvento(){
     return INDEFINIDO;
 }
 
-Allegro::~Allegro(){
+ControleJogo::~ControleJogo(){
     al_destroy_font(this->font);
     al_destroy_display(this->display);
     al_destroy_timer(this->timer);
     al_destroy_event_queue(this->queue);
 }
 
-ALLEGRO_BITMAP* Allegro::carregarSpritesheet(const std::string &nomeArquivo){
+ALLEGRO_BITMAP* ControleJogo::carregarSpritesheet(const std::string &nomeArquivo){
     ALLEGRO_BITMAP* spritesheet;
 
     spritesheet = al_load_bitmap(nomeArquivo.c_str());
@@ -132,7 +127,7 @@ ALLEGRO_BITMAP* Allegro::carregarSpritesheet(const std::string &nomeArquivo){
     return spritesheet;
 }
 
-ALLEGRO_BITMAP *Allegro::pegarSprite(ALLEGRO_BITMAP *sheet, int x, int y, int w, int h)
+ALLEGRO_BITMAP *ControleJogo::pegarSprite(ALLEGRO_BITMAP *sheet, int x, int y, int w, int h)
 // carrega sprite de sheet e aborta em caso de erro
 {
     ALLEGRO_BITMAP *sprite = al_create_sub_bitmap(sheet, x, y, w, h);

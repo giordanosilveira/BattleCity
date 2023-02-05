@@ -6,14 +6,16 @@
 #include <vector>
 #include <string>
 
-// Utiliza padrão singleton 
-class Allegro{
-    public:
-        ~Allegro();
-        Allegro(Allegro &outro) = delete;
-        void operator=(const Allegro &outro) = delete;
+namespace Allegro{
 
-        static Allegro *getInstancia();
+// Utiliza padrão singleton 
+class ControleJogo{
+    public:
+        ~ControleJogo();
+        ControleJogo(ControleJogo &outro) = delete;
+        void operator=(const ControleJogo &outro) = delete;
+
+        static ControleJogo *getInstancia();
 
         static constexpr double FRAMERATE = 1.0/60.0;
         static const unsigned int KEY_SEEN = 1;
@@ -56,8 +58,8 @@ class Allegro{
 
 
     private:
-        Allegro();
-        static Allegro *instancia;
+        ControleJogo();
+        static ControleJogo *instancia;
 
         ALLEGRO_DISPLAY* display;
         ALLEGRO_FONT* font;
@@ -70,4 +72,5 @@ class Allegro{
         void testInit(bool test, const std::string message);
 };
 
+}
 #endif
