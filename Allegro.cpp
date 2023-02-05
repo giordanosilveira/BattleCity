@@ -26,22 +26,24 @@ Allegro::Allegro(){
 
     // inicializa fila de eventos
     this->queue = al_create_event_queue();
-    this->testInit(this->queue, static_cast<std::string>("fila de eventos"));
+    this->testInit((this->queue != NULL), static_cast<std::string>("fila de eventos"));
 
     // inicializa teclado
     this->testInit(al_install_keyboard(), static_cast<std::string>("teclado"));
 
     // Inicializa fonte e display
+    this->font = al_create_builtin_font();
+    this->testInit((this->font != NULL), "Fonte");
+    
     this->display = al_create_display(640, 480);
+    this->testInit((this->display != NULL), "Display");
 
     // inicializa timer de 1/FRAMERATE segundos
     this->timer = al_create_timer(this->FRAMERATE);
-    this->testInit(this->timer, static_cast<std::string>("temporizador"));
+    this->testInit((this->timer != NULL), static_cast<std::string>("temporizador"));
 
     // inicializa variáveis de controle
     al_start_timer(this->timer);
-
-    this->font = al_create_builtin_font();
 
     // registra teclado, display e timer como fontes de eventos da fila queue
     al_register_event_source(this->queue, al_get_keyboard_event_source());
@@ -115,21 +117,17 @@ unsigned short int Allegro::getEvento(){
 }
 
 Allegro::~Allegro(){
-
     al_destroy_font(this->font);
     al_destroy_display(this->display);
     al_destroy_timer(this->timer);
     al_destroy_event_queue(this->queue);
-
 }
 
 ALLEGRO_BITMAP* Allegro::carregarSpritesheet(const std::string &nomeArquivo){
-    bool test = true;
     ALLEGRO_BITMAP* spritesheet;
 
     spritesheet = al_load_bitmap(nomeArquivo.c_str());
-    if (spritesheet == NULL) test = false;
-    this->testInit(test, "spritesheet");
+    this->testInit((spritesheet != NULL), "spritesheet");
 
     return spritesheet;
 }
