@@ -12,28 +12,28 @@
 short int Estado::atual = Estado::INICIALIZAR;
 
 void Estado::inicializar(){
-    Allegro::inicializar();
 
     Estado::atual = Estado::JOGO;
 }
 
 void Estado::jogo(){
     bool done = false;
+    Allegro *al = Allegro::getInstancia();
 
-    Allegro::esvaziarFila();
+    al->esvaziarFila();
     for (;;){
-        Allegro::esperarEvento();
+        al->esperarEvento();
 
-        if (Allegro::getEvento() == Allegro::TEMPO_QUADRO)
-            Allegro::visualizarTeclas();
+        if (al->getEvento() == al->TEMPO_QUADRO)
+            al->visualizarTeclas();
         
-        else if (Allegro::getEvento() == Allegro::TECLA_PRESSIONADA)
-            Allegro::pressionarTecla();
+        else if (al->getEvento() == al->TECLA_PRESSIONADA)
+            al->pressionarTecla();
         
-        else if (Allegro::getEvento() == Allegro::TECLA_SOLTA)
-            Allegro::soltarTecla();
+        else if (al->getEvento() == al->TECLA_SOLTA)
+            al->soltarTecla();
         
-        if (Allegro::sairJogo()){ // Jogador apertou esc
+        if (al->sairJogo()){ // Jogador apertou esc
             done = true;
             Estado::atual = Estado::ENCERRAR;
         }
@@ -47,7 +47,8 @@ void Estado::jogo(){
 }
 
 void Estado::encerrar(){
-    Allegro::finalizar();
+    Allegro *al = Allegro::getInstancia();
+    delete al; // TODO ver se faz sentido
 
     exit(0);
 }

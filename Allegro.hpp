@@ -6,30 +6,46 @@
 #include <vector>
 #include <string>
 
+// Utiliza padrão singleton 
 class Allegro{
     public:
-        Allegro() = delete;
+        ~Allegro();
+        Allegro(Allegro &outro) = delete;
+        void operator=(const Allegro &outro) = delete;
+
+        static Allegro *getInstancia();
 
         static constexpr double FRAMERATE = 1.0/60.0;
         static const unsigned int KEY_SEEN = 1;
         static const unsigned int KEY_RELEASED = 2;
 
-        static void inicializar();
-        static unsigned short int getEvento();
-        static void esperarEvento();
+        /* ===== AÇÕES DE CONTROLE DO JOGO ===== */
+        void inicializar();
 
-        static void visualizarTeclas();
-        static void pressionarTecla();
-        static void soltarTecla();
+        /*
+            Testa se foi feita uma ação para sair imediatamente do jogo
+        */
+        bool sairJogo();
+        void finalizar();
 
-        static void limparTelaCor();
-        static void desenharTexto();
-        static void trocarDisplay();
+        /* ===== MÉTODOS DE FILA DE EVENTOS ===== */
+        unsigned short int getEvento();
+        void esperarEvento();
+        void esvaziarFila();
 
-        static void esvaziarFila();
+        /* ===== MÉTODOS DE TECLADO ===== */
+        void visualizarTeclas();
+        void pressionarTecla();
+        void soltarTecla();
 
-        static bool sairJogo();
-        static void finalizar();
+        /* ===== MÉTODOS DE TELA ===== */
+        void limparTelaCor();
+        void desenharTexto();
+        void trocarDisplay();
+
+
+        ALLEGRO_BITMAP* carregarSpritesheet(const std::string &nomeArquivo);
+        ALLEGRO_BITMAP *pegarSprite(ALLEGRO_BITMAP *sheet, int x, int y, int w, int h);
         
         enum evento{
             TEMPO_QUADRO,
@@ -40,16 +56,18 @@ class Allegro{
 
 
     private:
+        Allegro();
+        static Allegro *instancia;
 
-        static ALLEGRO_DISPLAY* display;
-        static ALLEGRO_FONT* font;
-        static ALLEGRO_TIMER* timer;
-        static ALLEGRO_EVENT event;
-        static ALLEGRO_EVENT_QUEUE* queue;
+        ALLEGRO_DISPLAY* display;
+        ALLEGRO_FONT* font;
+        ALLEGRO_TIMER* timer;
+        ALLEGRO_EVENT event;
+        ALLEGRO_EVENT_QUEUE* queue;
 
-        static std::vector<unsigned char> key;
+        std::vector<unsigned char> key;
 
-        static void testInit(bool test, const std::string message);
+        void testInit(bool test, const std::string message);
 };
 
 #endif

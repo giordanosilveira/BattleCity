@@ -2,7 +2,8 @@
 #include "Allegro.hpp"
 
 void Tela::desenharTela() {
-    Allegro::limparTelaCor();
-    Allegro::desenharTexto();
-    Allegro::trocarDisplay();
+    Allegro *al = Allegro::getInstancia();
+    al->limparTelaCor();
+    al->desenharTexto();
+    al->trocarDisplay();
 }

@@ -4,8 +4,8 @@ EXEC= battle_city
 
 all: $(EXEC)
 
-$(EXEC): main.o Estado.o Allegro.o Tela.o 
-	g++ main.o Estado.o Allegro.o Tela.o -o $(EXEC) $(CFLAGS) $(PKG_CONFIG)
+$(EXEC): main.o Estado.o Allegro.o Tela.o AllegroInitException.o
+	g++ main.o Estado.o Allegro.o Tela.o AllegroInitException.o -o $(EXEC) $(CFLAGS) $(PKG_CONFIG)
 
 main.o: main.cpp
 	g++ -c main.cpp -o main.o $(CFLAGS)
@@ -18,6 +18,9 @@ Allegro.o: Allegro.cpp Allegro.hpp
 
 Tela.o: Tela.cpp Tela.hpp
 	g++ -c Tela.cpp -o Tela.o $(CFLAGS)
+
+AllegroInitException.o: AllegroInitException.cpp AllegroInitException.hpp
+	g++ -c AllegroInitException.cpp -o AllegroInitException.o $(CFLAGS)
 
 clean: 
 	rm -f *.o $(EXEC)
