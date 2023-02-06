@@ -5,14 +5,14 @@
 #include <string>
 #include <iostream>
 
+#include "Jogo.hpp"
 #include "Estado.hpp"
-#include "Allegro.hpp"
+#include "ControleJogo.hpp"
 #include "Tela.hpp"
 
 short int Estado::atual = Estado::INICIALIZAR;
 
 void Estado::inicializar(){
-    Allegro::inicializar();
 
     Estado::atual = Estado::JOGO;
 }
@@ -20,34 +20,48 @@ void Estado::inicializar(){
 void Estado::jogo(){
     bool done = false;
 
-    Allegro::esvaziarFila();
-    for (;;){
-        Allegro::esperarEvento();
+    Allegro::ControleJogo *al = Allegro::ControleJogo::getInstancia();
+    Allegro::Tela *tela = Allegro::Tela::getInstancia();
+    
+    Jogo *j{Jogo::getInstancia()};
+    bool redesenhar = false;
+    
 
-        if (Allegro::getEvento() == Allegro::TEMPO_QUADRO)
-            Allegro::visualizarTeclas();
+    al->esvaziarFila();
+    for (;;){
+        al->esperarEvento();
+
+        if (al->getEvento() == al->TEMPO_QUADRO){
+            al->visualizarTeclas();
+            redesenhar = true;
+        }
         
-        else if (Allegro::getEvento() == Allegro::TECLA_PRESSIONADA)
-            Allegro::pressionarTecla();
+        else if (al->getEvento() == al->TECLA_PRESSIONADA)
+            al->pressionarTecla();
         
-        else if (Allegro::getEvento() == Allegro::TECLA_SOLTA)
-            Allegro::soltarTecla();
+        else if (al->getEvento() == al->TECLA_SOLTA)
+            al->soltarTecla();
         
-        if (Allegro::sairJogo()){ // Jogador apertou esc
+        if (al->sairJogo()){ // Jogador apertou esc
             done = true;
             Estado::atual = Estado::ENCERRAR;
         }
 
         if (done) break;
 
-        Tela::desenharTela();
+        if (redesenhar){
+            tela->desenharTela();
+            redesenhar = false;
+        }
         
     }
 
 }
 
 void Estado::encerrar(){
-    Allegro::finalizar();
+    Allegro::ControleJogo *al = Allegro::ControleJogo::getInstancia();
+    delete al; // TODO ver se faz sentido
+    
 
     exit(0);
 }
