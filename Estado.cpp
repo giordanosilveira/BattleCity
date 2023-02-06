@@ -5,6 +5,7 @@
 #include <string>
 #include <iostream>
 
+#include "Jogo.hpp"
 #include "Estado.hpp"
 #include "ControleJogo.hpp"
 #include "Tela.hpp"
@@ -18,14 +19,22 @@ void Estado::inicializar(){
 
 void Estado::jogo(){
     bool done = false;
+
     Allegro::ControleJogo *al = Allegro::ControleJogo::getInstancia();
+    Allegro::Tela *tela = Allegro::Tela::getInstancia();
+    
+    Jogo *j{Jogo::getInstancia()};
+    bool redesenhar = false;
+    
 
     al->esvaziarFila();
     for (;;){
         al->esperarEvento();
 
-        if (al->getEvento() == al->TEMPO_QUADRO)
+        if (al->getEvento() == al->TEMPO_QUADRO){
             al->visualizarTeclas();
+            redesenhar = true;
+        }
         
         else if (al->getEvento() == al->TECLA_PRESSIONADA)
             al->pressionarTecla();
@@ -40,7 +49,10 @@ void Estado::jogo(){
 
         if (done) break;
 
-        Tela::desenharTela();
+        if (redesenhar){
+            tela->desenharTela();
+            redesenhar = false;
+        }
         
     }
 
@@ -49,6 +61,7 @@ void Estado::jogo(){
 void Estado::encerrar(){
     Allegro::ControleJogo *al = Allegro::ControleJogo::getInstancia();
     delete al; // TODO ver se faz sentido
+    
 
     exit(0);
 }

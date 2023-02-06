@@ -6,6 +6,8 @@
 #include <vector>
 #include <string>
 
+#include "Sprite.hpp"
+
 namespace Allegro{
 
 // Utiliza padrão singleton 
@@ -40,11 +42,7 @@ class ControleJogo{
         void pressionarTecla();
         void soltarTecla();
 
-        /* ===== MÉTODOS DE TELA ===== */
-        void limparTelaCor();
-        void desenharTexto();
-        void trocarDisplay();
-
+        void registrarTela(ALLEGRO_DISPLAY *display);
 
         ALLEGRO_BITMAP* carregarSpritesheet(const std::string &nomeArquivo);
         ALLEGRO_BITMAP *pegarSprite(ALLEGRO_BITMAP *sheet, int x, int y, int w, int h);
@@ -61,8 +59,6 @@ class ControleJogo{
         ControleJogo();
         static ControleJogo *instancia;
 
-        ALLEGRO_DISPLAY* display;
-        ALLEGRO_FONT* font;
         ALLEGRO_TIMER* timer;
         ALLEGRO_EVENT event;
         ALLEGRO_EVENT_QUEUE* queue;

@@ -1,5 +1,6 @@
 #include "AllegroInitException.hpp"
+#include <string>
 
-AllegroInitException::AllegroInitException()
-    :std::runtime_error{"Erro de inicialização de estrutura interna da biblioteca Allegro!"}{
+AllegroInitException::AllegroInitException(const std::string &name)
+    :std::runtime_error{"Erro de inicialização de '" + name + "' da biblioteca Allegro!"}{
 }

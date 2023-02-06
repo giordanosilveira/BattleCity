@@ -7,9 +7,12 @@
 namespace Allegro{
 class Sprite {
     public:
+        Sprite();
         Sprite(const std::string &fileName);
-        Sprite(const Sprite &sprite, int x, int y, int w, int h);
+        Sprite(const Sprite *sprite, int x, int y, int w, int h);
         ~Sprite();
+
+        ALLEGRO_BITMAP *getBitmap() const;
 
     private:
         ALLEGRO_BITMAP *bitmap;
