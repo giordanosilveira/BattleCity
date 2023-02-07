@@ -22,15 +22,6 @@ void Objeto::setCoordenada (const unsigned short int x, unsigned short int y){
     this->coordenada->setY(x);
 }
 
-const ALLEGRO_BITMAP* Objeto::getSprite(const int index) const{
-    // Erro caso o num seja maior que x
-    return this->sprites.at(index);
-}
-void Objeto::adicionarSprite(ALLEGRO_BITMAP* sprite, const int qtdSprites){
-    // Se a quantidade for maior que qtdSprites lança um erro
-    this->sprites.push_back(sprite);
-}
-
 const unsigned short int Objeto::getTamanhoSprite() const{
     return (unsigned short int)this->tamanhoSprite;
 }

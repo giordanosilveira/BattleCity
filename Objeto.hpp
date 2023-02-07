@@ -5,10 +5,11 @@
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_primitives.h>
 #include <iostream>
-#include <vector>
+#include <list>
 
 #include "Coordenada.hpp"
 #include "EnumDirecao.hpp"
+#include "Sprite.hpp"
 
 class Objeto {
     public:
@@ -42,15 +43,6 @@ class Objeto {
          */
         void setCoordenada (const unsigned short int x, unsigned short int y);
 
-        /**
-         * @brief Retorna a sprite do vetor na posição index.
-         * É lançado um out_of_range caso de erro.
-         * 
-         * @param index (int) : Uma posição do vetor.
-         * @return (const ALLEGRO_BITMAP*) : Uma sprite do vetor. 
-         */
-        const ALLEGRO_BITMAP* getSprite(const int index) const;
-
 
         const unsigned short int getVelocidade() const;
 
@@ -60,14 +52,6 @@ class Objeto {
 
         void setDirecao(const unsigned short int direcao);
 
-
-        /**
-         * @brief Adiciona uma sprite na lista de sprites
-         * 
-         * @param sprite (ALLEGRO_BITMAP*) : Sprite a ser adicionada.
-         * @param qtdSprites (int) : variável para ser usada para lançar um erro.
-         */
-        void adicionarSprite(ALLEGRO_BITMAP* sprite, const int qtdSprites);
 
         /**
          * @brief Retorna o tamanho da sprite
@@ -94,14 +78,14 @@ class Objeto {
          * @return true (bool) : Se colidiu.
          * @return false (bool) : Se não colidiu.
          */
-        virtual const bool colisao(const Objeto& objeto) const = 0; 
+        virtual const bool colisao(std::list<Objeto*>& objetos) const = 0; 
     
         virtual void setDirecao() = 0;
 
 
     protected:
         Coordenada *coordenada;
-        std::vector<ALLEGRO_BITMAP*>sprites;
+        Allegro::Sprite *sprites; 
         unsigned char tamanhoSprite;
         unsigned char imortal;
         unsigned char estado;
