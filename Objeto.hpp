@@ -10,6 +10,8 @@
 #include "Coordenada.hpp"
 #include "EnumDirecao.hpp"
 #include "Sprite.hpp"
+#include "EnumEstadoObjeto.hpp"
+
 
 class Objeto {
     public:
@@ -23,7 +25,7 @@ class Objeto {
          * @param y (unsigned int) : ponto y.
          * @param tamanhoSprite x (unsigned short int) : tamanho da sprite.
          */
-        Objeto(const unsigned int x, const unsigned int y, const unsigned short int tamanhoSprite, const unsigned short imortal, const unsigned short estado, const unsigned short velocidade, const unsigned short direcao);
+        Objeto(const unsigned int x, const unsigned int y, const unsigned short int tamanhoSprite, const unsigned short imortal, EnumEstadoObjeto estado, const unsigned short velocidade, EnumDirecao direcao);
 
         /**
          * @brief Destrutor
@@ -78,14 +80,14 @@ class Objeto {
          * @return true (bool) : Se colidiu.
          * @return false (bool) : Se não colidiu.
          */
-        virtual const bool colisao(std::list<Objeto*>& objetos) const = 0; 
+        // virtual const bool colisao(std::list<Objeto*>& objetos) const = 0; 
     
-        virtual void setDirecao() = 0;
+        // virtual void setDirecao() = 0;
 
-
+        Allegro::Sprite *sprite;
+        
     protected:
         Coordenada *coordenada;
-        Allegro::Sprite *sprites; 
         unsigned char tamanhoSprite;
         unsigned char imortal;
         unsigned char estado;

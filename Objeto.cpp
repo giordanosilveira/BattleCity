@@ -1,8 +1,10 @@
 #include "Objeto.hpp"
+#include "EnumEstadoObjeto.hpp"
+#include "EnumDirecao.hpp"
 
 Objeto::Objeto(){}
 
-Objeto::Objeto(const unsigned int x, const unsigned int y, unsigned short int tamanhoSprite, const unsigned short imortal, const unsigned short estado, const unsigned short velocidade, const unsigned short direcao){
+Objeto::Objeto(const unsigned int x, const unsigned int y, const unsigned short int tamanhoSprite, const unsigned short imortal, EnumEstadoObjeto estado, const unsigned short velocidade, EnumDirecao direcao){
     Coordenada *c{new Coordenada{x, y}};
     this->coordenada = c;
     this->tamanhoSprite = tamanhoSprite;
@@ -11,6 +13,13 @@ Objeto::Objeto(const unsigned int x, const unsigned int y, unsigned short int ta
     this->velocidade = (unsigned char)velocidade;
     this->direcao = (unsigned char)direcao;
 }
+
+// void colidiu (){
+//     colidiu_x = !(fim_xa < inicio_xb || fim_xb < inicio_xa);
+//     colidiu_y = !(fim_ya < inicio_yb || fim_yb < inicio_ya);
+//     return colidiu_x && colidiu_y;
+// }
+
 
 Objeto::~Objeto(){}
 
@@ -45,8 +54,8 @@ void Objeto::setDirecao(const unsigned short int direcao){
 
 void Objeto::mover() {
     
-    unsigned int y;
-    unsigned int x;
+    unsigned int y = this->coordenada->getY();
+    unsigned int x = this->coordenada->getX();
 
     /**
      * @todo: verificação se ele pode se mover. 
@@ -55,20 +64,16 @@ void Objeto::mover() {
     switch (this->direcao)
     {
         case (unsigned char)EnumDirecao::DIREITA:
-            y = this->coordenada->getY();
             x += this->velocidade; 
             break;
         case (unsigned char)EnumDirecao::ESQUERDA:
-            y = this->coordenada->getY();
             x -= this->velocidade;
             break; 
         case (unsigned char)EnumDirecao::CIMA:
             y -= this->velocidade;
-            x = this->coordenada->getX();
             break; 
         case (unsigned char)EnumDirecao::BAIXO:
             y += this->velocidade;
-            x = this->coordenada->getX();
             break;
     }
 

@@ -50,6 +50,7 @@ void Estado::jogo(){
         if (done) break;
 
         if (redesenhar){
+            tela->desenharSprite(j->player->sprite, 0, 0);
             tela->desenharTela();
             redesenhar = false;
         }

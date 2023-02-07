@@ -2,7 +2,9 @@
 #define JOGO_HPP
 
 #include <vector>
+#include <memory>
 #include "Sprite.hpp"
+#include "Player.hpp"
 
 class Jogo{
     public:
@@ -12,11 +14,14 @@ class Jogo{
 
         static Jogo *getInstancia();
 
+        Player *player;
     private:
         Jogo();
         static Jogo *instancia;
 
         void carregarSprites();
+
+        std::list<std::shared_ptr<Objeto>> elementosTela;
 
         Allegro::Sprite *spritesheet;
         std::vector< std::vector<Allegro::Sprite*> > spritesTanque;
@@ -25,6 +30,10 @@ class Jogo{
         const unsigned short int TANK_MAT_HEI = 8;
         const unsigned short int TANK_WID = 16;
         const unsigned short int TANK_HEI = 16;
+        enum corTanque {
+            TANQUE_AMARELO = 0,
+            TANQUE_VERMELHO
+        };
         
 };
 

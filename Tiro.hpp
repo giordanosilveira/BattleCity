@@ -14,9 +14,9 @@ class Tiro : public Objeto{
 
         void setTanque(Tanque *tanque);
 
-        virtual const bool colisao(std::list<Objeto*>& objeto) const override; 
+        // virtual const bool colisao(std::list<Objeto*>& objeto) const override; 
 
-        virtual void setDirecao() override; 
+        // virtual void setDirecao() override; 
 
     private:
         Tanque *tanque;

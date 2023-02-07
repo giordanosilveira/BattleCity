@@ -4,18 +4,18 @@
 class Coordenada {
     public:
         Coordenada();
-        Coordenada(const unsigned short int x, const unsigned short int y);
+        Coordenada(const unsigned int x, const unsigned int y);
 
-        const unsigned short int getX() const;
-        void setY(const unsigned short int y);
+        const unsigned int getX() const;
+        void setY(const unsigned int y);
 
-        const unsigned short int getY() const;
-        void setX(const unsigned short int x);
+        const unsigned int getY() const;
+        void setX(const unsigned int x);
 
         virtual ~Coordenada();
     private:
-        unsigned short int x;
-        unsigned short int y;
+        unsigned int x;
+        unsigned int y;
 };
 
 #endif

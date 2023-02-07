@@ -41,12 +41,14 @@ class ControleJogo{
         void visualizarTeclas();
         void pressionarTecla();
         void soltarTecla();
+        bool teclaPressionada(const unsigned short int tecla);
 
         void registrarTela(ALLEGRO_DISPLAY *display);
 
         ALLEGRO_BITMAP* carregarSpritesheet(const std::string &nomeArquivo);
         ALLEGRO_BITMAP *pegarSprite(ALLEGRO_BITMAP *sheet, int x, int y, int w, int h);
         
+
         enum evento{
             TEMPO_QUADRO,
             TECLA_PRESSIONADA,
@@ -54,6 +56,12 @@ class ControleJogo{
             INDEFINIDO
         };
 
+        enum tecla{
+            SETA_ESQUERDA = ALLEGRO_KEY_LEFT,
+            SETA_DIREITA,
+            SETA_CIMA,
+            SETA_BAIXO
+        };
 
     private:
         ControleJogo();
