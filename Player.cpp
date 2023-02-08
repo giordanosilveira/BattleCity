@@ -6,9 +6,9 @@
 #include "Sprite.hpp"
 
 Player::Player(const unsigned int x, const unsigned int y, unsigned short int tamanhoSprite, 
-                const unsigned short imortal, EnumEstadoObjeto estado, const unsigned short velocidade, 
+                const unsigned short imortal, EnumEstadoObjeto estado, const unsigned short vida, const unsigned short velocidade, 
                 EnumDirecao direcao, Allegro::Sprite *sprite)
-                :Tanque{x, y, tamanhoSprite, imortal, estado, velocidade, direcao}
+                :Tanque{x, y, tamanhoSprite, imortal, estado, vida, velocidade, direcao}
 {
     this->sprite = sprite;
 }
