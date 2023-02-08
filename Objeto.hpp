@@ -8,9 +8,9 @@
 #include <list>
 
 #include "Coordenada.hpp"
-#include "EnumDirecao.hpp"
+#include "enums/EnumDirecao.hpp"
 #include "allegro/Sprite.hpp"
-#include "EnumEstadoObjeto.hpp"
+#include "enums/EnumEstadoObjeto.hpp"
 
 
 class Objeto {

@@ -1,7 +1,7 @@
 #include "Jogo.hpp"
 #include "allegro/Tela.hpp"
-#include "EnumEstadoObjeto.hpp"
-#include "EnumDirecao.hpp"
+#include "enums/EnumEstadoObjeto.hpp"
+#include "enums/EnumDirecao.hpp"
 #include "Player.hpp"
 #include <memory>
 #include <iostream>
@@ -27,7 +27,7 @@ void Jogo::carregarSprites(){
 
     Allegro::Tela *tela = Allegro::Tela::getInstancia();
 
-    // pega 4 matrizes de sprites
+    // pega 2 matrizes de sprites
     unsigned int offsetlin = Jogo::TANK_HEI * Jogo::TANK_MAT_HEI;
     unsigned int offsetcol = Jogo::TANK_WID * Jogo::TANK_MAT_WID;
     for (unsigned int num_cor = 0; num_cor < 2; ++num_cor)

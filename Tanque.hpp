@@ -3,8 +3,8 @@
 
 #include "Objeto.hpp"
 // #include "Tiro.hpp"
-#include "EnumDirecao.hpp"
-#include "EnumEstadoObjeto.hpp"
+#include "enums/EnumDirecao.hpp"
+#include "enums/EnumEstadoObjeto.hpp"
 #include <iostream>
 #include <list>
 

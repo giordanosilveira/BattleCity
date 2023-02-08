@@ -1,6 +1,6 @@
 #include "Objeto.hpp"
-#include "EnumEstadoObjeto.hpp"
-#include "EnumDirecao.hpp"
+#include "enums/EnumEstadoObjeto.hpp"
+#include "enums/EnumDirecao.hpp"
 
 Objeto::Objeto(){}
 
