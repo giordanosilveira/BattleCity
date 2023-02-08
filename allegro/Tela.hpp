@@ -18,8 +18,8 @@ class Tela{
         static Tela *getInstancia();
 
         void desenharTela();
-        void desenharSprite(Allegro::Sprite *spr, float x, float y) const;
-        void limparTelaCor();
+        void desenharSprite(const Allegro::Sprite *spr, float x, float y) const;
+        void limparTelaCor(const unsigned short int r, const unsigned short int g, const unsigned short int b);
         void desenharTexto(const std::string &texto);
 
     private:

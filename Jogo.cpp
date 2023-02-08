@@ -11,7 +11,7 @@ Jogo *Jogo::instancia{nullptr};
 
 Jogo::Jogo(){
     this->carregarSprites();
-    this->player = new Player{0, 0, 16, false, EnumEstadoObjeto::VIVO, 10, 1, EnumDirecao::BAIXO, this->spritesTanque[0][0], this->spritesTanque[0]};
+    this->player = new Player{0, 0, 16, false, EnumEstadoObjeto::VIVO, 10, 2, EnumDirecao::BAIXO, this->spritesTanque[0][0], this->spritesTanque[0]};
 }
 
 Jogo *Jogo::getInstancia(){

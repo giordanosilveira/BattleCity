@@ -51,6 +51,7 @@ void Estado::jogo(){
         if (done) break;
 
         if (redesenhar){
+            tela->limparTelaCor(0, 0, 0);
             tela->desenharSprite(j->player->sprite, j->player->getSuperiorEsquerda()->getX(), j->player->getSuperiorEsquerda()->getY());
             // tela->desenharSprite(j->mato, 20, 20);
             // tela->desenharSprite(j->parede, 40, 40);
