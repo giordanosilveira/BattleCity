@@ -9,8 +9,9 @@
 #include "enums/EnumDirecao.hpp"
 #include "allegro/Sprite.hpp"
 #include "enums/EnumEstadoObjeto.hpp"
-#include "Parede.hpp"
+// #include "Parede.hpp"
 
+// class Parede;
 
 class Objeto {
     public:
@@ -36,6 +37,12 @@ class Objeto {
          * @return (const Coordenada*) : Ponteiro da coordenada 
          */
         const Coordenada* getSuperiorEsquerda() const;
+
+        /**
+         * @brief Retorna o ponteiro da coordenada.
+         * @return (const Coordenada*) : Ponteiro da coordenada 
+         */
+        const Coordenada* getInferiorDireita() const;
 
         /**
          * @brief atualiza o ponto x e y da coordenada superior esquerda.
@@ -95,10 +102,10 @@ class Objeto {
         void setTamanhoSprite(unsigned short int);
 
 
-        virtual void mover(const std::vector<const Parede *> &paredes);
+        // virtual void mover(const std::vector<const Parede *> &paredes);
         
         
-        virtual const bool colisao(const Objeto *obj) const ;
+        //virtual const bool colisao(const Objeto *obj) const ;
     
         // virtual void setDirecao() = 0;
 
