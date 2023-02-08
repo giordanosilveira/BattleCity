@@ -1,10 +1,11 @@
 #ifndef TANQUE_HPP
 #define TANQUE_HPP
 
-#include "Objeto.hpp"
 // #include "Tiro.hpp"
-#include "EnumDirecao.hpp"
-#include "EnumEstadoObjeto.hpp"
+#include "Objeto.hpp"
+#include "Tanque.hpp"
+#include "enums/EnumDirecao.hpp"
+#include "enums/EnumEstadoObjeto.hpp"
 #include <iostream>
 #include <list>
 
@@ -19,9 +20,11 @@ class Tanque : public Objeto{
         
         virtual ~Tanque();
 
+        // virtual void mover();
+
         // virtual void atirar();
 
-        // virtual void setDirecao();
+        // virtual void setDirecao(EnumDirecao direcao);
 
         // virtual const bool colisao(std::list<Objeto*>&objeto) const;// override;
 

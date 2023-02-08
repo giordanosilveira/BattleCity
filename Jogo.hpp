@@ -23,6 +23,8 @@ class Jogo{
 
         Player *player;
         
+        void moverPlayer();
+
         /**
          * @todo: Instanciar todas as classes do jogo aqui
          */

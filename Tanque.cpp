@@ -1,6 +1,6 @@
 #include "Tanque.hpp"
-#include "EnumDirecao.hpp"
-#include "EnumEstadoObjeto.hpp"
+#include "enums/EnumDirecao.hpp"
+#include "enums/EnumEstadoObjeto.hpp"
 
 Tanque::Tanque(const unsigned int x, const unsigned int y, unsigned short int tamanhoSprite, // TODO colocar const?
         const unsigned short imortal, EnumEstadoObjeto estado, const unsigned short vida, const unsigned short velocidade, 

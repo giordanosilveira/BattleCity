@@ -33,6 +33,7 @@ void Estado::jogo(){
 
         if (al->getEvento() == al->TEMPO_QUADRO){
             al->visualizarTeclas();
+            j->moverPlayer();
             redesenhar = true;
         }
         
@@ -50,11 +51,11 @@ void Estado::jogo(){
         if (done) break;
 
         if (redesenhar){
-            tela->desenharSprite(j->player->sprite, 0, 0);
-            tela->desenharSprite(j->mato, 20, 20);
-            tela->desenharSprite(j->parede, 40, 40);
-            tela->desenharSprite(j->muro, 60, 60);
-            tela->desenharSprite(j->agua, 80, 80);
+            tela->desenharSprite(j->player->sprite, j->player->getSuperiorEsquerda()->getX(), j->player->getSuperiorEsquerda()->getY());
+            // tela->desenharSprite(j->mato, 20, 20);
+            // tela->desenharSprite(j->parede, 40, 40);
+            // tela->desenharSprite(j->muro, 60, 60);
+            // tela->desenharSprite(j->agua, 80, 80);
             tela->desenharTela();
             redesenhar = false;
         }

@@ -1,16 +1,14 @@
 #ifndef OBJETO_HPP
 #define OBJETO_HPP
 
-#include <allegro5/allegro5.h>
-#include <allegro5/allegro_image.h>
-#include <allegro5/allegro_primitives.h>
 #include <iostream>
+#include <vector>
 #include <list>
 
 #include "Coordenada.hpp"
-#include "EnumDirecao.hpp"
+#include "enums/EnumDirecao.hpp"
 #include "allegro/Sprite.hpp"
-#include "EnumEstadoObjeto.hpp"
+#include "enums/EnumEstadoObjeto.hpp"
 
 
 class Objeto {
@@ -73,14 +71,14 @@ class Objeto {
          * 
          * @return const unsigned short int 
          */
-        const unsigned short int getDirecao() const;
+        const EnumDirecao getDirecao() const;
 
         /**
          * @brief Set the Direcao object
          * 
          * @param direcao 
          */
-        void setDirecao(const unsigned short int direcao);
+        void setDirecao(EnumDirecao direcao);
 
 
         /**
@@ -96,15 +94,16 @@ class Objeto {
         void setTamanhoSprite(unsigned short int);
 
 
-        void mover();
-
+        virtual void mover();
         
         
         virtual const bool colisao(const Coordenada& coordSuperiorEsquerda, const Coordenada& coordInferiorDireira) const; 
     
         // virtual void setDirecao() = 0;
 
-        Allegro::Sprite *sprite;
+        // MUITO FEIO, DEIXAR PRIVADO DEPOIS
+        const Allegro::Sprite *sprite;
+        std::vector<const Allegro::Sprite*> sprites;
         
     protected:
         Coordenada *superiorEsquerda;
@@ -114,7 +113,7 @@ class Objeto {
         unsigned char estado;
         unsigned char vida;
         unsigned char velocidade;
-        unsigned char direcao;
+        EnumDirecao direcao;
 
 };
 
