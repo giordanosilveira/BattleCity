@@ -3,8 +3,14 @@
 
 Tiro::Tiro(){}
 
-Tiro::Tiro(const unsigned int x, const unsigned int y, const unsigned short int tamanhoSprite, const unsigned short imortal, const unsigned short estado, const unsigned short int velocidade, const unsigned short int direcao):
-    Objeto{x,y,tamanhoSprite, imortal, estado, velocidade, direcao}{
+Tiro::Tiro(
+    const unsigned int x, 
+    const unsigned int y, 
+    const unsigned short int tamanhoSprite, 
+    const unsigned short imortal, 
+    EnumEstadoObjeto estado, 
+    const unsigned short velocidade, 
+    EnumDirecao direcao): Objeto{x,y,tamanhoSprite, imortal, estado, velocidade, direcao}{
 }
 
 Tiro::~Tiro(){}
