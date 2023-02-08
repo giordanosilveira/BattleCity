@@ -17,7 +17,13 @@ class Player : public Tanque {
 
         ~Player();
 
-        void mover(const std::vector<const Parede *> &paredes) override;
+        void mover(const std::vector<const Parede *> &paredes);
+
+        /**
+         * @todo: a colisão funciona, porém ela não é aqui e é com objeto genérico 
+         */
+        const bool colisao(const Parede *parede) const;
+
     private:
         bool algumaColisao(const std::vector<const Parede *> &paredes);
 };
