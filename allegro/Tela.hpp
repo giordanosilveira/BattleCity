@@ -19,7 +19,7 @@ class Tela{
 
         void desenharTela();
         void desenharSprite(const Allegro::Sprite *spr, float x, float y) const;
-        void limparTelaCor();
+        void limparTelaCor(const unsigned short int r, const unsigned short int g, const unsigned short int b);
         void desenharTexto(const std::string &texto);
 
     private:
