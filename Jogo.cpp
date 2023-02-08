@@ -58,7 +58,7 @@ void Jogo::moverPlayer(){
     else 
         this->player->setDirecao(EnumDirecao::PARADO);
 
-    this->player->mover();
+    this->player->mover(this->paredes);
 }
 
 void Jogo::carregarSprites(){
