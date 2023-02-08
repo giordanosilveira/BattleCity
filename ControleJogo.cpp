@@ -110,3 +110,7 @@ ALLEGRO_BITMAP *ControleJogo::pegarSprite(ALLEGRO_BITMAP *sheet, int x, int y, i
     Util::testInit(sprite, "algum dos sprites");
     return sprite;
 }
+
+bool ControleJogo::teclaPressionada(const unsigned short int tecla){
+    return this->key[tecla];
+}
