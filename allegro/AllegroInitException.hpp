@@ -4,10 +4,12 @@
 #include <string>
 #include <stdexcept>
 
+namespace Allegro{
 class AllegroInitException : public std::runtime_error{
     public:
         AllegroInitException(const std::string &name);
         virtual ~AllegroInitException() = default;
 };
+}
 
 #endif
