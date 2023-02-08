@@ -102,7 +102,7 @@ class Objeto {
         // virtual void setDirecao() = 0;
 
         // MUITO FEIO, DEIXAR PRIVADO DEPOIS
-        Allegro::Sprite *sprite;
+        const Allegro::Sprite *sprite;
         std::vector<const Allegro::Sprite*> sprites;
         
     protected:

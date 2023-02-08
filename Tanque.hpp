@@ -1,8 +1,9 @@
 #ifndef TANQUE_HPP
 #define TANQUE_HPP
 
-#include "Objeto.hpp"
 // #include "Tiro.hpp"
+#include "Objeto.hpp"
+#include "Tanque.hpp"
 #include "enums/EnumDirecao.hpp"
 #include "enums/EnumEstadoObjeto.hpp"
 #include <iostream>
@@ -19,7 +20,7 @@ class Tanque : public Objeto{
         
         virtual ~Tanque();
 
-        virtual void mover();
+        // virtual void mover();
 
         // virtual void atirar();
 

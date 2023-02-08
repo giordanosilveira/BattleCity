@@ -11,9 +11,9 @@ Player::Player(const unsigned int x, const unsigned int y, unsigned short int ta
                 :Tanque{x, y, tamanhoSprite, imortal, estado, vida, velocidade, direcao}
 {
     this->sprite = sprite;
-    // std::vector<Allegro::Sprite*>::const_iterator it = sprites.begin();
-    // for (; it != sprites.end(); ++it)
-    //     this->sprites.push_back(*it);
+    std::vector<Allegro::Sprite*>::const_iterator it = sprites.begin();
+    for (; it != sprites.end(); ++it)
+        this->sprites.push_back(*it);
     
 }
 
@@ -29,16 +29,19 @@ void Player::mover(){
         {
             case EnumDirecao::DIREITA:
                 x += this->velocidade;
-                
+                this->sprite = sprites[6];
                 break;
             case EnumDirecao::ESQUERDA:
                 x -= this->velocidade;
+                this->sprite = sprites[2];
                 break; 
             case EnumDirecao::CIMA:
                 y -= this->velocidade;
+                this->sprite = sprites[0];
                 break; 
             case EnumDirecao::BAIXO:
                 y += this->velocidade;
+                this->sprite = sprites[4];
                 break;
         }
 
