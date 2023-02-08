@@ -5,6 +5,7 @@
 #include <memory>
 #include "allegro/Sprite.hpp"
 #include "Player.hpp"
+#include "Parede.hpp"
 // #include "Muro.hpp"
 // #include "Parede.hpp"
 // #include "Tanque.hpp"
@@ -22,6 +23,7 @@ class Jogo{
         static Jogo *getInstancia();
 
         Player *player;
+        std::vector<const Parede *> paredes;
         
         void moverPlayer();
 
@@ -29,12 +31,14 @@ class Jogo{
          * @todo: Instanciar todas as classes do jogo aqui
          */
         //std::list<>
+        void desenharParedes();
 
         Allegro::Sprite *spritesheet;
         Allegro::Sprite *muro;
         Allegro::Sprite *agua;
         Allegro::Sprite *mato;
         Allegro::Sprite *parede;
+        Allegro::Sprite *paredeInvencivel;
         std::vector<Allegro::Sprite*>insignias;
 
     private:
@@ -43,10 +47,11 @@ class Jogo{
 
         void carregarSprites();
 
+        void criarParedesBorda();
+
         std::list<std::shared_ptr<Objeto>> elementosTela;
 
         std::vector< std::vector<Allegro::Sprite*> > spritesTanque;
-        
 
         const unsigned short int TANK_MAT_WID = 8;
         const unsigned short int TANK_MAT_HEI = 8;

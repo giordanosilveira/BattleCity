@@ -4,14 +4,35 @@
 #include "enums/EnumEstadoObjeto.hpp"
 #include "enums/EnumDirecao.hpp"
 #include "Player.hpp"
+#include "Parede.hpp"
 #include <memory>
 #include <iostream>
 
 Jogo *Jogo::instancia{nullptr};
 
+void Jogo::desenharParedes(){
+    Allegro::Tela *tela{Allegro::Tela::getInstancia()};
+    std::vector<const Parede *>::iterator it{this->paredes.begin()};
+    for (; it < this->paredes.end(); ++it)
+        tela->desenharSprite((*it)->sprite, (*it)->getSuperiorEsquerda()->getX(), (*it)->getSuperiorEsquerda()->getY());
+}
+
+void Jogo::criarParedesBorda(){
+    Allegro::Tela *tela{Allegro::Tela::getInstancia()};
+    for (unsigned int x = 0; x < tela->BUFFER_WIDTH - 32; x += 8){
+        this->paredes.push_back(new Parede{x, 0, this->PAREDE_SIZE, 1, EnumEstadoObjeto::VIVO, 0, 1, EnumDirecao::PARADO, this->parede});
+        this->paredes.push_back(new Parede{x, tela->BUFFER_HEIGHT-8, this->PAREDE_SIZE, 1, EnumEstadoObjeto::VIVO, 0, 1,EnumDirecao::PARADO, this->parede});
+    }
+    for (unsigned int y = 0; y < tela->BUFFER_HEIGHT - 8; y += 8){
+        this->paredes.push_back(new Parede{0, y, this->PAREDE_SIZE, 1, EnumEstadoObjeto::VIVO, 0, 1, EnumDirecao::PARADO, this->parede});
+        this->paredes.push_back(new Parede{tela->BUFFER_WIDTH-40, y, this->PAREDE_SIZE, 1, EnumEstadoObjeto::VIVO, 0, 1, EnumDirecao::PARADO, this->parede});
+    }
+}
+
 Jogo::Jogo(){
     this->carregarSprites();
-    this->player = new Player{0, 0, 16, false, EnumEstadoObjeto::VIVO, 10, 2, EnumDirecao::BAIXO, this->spritesTanque[0][0], this->spritesTanque[0]};
+    this->player = new Player{8, 8, 16, false, EnumEstadoObjeto::VIVO, 10, 2, EnumDirecao::BAIXO, this->spritesTanque[0][0], this->spritesTanque[0]};
+    this->criarParedesBorda();
 }
 
 Jogo *Jogo::getInstancia(){
@@ -71,11 +92,9 @@ void Jogo::carregarSprites(){
 
     Allegro::Sprite *mato{new Allegro::Sprite{this->spritesheet, 272, 31, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE}};
     this->mato = mato;
-
+ 
     this->insignias.push_back(new Allegro::Sprite(this->spritesheet, 304, 31, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE));
     this->insignias.push_back(new Allegro::Sprite(this->spritesheet, 320, 31, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE));
 
-
-    // tela->desenharSprite(spritesTanque[0][0], 0, 0);
 
 }
