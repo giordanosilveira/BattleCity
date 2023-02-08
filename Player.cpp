@@ -1,9 +1,9 @@
 #include "Player.hpp"
 #include "Tanque.hpp"
-#include "ControleJogo.hpp"
+#include "allegro/ControleJogo.hpp"
 #include "EnumEstadoObjeto.hpp"
 #include "EnumDirecao.hpp"
-#include "Sprite.hpp"
+#include "allegro/Sprite.hpp"
 
 Player::Player(const unsigned int x, const unsigned int y, unsigned short int tamanhoSprite, 
                 const unsigned short imortal, EnumEstadoObjeto estado, const unsigned short vida, const unsigned short velocidade, 

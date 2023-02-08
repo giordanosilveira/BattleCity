@@ -7,8 +7,8 @@
 
 #include "Jogo.hpp"
 #include "Estado.hpp"
-#include "ControleJogo.hpp"
-#include "Tela.hpp"
+#include "allegro/ControleJogo.hpp"
+#include "allegro/Tela.hpp"
 
 short int Estado::atual = Estado::INICIALIZAR;
 

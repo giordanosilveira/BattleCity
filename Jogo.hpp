@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <memory>
-#include "Sprite.hpp"
+#include "allegro/Sprite.hpp"
 #include "Player.hpp"
 // #include "Muro.hpp"
 // #include "Parede.hpp"

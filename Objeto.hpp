@@ -9,7 +9,7 @@
 
 #include "Coordenada.hpp"
 #include "EnumDirecao.hpp"
-#include "Sprite.hpp"
+#include "allegro/Sprite.hpp"
 #include "EnumEstadoObjeto.hpp"
 
 

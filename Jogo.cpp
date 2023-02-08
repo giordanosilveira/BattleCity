@@ -1,5 +1,5 @@
 #include "Jogo.hpp"
-#include "Tela.hpp"
+#include "allegro/Tela.hpp"
 #include "EnumEstadoObjeto.hpp"
 #include "EnumDirecao.hpp"
 #include "Player.hpp"

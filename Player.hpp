@@ -4,7 +4,7 @@
 #include "Tanque.hpp"
 #include "EnumDirecao.hpp"
 #include "EnumEstadoObjeto.hpp"
-#include "Sprite.hpp"
+#include "allegro/Sprite.hpp"
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
 
