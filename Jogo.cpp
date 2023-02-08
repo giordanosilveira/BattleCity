@@ -1,5 +1,6 @@
 #include "Jogo.hpp"
 #include "allegro/Tela.hpp"
+#include "allegro/ControleJogo.hpp"
 #include "enums/EnumEstadoObjeto.hpp"
 #include "enums/EnumDirecao.hpp"
 #include "Player.hpp"
@@ -10,13 +11,33 @@ Jogo *Jogo::instancia{nullptr};
 
 Jogo::Jogo(){
     this->carregarSprites();
-    this->player = new Player{0, 0, 16, false, EnumEstadoObjeto::VIVO, 10, 0, EnumDirecao::BAIXO, this->spritesTanque[0][0]};
+    this->player = new Player{0, 0, 16, false, EnumEstadoObjeto::VIVO, 10, 1, EnumDirecao::BAIXO, this->spritesTanque[0][0], this->spritesTanque[0]};
 }
 
 Jogo *Jogo::getInstancia(){
     if (Jogo::instancia == nullptr)
         Jogo::instancia = new Jogo();
     return Jogo::instancia;
+}
+
+void Jogo::moverPlayer(){
+    Allegro::ControleJogo *al = Allegro::ControleJogo::getInstancia();
+    if (al->teclaPressionada(al->SETA_CIMA))
+        this->player->setDirecao(EnumDirecao::CIMA);
+
+    else if (al->teclaPressionada(al->SETA_BAIXO)) 
+        this->player->setDirecao(EnumDirecao::BAIXO);
+    
+    else if (al->teclaPressionada(al->SETA_ESQUERDA)) 
+        this->player->setDirecao(EnumDirecao::ESQUERDA);
+
+    else if (al->teclaPressionada(al->SETA_DIREITA)) 
+        this->player->setDirecao(EnumDirecao::DIREITA);
+
+    else 
+        this->player->setDirecao(EnumDirecao::PARADO);
+
+    this->player->mover();
 }
 
 void Jogo::carregarSprites(){

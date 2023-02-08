@@ -19,9 +19,11 @@ class Tanque : public Objeto{
         
         virtual ~Tanque();
 
+        virtual void mover();
+
         // virtual void atirar();
 
-        // virtual void setDirecao();
+        // virtual void setDirecao(EnumDirecao direcao);
 
         // virtual const bool colisao(std::list<Objeto*>&objeto) const;// override;
 

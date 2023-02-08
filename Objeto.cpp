@@ -18,13 +18,13 @@ Objeto::Objeto(
     Coordenada *cse{new Coordenada{x, y}};
     Coordenada *cid{new Coordenada{x + tamanhoSprite, y + tamanhoSprite}};
     this->superiorEsquerda = cse;
-    this->inferiorDireita = cse;
+    this->inferiorDireita = cid;
     this->tamanhoSprite = tamanhoSprite;
     this->imortal = (unsigned char)imortal;
     this->estado = (unsigned char)estado;
     this->vida = (unsigned char)vida;
     this->velocidade = (unsigned char)velocidade;
-    this->direcao = (unsigned char)direcao;
+    this->direcao = direcao;
 }
 
 // void colidiu (){
@@ -43,7 +43,8 @@ const Coordenada* Objeto::getSuperiorEsquerda() const{
 void Objeto::setSuperiorEsquerda (const unsigned short int x, unsigned short int y){
     this->superiorEsquerda->setX(x);
     this->superiorEsquerda->setY(y);
-
+    
+    // TODO Talvez mudar para updateInferiorDireita (só diferença semântica mesmo)
     this->setInferiorDireita(x, y);
 }
 void Objeto::setInferiorDireita (const unsigned short int x, unsigned short int y){
@@ -65,11 +66,11 @@ void Objeto::setVelocidade(const unsigned short int velocidade) {
     this->velocidade = (unsigned char)velocidade;
 }
 
-const unsigned short int Objeto::getDirecao() const {
+const EnumDirecao Objeto::getDirecao() const {
     return this->direcao;
 }
-void Objeto::setDirecao(const unsigned short int direcao){
-    this->direcao = (unsigned char)direcao;
+void Objeto::setDirecao(EnumDirecao direcao){
+    this->direcao = direcao;
 }
 
 const bool Objeto::colisao(const Coordenada& coordSuperiorEsquerda, const Coordenada& coordInferiorDireira) const {
@@ -90,19 +91,20 @@ void Objeto::mover() {
 
     switch (this->direcao)
     {
-        case (unsigned char)EnumDirecao::DIREITA:
+        case EnumDirecao::DIREITA:
             x += this->velocidade; 
             break;
-        case (unsigned char)EnumDirecao::ESQUERDA:
+        case EnumDirecao::ESQUERDA:
             x -= this->velocidade;
             break; 
-        case (unsigned char)EnumDirecao::CIMA:
+        case EnumDirecao::CIMA:
             y -= this->velocidade;
             break; 
-        case (unsigned char)EnumDirecao::BAIXO:
+        case EnumDirecao::BAIXO:
             y += this->velocidade;
             break;
     }
+
 
     this->setSuperiorEsquerda(x, y);
 }

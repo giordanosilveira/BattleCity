@@ -19,7 +19,7 @@ class ControleJogo{
 
         static ControleJogo *getInstancia();
 
-        static constexpr double FRAMERATE = 1.0/60.0;
+        static constexpr double FRAMERATE = 1.0/30.0;
         static const unsigned int KEY_SEEN = 1;
         static const unsigned int KEY_RELEASED = 2;
 

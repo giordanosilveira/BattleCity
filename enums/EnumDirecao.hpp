@@ -6,7 +6,7 @@ enum class EnumDirecao : unsigned short int {
     ESQUERDA,
     CIMA,
     BAIXO,
-    PARADO,
+    PARADO
 };
 
 #endif
