@@ -4,12 +4,25 @@
 
 Objeto::Objeto(){}
 
-Objeto::Objeto(const unsigned int x, const unsigned int y, const unsigned short int tamanhoSprite, const unsigned short imortal, EnumEstadoObjeto estado, const unsigned short velocidade, EnumDirecao direcao){
-    Coordenada *c{new Coordenada{x, y}};
-    this->coordenada = c;
+Objeto::Objeto(
+    const unsigned int x,
+    const unsigned int y,
+    const unsigned short int tamanhoSprite, 
+    const unsigned short imortal, 
+    EnumEstadoObjeto estado, 
+    const unsigned short vida,
+    const unsigned short velocidade, 
+    EnumDirecao direcao
+    ){
+    
+    Coordenada *cse{new Coordenada{x, y}};
+    Coordenada *cid{new Coordenada{x + tamanhoSprite, y + tamanhoSprite}};
+    this->superiorEsquerda = cse;
+    this->inferiorDireita = cse;
     this->tamanhoSprite = tamanhoSprite;
     this->imortal = (unsigned char)imortal;
     this->estado = (unsigned char)estado;
+    this->vida = (unsigned char)vida;
     this->velocidade = (unsigned char)velocidade;
     this->direcao = (unsigned char)direcao;
 }
@@ -23,12 +36,19 @@ Objeto::Objeto(const unsigned int x, const unsigned int y, const unsigned short 
 
 Objeto::~Objeto(){}
 
-const Coordenada* Objeto::getCoordenada() const{
-    return this->coordenada;
+const Coordenada* Objeto::getSuperiorEsquerda() const{
+    return this->superiorEsquerda;
 }
-void Objeto::setCoordenada (const unsigned short int x, unsigned short int y){
-    this->coordenada->setX(x);
-    this->coordenada->setY(x);
+
+void Objeto::setSuperiorEsquerda (const unsigned short int x, unsigned short int y){
+    this->superiorEsquerda->setX(x);
+    this->superiorEsquerda->setY(y);
+
+    this->setInferiorDireita(x, y);
+}
+void Objeto::setInferiorDireita (const unsigned short int x, unsigned short int y){
+    this->inferiorDireita->setX(x + this->tamanhoSprite);
+    this->inferiorDireita->setY(y + this->tamanhoSprite);
 }
 
 const unsigned short int Objeto::getTamanhoSprite() const{
@@ -52,15 +72,22 @@ void Objeto::setDirecao(const unsigned short int direcao){
     this->direcao = (unsigned char)direcao;
 }
 
+const bool Objeto::colisao(const Coordenada& coordSuperiorEsquerda, const Coordenada& coordInferiorDireira) const {
+
+    if (this->superiorEsquerda->getX() > coordInferiorDireira.getX()) return false;
+    if (this->inferiorDireita->getX() < coordSuperiorEsquerda.getX()) return false;
+    if (this->superiorEsquerda->getY() > coordInferiorDireira.getY()) return false;
+    if (this->inferiorDireita->getY() < coordSuperiorEsquerda.getY()) return false;
+
+    return true;
+
+}
+
 void Objeto::mover() {
     
-    unsigned int y = this->coordenada->getY();
-    unsigned int x = this->coordenada->getX();
+    unsigned int x = this->superiorEsquerda->getX();
+    unsigned int y = this->superiorEsquerda->getY();
 
-    /**
-     * @todo: verificação se ele pode se mover. 
-     * 
-     */
     switch (this->direcao)
     {
         case (unsigned char)EnumDirecao::DIREITA:
@@ -77,6 +104,6 @@ void Objeto::mover() {
             break;
     }
 
-    this->setCoordenada(x, y);
+    this->setSuperiorEsquerda(x, y);
 }
 

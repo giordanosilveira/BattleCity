@@ -25,7 +25,7 @@ class Objeto {
          * @param y (unsigned int) : ponto y.
          * @param tamanhoSprite x (unsigned short int) : tamanho da sprite.
          */
-        Objeto(const unsigned int x, const unsigned int y, const unsigned short int tamanhoSprite, const unsigned short imortal, EnumEstadoObjeto estado, const unsigned short velocidade, EnumDirecao direcao);
+        Objeto(const unsigned int x, const unsigned int y, const unsigned short int tamanhoSprite, const unsigned short imortal, EnumEstadoObjeto estado, const unsigned short vida, const unsigned short velocidade, EnumDirecao direcao);
 
         /**
          * @brief Destrutor
@@ -36,22 +36,50 @@ class Objeto {
          * @brief Retorna o ponteiro da coordenada.
          * @return (const Coordenada*) : Ponteiro da coordenada 
          */
-        const Coordenada* getCoordenada() const;
+        const Coordenada* getSuperiorEsquerda() const;
 
         /**
-         * @brief atualiza o ponto x e y da coordenada.
+         * @brief atualiza o ponto x e y da coordenada superior esquerda.
          * @param x (short int) : Coordenada x.
          * @param y (short int) : Coordenada y.
          */
-        void setCoordenada (const unsigned short int x, unsigned short int y);
+        void setSuperiorEsquerda (const unsigned short int x, unsigned short int y);
 
 
+        /**
+         * @brief atualiza o ponto x e y da coordenada inferior direita.
+         * @param x (short int) : Coordenada x.
+         * @param y (short int) : Coordenada y.
+         */
+        void setInferiorDireita (const unsigned short int x, unsigned short int y);
+
+
+        /**
+         * @brief Get the Velocidade object
+         * 
+         * @return const unsigned short int 
+         */
         const unsigned short int getVelocidade() const;
 
+        /**
+         * @brief Set the Velocidade object
+         * 
+         * @param int 
+         */
         void setVelocidade(const unsigned short int);
 
+        /**
+         * @brief Get the Direcao object
+         * 
+         * @return const unsigned short int 
+         */
         const unsigned short int getDirecao() const;
 
+        /**
+         * @brief Set the Direcao object
+         * 
+         * @param direcao 
+         */
         void setDirecao(const unsigned short int direcao);
 
 
@@ -71,31 +99,23 @@ class Objeto {
         void mover();
 
         
-        /**
-         * @brief Função para ver se um objeto colidiu com o outro.
-         * Como cada colisão é diferente para cada tipo de objeto,
-         * a classe responsável por herdar da classe objeto de implementá-la. 
-         * 
-         * @param objeto (Objeto&) : Objeto para ver se a colisão aconteceu.
-         * @return true (bool) : Se colidiu.
-         * @return false (bool) : Se não colidiu.
-         */
-        // virtual const bool colisao(std::list<Objeto*>& objetos) const = 0; 
+        
+        virtual const bool colisao(const Coordenada& coordSuperiorEsquerda, const Coordenada& coordInferiorDireira) const; 
     
         // virtual void setDirecao() = 0;
 
         Allegro::Sprite *sprite;
         
     protected:
-        Coordenada *coordenada;
+        Coordenada *superiorEsquerda;
+        Coordenada *inferiorDireita;
         unsigned char tamanhoSprite;
         unsigned char imortal;
         unsigned char estado;
+        unsigned char vida;
         unsigned char velocidade;
         unsigned char direcao;
 
 };
-
-
 
 #endif
