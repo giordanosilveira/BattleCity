@@ -10,7 +10,7 @@ Jogo *Jogo::instancia{nullptr};
 
 Jogo::Jogo(){
     this->carregarSprites();
-    this->player = new Player{0, 0, 16, false, EnumEstadoObjeto::VIVO, 0, EnumDirecao::BAIXO, this->spritesTanque[0][0]};
+    this->player = new Player{0, 0, 16, false, EnumEstadoObjeto::VIVO, 10, 0, EnumDirecao::BAIXO, this->spritesTanque[0][0]};
 }
 
 Jogo *Jogo::getInstancia(){
@@ -38,6 +38,22 @@ void Jogo::carregarSprites(){
                         offsetcol*num_cor + col*Jogo::TANK_WID, 
                         offsetlin*num_cor + lin*Jogo::TANK_HEI,
                         Jogo::TANK_WID, Jogo::TANK_HEI));
+    
+    Allegro::Sprite *parede{new Allegro::Sprite{this->spritesheet, 256, 64, Jogo::PAREDE_SIZE, Jogo::PAREDE_SIZE}};
+    this->parede = parede;
+
+    Allegro::Sprite *muro{new Allegro::Sprite{this->spritesheet, 256, 16, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE}};
+    this->muro = muro;
+
+    Allegro::Sprite *agua{new Allegro::Sprite{this->spritesheet, 256, 48, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE}};
+    this->agua = agua;
+
+    Allegro::Sprite *mato{new Allegro::Sprite{this->spritesheet, 272, 31, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE}};
+    this->mato = mato;
+
+    this->insignias.push_back(new Allegro::Sprite(this->spritesheet, 304, 31, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE));
+    this->insignias.push_back(new Allegro::Sprite(this->spritesheet, 320, 31, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE));
+
 
     // tela->desenharSprite(spritesTanque[0][0], 0, 0);
 

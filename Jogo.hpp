@@ -5,6 +5,13 @@
 #include <memory>
 #include "Sprite.hpp"
 #include "Player.hpp"
+// #include "Muro.hpp"
+// #include "Parede.hpp"
+// #include "Tanque.hpp"
+// #include "Explosao.hpp"
+// #include "Mato.hpp"
+// #include "Agua.hpp"
+// #include "Insignia.hpp"
 
 class Jogo{
     public:
@@ -15,6 +22,19 @@ class Jogo{
         static Jogo *getInstancia();
 
         Player *player;
+        
+        /**
+         * @todo: Instanciar todas as classes do jogo aqui
+         */
+        //std::list<>
+
+        Allegro::Sprite *spritesheet;
+        Allegro::Sprite *muro;
+        Allegro::Sprite *agua;
+        Allegro::Sprite *mato;
+        Allegro::Sprite *parede;
+        std::vector<Allegro::Sprite*>insignias;
+
     private:
         Jogo();
         static Jogo *instancia;
@@ -23,13 +43,15 @@ class Jogo{
 
         std::list<std::shared_ptr<Objeto>> elementosTela;
 
-        Allegro::Sprite *spritesheet;
         std::vector< std::vector<Allegro::Sprite*> > spritesTanque;
+        
 
         const unsigned short int TANK_MAT_WID = 8;
         const unsigned short int TANK_MAT_HEI = 8;
         const unsigned short int TANK_WID = 16;
         const unsigned short int TANK_HEI = 16;
+        const unsigned short int PAREDE_SIZE = 8;
+        const unsigned short int BLOCO_SIZE = 16;
         enum corTanque {
             TANQUE_AMARELO = 0,
             TANQUE_VERMELHO
