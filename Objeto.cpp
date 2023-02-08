@@ -73,15 +73,15 @@ void Objeto::setDirecao(EnumDirecao direcao){
     this->direcao = direcao;
 }
 
-const bool Objeto::colisao(const Coordenada& coordSuperiorEsquerda, const Coordenada& coordInferiorDireira) const {
-
-    if (this->superiorEsquerda->getX() > coordInferiorDireira.getX()) return false;
-    if (this->inferiorDireita->getX() < coordSuperiorEsquerda.getX()) return false;
-    if (this->superiorEsquerda->getY() > coordInferiorDireira.getY()) return false;
-    if (this->inferiorDireita->getY() < coordSuperiorEsquerda.getY()) return false;
+const bool Objeto::colisao(const Objeto *obj) const {
+    const Coordenada *coordInferiorDireita = obj->superiorEsquerda;
+    const Coordenada *coordSuperiorEsquerda = obj->inferiorDireita;
+    if (this->superiorEsquerda->getX() > coordInferiorDireita->getX()) return false;
+    if (this->inferiorDireita->getX() < coordSuperiorEsquerda->getX()) return false;
+    if (this->superiorEsquerda->getY() > coordInferiorDireita->getY()) return false;
+    if (this->inferiorDireita->getY() < coordSuperiorEsquerda->getY()) return false;
 
     return true;
-
 }
 
 void Objeto::mover() {

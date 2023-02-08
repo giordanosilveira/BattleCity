@@ -1,4 +1,5 @@
 #include "Player.hpp"
+#include "Parede.hpp"
 #include "Tanque.hpp"
 #include "allegro/ControleJogo.hpp"
 #include "enums/EnumEstadoObjeto.hpp"
@@ -21,7 +22,18 @@ Player::~Player()
 {
 }
 
-void Player::mover(){
+bool Player::algumaColisao(const std::vector<const Parede *> &paredes){
+    std::vector<const Parede *>::const_iterator it;
+    for (; it < paredes.end(); ++it)
+        if (this->colisao(*it))
+            return true;
+    return false;
+}
+
+void Player::mover(const std::vector<const Parede *> &paredes){
+        unsigned int old_x = this->superiorEsquerda->getX();
+        unsigned int old_y = this->superiorEsquerda->getY();
+
         unsigned int x = this->superiorEsquerda->getX();
         unsigned int y = this->superiorEsquerda->getY();
 
@@ -30,6 +42,7 @@ void Player::mover(){
             case EnumDirecao::DIREITA:
                 x += this->velocidade;
                 this->sprite = sprites[6];
+
                 break;
             case EnumDirecao::ESQUERDA:
                 x -= this->velocidade;
@@ -47,5 +60,7 @@ void Player::mover(){
 
 
         this->setSuperiorEsquerda(x, y);
+        this->setSuperiorEsquerda(x_old, y_old);
+        
 
 }

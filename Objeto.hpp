@@ -9,6 +9,7 @@
 #include "enums/EnumDirecao.hpp"
 #include "allegro/Sprite.hpp"
 #include "enums/EnumEstadoObjeto.hpp"
+#include "Parede.hpp"
 
 
 class Objeto {
@@ -94,10 +95,10 @@ class Objeto {
         void setTamanhoSprite(unsigned short int);
 
 
-        virtual void mover();
+        virtual void mover(const std::vector<const Parede *> &paredes);
         
         
-        virtual const bool colisao(const Coordenada& coordSuperiorEsquerda, const Coordenada& coordInferiorDireira) const; 
+        virtual const bool colisao(const Objeto *obj) const ;
     
         // virtual void setDirecao() = 0;
 

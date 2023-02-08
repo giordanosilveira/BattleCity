@@ -2,6 +2,7 @@
 #define PLAYER_HPP
 
 #include "Tanque.hpp"
+#include "Parede.hpp"
 #include "enums/EnumDirecao.hpp"
 #include "enums/EnumEstadoObjeto.hpp"
 #include "allegro/Sprite.hpp"
@@ -16,7 +17,9 @@ class Player : public Tanque {
 
         ~Player();
 
-        void mover() override;
+        void mover(const std::vector<const Parede *> &paredes) override;
+    private:
+        bool algumaColisao(const std::vector<const Parede *> &paredes);
 };
 
 
