@@ -18,7 +18,7 @@ class Player : public Tanque {
 
         ~Player();
 
-        void mover(const std::vector<const Parede *> &paredes);
+        void mover(const std::vector<const Parede *> &paredes, const std::vector<const Parede *> &paredesInvenciveis);
 
         /**
          * @todo: a colisão funciona, porém ela não é aqui e é com objeto genérico 

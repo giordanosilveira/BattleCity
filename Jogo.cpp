@@ -98,7 +98,7 @@ void Jogo::moverPlayer(){
     else 
         this->player->setDirecao(EnumDirecao::PARADO);
 
-    this->player->mover(this->paredes);
+    this->player->mover(this->paredes, this->paredeInvencivel);
 }
 
 void Jogo::carregarSprites(){

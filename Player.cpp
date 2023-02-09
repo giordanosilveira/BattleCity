@@ -42,7 +42,7 @@ const bool Player::colisao(const Parede *parede) const {
 }
 
 
-void Player::mover(const std::vector<const Parede *> &paredes){
+void Player::mover(const std::vector<const Parede *> &paredes, const std::vector<const Parede *> &paredesInvenciveis){
         unsigned int old_x = this->superiorEsquerda->getX();
         unsigned int old_y = this->superiorEsquerda->getY();
 
@@ -72,7 +72,7 @@ void Player::mover(const std::vector<const Parede *> &paredes){
         }
 
         this->setSuperiorEsquerda(x, y);
-        if (this->algumaColisao(paredes)) {
+        if (this->algumaColisao(paredes) || this->algumaColisao(paredesInvenciveis)) {
             this->setSuperiorEsquerda(old_x, old_y);
         }
         
