@@ -119,7 +119,13 @@ void Jogo::carregarSprites(){
         this->spritesTanquePlayer.push_back(sp4d);
     }
 
-    
+    Allegro::Sprite4D *sp4d = new Allegro::Sprite4D();
+    sp4d->inicializarSprite(this->spritesheet, 323, 102, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE, sp4d->CIM);
+    sp4d->inicializarSprite(this->spritesheet, 330, 102, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE, sp4d->ESQ);
+    sp4d->inicializarSprite(this->spritesheet, 339, 102, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE, sp4d->BAI);
+    sp4d->inicializarSprite(this->spritesheet, 346, 102, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE, sp4d->DIR);
+    this->tiroSprite = sp4d;
+
     Allegro::Sprite *parede{new Allegro::Sprite{this->spritesheet, 256, 64, Jogo::PAREDE_SIZE, Jogo::PAREDE_SIZE}};
     this->parede = parede;
 

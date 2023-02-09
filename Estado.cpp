@@ -34,6 +34,10 @@ void Estado::jogo(){
 
         if (al->getEvento() == al->TEMPO_QUADRO){
             al->visualizarTeclas();
+
+            if (al->atirou()){
+                j->player->atirar();
+            }
             j->moverPlayer();
             redesenhar = true;
         }
@@ -48,6 +52,7 @@ void Estado::jogo(){
             done = true;
             Estado::atual = Estado::ENCERRAR;
         }
+
 
         if (done) break;
 

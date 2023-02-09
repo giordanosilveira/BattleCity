@@ -1,7 +1,7 @@
 #ifndef TANQUE_HPP
 #define TANQUE_HPP
 
-// #include "Tiro.hpp"
+#include "Tiro.hpp"
 #include "Objeto.hpp"
 #include "allegro/Sprite.hpp"
 #include "allegro/Sprite4D.hpp"
@@ -10,10 +10,11 @@
 #include <iostream>
 #include <list>
 
+class Tiro;
 
 class Tanque : public Objeto{
 
-    // friend void Tiro::setTanque(Tanque*tanque);
+    friend void Tiro::setTanque(Tanque*tanque);
 
     public:
         Tanque();
@@ -23,7 +24,7 @@ class Tanque : public Objeto{
 
         // virtual void mover();
 
-        // virtual void atirar();
+        virtual void atirar();
 
         // virtual void setDirecao(EnumDirecao direcao);
 
@@ -34,7 +35,7 @@ class Tanque : public Objeto{
         Allegro::Sprite4D * sprites;
 
     protected:
-        // std::list<Tiro*>tiros;
+        std::list<Tiro*>tiros;
 
 };
 

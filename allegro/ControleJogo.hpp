@@ -42,6 +42,7 @@ class ControleJogo{
         void pressionarTecla();
         void soltarTecla();
         bool teclaPressionada(const unsigned short int tecla);
+        bool atirou() const;
 
         void registrarTela(ALLEGRO_DISPLAY *display);
 

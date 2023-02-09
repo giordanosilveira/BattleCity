@@ -42,6 +42,7 @@ class Jogo{
         Allegro::Sprite *spritesheet;
         Allegro::Sprite *parede;
         Allegro::Sprite *paredeInvencivelSprite;
+        Allegro::Sprite4D *tiroSprite;
         std::vector<Allegro::Sprite*>insignias;
 
 

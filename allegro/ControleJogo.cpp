@@ -116,3 +116,7 @@ ALLEGRO_BITMAP *ControleJogo::pegarSprite(ALLEGRO_BITMAP *sheet, int x, int y, i
 bool ControleJogo::teclaPressionada(const unsigned short int tecla){
     return this->key[tecla];
 }
+
+bool ControleJogo::atirou() const{
+    return this->key[ALLEGRO_KEY_SPACE];
+}
