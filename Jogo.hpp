@@ -6,6 +6,7 @@
 #include "allegro/Sprite.hpp"
 #include "Player.hpp"
 #include "Parede.hpp"
+#include "Sprite4D.hpp"
 // #include "Muro.hpp"
 // #include "Parede.hpp"
 // #include "Tanque.hpp"
@@ -51,7 +52,8 @@ class Jogo{
 
         std::list<std::shared_ptr<Objeto>> elementosTela;
 
-        std::vector< std::vector<Allegro::Sprite*> > spritesTanque;
+        std::vector<Allegro::Sprite4D*>spritesTanque;
+        std::vector<Allegro::Sprite4D*>spritesTanquePlayer;
 
         const unsigned short int TANK_MAT_WID = 8;
         const unsigned short int TANK_MAT_HEI = 8;

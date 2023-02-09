@@ -69,6 +69,24 @@ void Jogo::carregarSprites(){
 
     Allegro::Tela *tela = Allegro::Tela::getInstancia();
 
+
+    
+    for (unsigned int i{0}; i <= 16; i += 16) {
+        Allegro::Sprite sp1{this->spritesheet, i, 0, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE};
+        Allegro::Sprite sp2{this->spritesheet, i+32, 0, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE};
+        Allegro::Sprite sp3{this->spritesheet, i+32*2, 0, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE};
+        Allegro::Sprite sp4{this->spritesheet, i+32*3, 0, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE};
+        this->spritesTanquePlayer.push_back(new Allegro::Sprite4D{sp1.getBitmap(), sp2.getBitmap(), sp3.getBitmap(), sp4.getBitmap()});
+    }
+
+    // for (unsigned int i{0}; i <= 16; i += 16) {
+    //     Allegro::Sprite sp1{this->spritesheet, i, 0, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE};
+    //     Allegro::Sprite sp2{this->spritesheet, i+32, 0, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE};
+    //     Allegro::Sprite sp3{this->spritesheet, i+32*2, 0, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE};
+    //     Allegro::Sprite sp4{this->spritesheet, i+32*3, 0, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE};
+    //     this->spritesTanquePlayer.push_back(new Allegro::Sprite4D{sp1.getBitmap(), sp2.getBitmap(), sp3.getBitmap(), sp4.getBitmap()});
+    // }
+
     // pega 2 matrizes de sprites
     unsigned int offsetlin = Jogo::TANK_HEI * Jogo::TANK_MAT_HEI;
     unsigned int offsetcol = Jogo::TANK_WID * Jogo::TANK_MAT_WID;
