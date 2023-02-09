@@ -1,7 +1,9 @@
 #include "Sprite4D.hpp"
 #include <iostream>
 
-Allegro::Sprite4D::Sprite4D(){}
+Allegro::Sprite4D::Sprite4D()
+        :Sprite{},bitmapEsquerda{nullptr},bitmapBaixo{nullptr},bitmapDireita{nullptr},bitmapCima{nullptr}{
+}
 
 // Allegro::Sprite4D::Sprite4D(Sprite* spriteEsquerda, Sprite* spriteBaixo, Sprite* spriteDireita, Sprite* spriteCima):bitmapEsquerda{spriteEsquerda->getBitmap()}, bitmapBaixo{spriteBaixo->getBitmap()}, bitmapDireita{spriteDireita->getBitmap()}, bitmapCima{spriteCima->getBitmap()}{
 // }
@@ -10,29 +12,40 @@ Allegro::Sprite4D::~Sprite4D(){}
 
 void Allegro::Sprite4D::setSpritePrincipal(int direcao){
     // TODO meio ruim essas constantes mas n sei como fazer melhor
-    std::cout << "Principal: ";
     switch (direcao){
         case ESQ:
             this->bitmap = this->bitmapEsquerda;
-            std::cout << "esquerda" << std::endl;
             break;
         case BAI:
             this->bitmap = this->bitmapBaixo;
-            std::cout << "baixo" << std::endl;
             break;
         case DIR:
             this->bitmap = this->bitmapDireita;
-            std::cout << "direita" << std::endl;
             break;
         case CIM:
             this->bitmap = this->bitmapCima;
-            std::cout << "cima" << std::endl;
             break;
     }
 }
 
 void Allegro::Sprite4D::inicializarSprite(const Sprite *sprite, const unsigned int inicioX, const unsigned int inicioY, const unsigned int larg, const unsigned int alt, int direcao){
-    al_create_sub_bitmap(sprite->getBitmap(), inicioX, inicioY, larg, alt);
+    ALLEGRO_BITMAP* bmap = al_create_sub_bitmap(sprite->getBitmap(), inicioX, inicioY, larg, alt);
+
+    switch (direcao){
+        case this->ESQ:
+            this->bitmapEsquerda = bmap;
+        break;
+        case this->BAI:
+            this->bitmapBaixo = bmap;
+        break;
+        case this->DIR:
+            this->bitmapDireita = bmap;
+        break;
+        case this->CIM:
+            this->bitmapCima = bmap;
+        break;
+    }
+
 }
 
 // ALLEGRO_BITMAP *Allegro::Sprite4D::getBitmapPrincipal() const{

@@ -17,9 +17,7 @@ Tanque::~Tanque(){
 }
 
 void Tanque::setSprite(Allegro::Sprite4D*  sprite){
-    std::cout << "vai setar" << std::endl;
     this->sprites = sprite;
-    std::cout << "setou" << std::endl;
 }
 
 // const Allegro::Sprite* Tanque::getSprite() const{

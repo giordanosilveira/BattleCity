@@ -17,7 +17,6 @@ Jogo *Jogo::instancia{nullptr};
 
 Jogo::Jogo(){
     this->carregarSprites();
-    std::cout << "Carregou sprites" << std::endl;
 
     this->player = new Player{8, 8, 16, false, EnumEstadoObjeto::VIVO, 10, 2, EnumDirecao::BAIXO, this->spritesTanquePlayer[0]};
     
@@ -88,13 +87,11 @@ void Jogo::carregarSprites(){
     for (unsigned int i{0}; i <= 16; i += 16) {
         Allegro::Sprite4D *sp4d = new Allegro::Sprite4D();
 
-        sp4d->inicializarSprite(this->spritesheet, i, 0, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE, sp4d->ESQ);
-        sp4d->inicializarSprite(this->spritesheet, i+32, 0, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE, sp4d->BAI);
-        sp4d->inicializarSprite(this->spritesheet, i+32*2, 0, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE, sp4d->DIR);
-        sp4d->inicializarSprite(this->spritesheet, i+32*3, 0, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE, sp4d->CIM);
-        std::cout << "vai setar sprite" << std::endl;
+        sp4d->inicializarSprite(this->spritesheet, i, 0, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE, sp4d->CIM);
+        sp4d->inicializarSprite(this->spritesheet, i+32, 0, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE, sp4d->ESQ);
+        sp4d->inicializarSprite(this->spritesheet, i+32*2, 0, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE, sp4d->BAI);
+        sp4d->inicializarSprite(this->spritesheet, i+32*3, 0, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE, sp4d->DIR);
         this->spritesTanquePlayer.push_back(sp4d);
-        std::cout << "setou sprite" << std::endl;
     }
 
     // for (unsigned int i{0}; i <= 16; i += 16) {

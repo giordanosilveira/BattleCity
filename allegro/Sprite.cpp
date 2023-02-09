@@ -34,6 +34,5 @@ void Sprite::setBitmap(ALLEGRO_BITMAP * const bitmap){
 }
 
 ALLEGRO_BITMAP *Sprite::getBitmap() const{
-    std::cout << "entrei aqui" << std::endl;
     return this->bitmap;
 }
