@@ -110,7 +110,7 @@ class Objeto {
         // virtual void setDirecao() = 0;
 
         // TODO: MUITO FEIO, DEIXAR PRIVADO DEPOIS
-        const Allegro::Sprite *sprite;
+        const Allegro::Sprite* sprite;
         
     protected:
         Coordenada *superiorEsquerda;

@@ -1,4 +1,5 @@
 #include <allegro5/allegro_image.h>
+#include <allegro5/bitmap.h>
 #include <iostream>
 
 #include <string>
@@ -28,6 +29,11 @@ Sprite::~Sprite(){
     al_destroy_bitmap(this->bitmap);
 }
 
+void Sprite::setBitmap(ALLEGRO_BITMAP * const bitmap){
+    this->bitmap = bitmap;
+}
+
 ALLEGRO_BITMAP *Sprite::getBitmap() const{
+    std::cout << "entrei aqui" << std::endl;
     return this->bitmap;
 }

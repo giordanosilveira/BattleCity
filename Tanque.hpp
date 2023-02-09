@@ -30,7 +30,7 @@ class Tanque : public Objeto{
         // virtual const bool colisao(std::list<Objeto*>&objeto) const;// override;
 
         const Allegro::Sprite* getSprite() const;
-        void setSprites(Allegro::Sprite *spEsq, Allegro::Sprite *spBai, Allegro::Sprite *spDir, Allegro::Sprite *spCim);
+        void setSprite(Allegro::Sprite4D*  sprite);
         Allegro::Sprite4D * sprites;
 
     protected:

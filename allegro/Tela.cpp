@@ -53,6 +53,7 @@ void Tela::desenharTexto(const std::string &texto){ // n pode ser const
 }   
 
 void Tela::desenharSprite(const Allegro::Sprite *spr, float x, float y) const{
+    
     al_draw_bitmap(spr->getBitmap(), x, y, 0);
 }
 

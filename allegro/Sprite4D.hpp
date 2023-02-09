@@ -8,9 +8,20 @@ namespace Allegro {
         public:
 
             Sprite4D();
-            Sprite4D(Sprite* bitmapEsquerda, Sprite* bitmapBaixo, Sprite* bitmapDireita, Sprite* bitmapCima);
+            // Sprite4D(Sprite* bitmapEsquerda, Sprite* bitmapBaixo, Sprite* bitmapDireita, Sprite* bitmapCima);
             virtual ~Sprite4D();
 
+            enum direcao{
+                ESQ = 0,
+                BAI,
+                DIR,
+                CIM
+            };
+
+            void inicializarSprite(const Sprite *sprite, const unsigned int inicioX, const unsigned int inicioY, const unsigned int larg, const unsigned int alt, int direcao);
+
+            void setSpritePrincipal(int direcao);
+            ALLEGRO_BITMAP* getBitmapPrincipal() const;
 
             const ALLEGRO_BITMAP* getBitmapEsquerda() const;
             void setBitmapEsquerda(ALLEGRO_BITMAP* bitmapEsquerda);

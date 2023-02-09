@@ -1,3 +1,4 @@
+#include "allegro/Sprite4D.hpp"
 #include "allegro/Tela.hpp"
 #include "allegro/ControleJogo.hpp"
 #include "enums/EnumEstadoObjeto.hpp"
@@ -13,6 +14,24 @@
 
 Jogo *Jogo::instancia{nullptr};
 
+
+Jogo::Jogo(){
+    this->carregarSprites();
+    std::cout << "Carregou sprites" << std::endl;
+
+    this->player = new Player{8, 8, 16, false, EnumEstadoObjeto::VIVO, 10, 2, EnumDirecao::BAIXO, this->spritesTanquePlayer[0]};
+    
+
+    this->criarParedesBorda();
+}
+
+Jogo *Jogo::getInstancia(){
+    if (Jogo::instancia == nullptr)
+        Jogo::instancia = new Jogo();
+    return Jogo::instancia;
+}
+
+
 void Jogo::desenharParedes() const{
     Allegro::Tela *tela{Allegro::Tela::getInstancia()};
     std::vector<const Parede *>::const_iterator it{this->paredes.begin()};
@@ -20,11 +39,11 @@ void Jogo::desenharParedes() const{
         tela->desenharSprite((*it)->sprite, (*it)->getSuperiorEsquerda()->getX(), (*it)->getSuperiorEsquerda()->getY());
 }
 
-void Jogo::desenharTanque(const Tanque* tanque) const{
-    Allegro::Tela *tela{Allegro::Tela::getInstancia()};
+// void Jogo::desenharTanque(const Tanque* tanque) const{
+//     Allegro::Tela *tela{Allegro::Tela::getInstancia()};
 
-    tela->desenharSprite(tanque->getSprite(), tanque->getSuperiorEsquerda()->getX(), tanque->getSuperiorEsquerda()->getY());
-}
+//     tela->desenharSprite(tanque->getSprite(), tanque->getSuperiorEsquerda()->getX(), tanque->getSuperiorEsquerda()->getY());
+// }
 
 void Jogo::criarParedesBorda(){
     Allegro::Tela *tela{Allegro::Tela::getInstancia()};
@@ -36,20 +55,6 @@ void Jogo::criarParedesBorda(){
         this->paredes.push_back(new Parede{0, y, this->PAREDE_SIZE, 1, EnumEstadoObjeto::VIVO, 0, 1, EnumDirecao::PARADO, this->parede});
         this->paredes.push_back(new Parede{tela->BUFFER_WIDTH-40, y, this->PAREDE_SIZE, 1, EnumEstadoObjeto::VIVO, 0, 1, EnumDirecao::PARADO, this->parede});
     }
-}
-
-Jogo::Jogo(){
-    this->carregarSprites();
-
-    this->player = new Player{8, 8, 16, false, EnumEstadoObjeto::VIVO, 10, 2, EnumDirecao::BAIXO, this->spritesTanquePlayer};
-
-    this->criarParedesBorda();
-}
-
-Jogo *Jogo::getInstancia(){
-    if (Jogo::instancia == nullptr)
-        Jogo::instancia = new Jogo();
-    return Jogo::instancia;
 }
 
 void Jogo::moverPlayer(){
@@ -81,11 +86,15 @@ void Jogo::carregarSprites(){
     Allegro::Tela *tela = Allegro::Tela::getInstancia();
     
     for (unsigned int i{0}; i <= 16; i += 16) {
-        Allegro::Sprite sp1{this->spritesheet, i, 0, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE};
-        Allegro::Sprite sp2{this->spritesheet, i+32, 0, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE};
-        Allegro::Sprite sp3{this->spritesheet, i+32*2, 0, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE};
-        Allegro::Sprite sp4{this->spritesheet, i+32*3, 0, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE};
-        this->spritesTanquePlayer.push_back(new Allegro::Sprite4D{&sp1, &sp2, &sp3, &sp4});
+        Allegro::Sprite4D *sp4d = new Allegro::Sprite4D();
+
+        sp4d->inicializarSprite(this->spritesheet, i, 0, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE, sp4d->ESQ);
+        sp4d->inicializarSprite(this->spritesheet, i+32, 0, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE, sp4d->BAI);
+        sp4d->inicializarSprite(this->spritesheet, i+32*2, 0, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE, sp4d->DIR);
+        sp4d->inicializarSprite(this->spritesheet, i+32*3, 0, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE, sp4d->CIM);
+        std::cout << "vai setar sprite" << std::endl;
+        this->spritesTanquePlayer.push_back(sp4d);
+        std::cout << "setou sprite" << std::endl;
     }
 
     // for (unsigned int i{0}; i <= 16; i += 16) {
