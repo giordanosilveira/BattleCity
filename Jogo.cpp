@@ -19,7 +19,28 @@ Jogo::Jogo(){
     this->carregarSprites();
 
     this->player = new Player{8, 8, 16, false, EnumEstadoObjeto::VIVO, 10, 2, EnumDirecao::BAIXO, this->spritesTanquePlayer[0]};
-    
+    this->mapa = new Mapa{"./data/mapa.txt"};
+
+    std::vector<std::string> matriz = this->mapa->getMatriz();
+    unsigned int n_linhas = matriz.size();
+    unsigned int n_colunas = matriz[0].size();
+
+    for (unsigned int i = 0; i < n_linhas; ++i){
+        for (unsigned int j = 0; j < n_colunas; ++j){
+            switch (matriz[i][j])
+            {
+            case '#':
+                this->paredes.push_back(new Parede{j*Jogo::PAREDE_SIZE + Jogo::OFFSET, i*Jogo::PAREDE_SIZE + Jogo::OFFSET, Jogo::PAREDE_SIZE, 0, EnumEstadoObjeto::VIVO, 0, 1, EnumDirecao::PARADO, this->parede});
+                break;
+            case '@':
+                this->paredeInvencivel.push_back(new Parede{j*Jogo::PAREDE_SIZE + Jogo::OFFSET, i*Jogo::PAREDE_SIZE + Jogo::OFFSET, Jogo::PAREDE_SIZE, 1, EnumEstadoObjeto::VIVO, 0, 1, EnumDirecao::PARADO, this->paredeInvencivelSprite});
+                break;
+            default:
+                break;
+            }
+
+        }
+    }
 
     this->criarParedesBorda();
 }
@@ -36,6 +57,10 @@ void Jogo::desenharParedes() const{
     std::vector<const Parede *>::const_iterator it{this->paredes.begin()};
     for (; it < this->paredes.end(); ++it)
         tela->desenharSprite((*it)->sprite, (*it)->getSuperiorEsquerda()->getX(), (*it)->getSuperiorEsquerda()->getY());
+
+    std::vector<const Parede *>::const_iterator it2{this->paredeInvencivel.begin()};
+    for (; it2 < this->paredeInvencivel.end(); ++it2)
+        tela->desenharSprite((*it2)->sprite, (*it2)->getSuperiorEsquerda()->getX(), (*it2)->getSuperiorEsquerda()->getY());
 }
 
 // void Jogo::desenharTanque(const Tanque* tanque) const{
@@ -47,12 +72,12 @@ void Jogo::desenharParedes() const{
 void Jogo::criarParedesBorda(){
     Allegro::Tela *tela{Allegro::Tela::getInstancia()};
     for (unsigned int x = 0; x < tela->BUFFER_WIDTH - 32; x += 8){
-        this->paredes.push_back(new Parede{x, 0, this->PAREDE_SIZE, 1, EnumEstadoObjeto::VIVO, 0, 1, EnumDirecao::PARADO, this->parede});
-        this->paredes.push_back(new Parede{x, tela->BUFFER_HEIGHT-8, this->PAREDE_SIZE, 1, EnumEstadoObjeto::VIVO, 0, 1,EnumDirecao::PARADO, this->parede});
+        this->paredeInvencivel.push_back(new Parede{x, 0, this->PAREDE_SIZE, 1, EnumEstadoObjeto::VIVO, 0, 1, EnumDirecao::PARADO, this->paredeInvencivelSprite});
+        this->paredeInvencivel.push_back(new Parede{x, tela->BUFFER_HEIGHT-8, this->PAREDE_SIZE, 1, EnumEstadoObjeto::VIVO, 0, 1,EnumDirecao::PARADO, this->paredeInvencivelSprite});
     }
     for (unsigned int y = 0; y < tela->BUFFER_HEIGHT - 8; y += 8){
-        this->paredes.push_back(new Parede{0, y, this->PAREDE_SIZE, 1, EnumEstadoObjeto::VIVO, 0, 1, EnumDirecao::PARADO, this->parede});
-        this->paredes.push_back(new Parede{tela->BUFFER_WIDTH-40, y, this->PAREDE_SIZE, 1, EnumEstadoObjeto::VIVO, 0, 1, EnumDirecao::PARADO, this->parede});
+        this->paredeInvencivel.push_back(new Parede{0, y, this->PAREDE_SIZE, 1, EnumEstadoObjeto::VIVO, 0, 1, EnumDirecao::PARADO, this->paredeInvencivelSprite});
+        this->paredeInvencivel.push_back(new Parede{tela->BUFFER_WIDTH-40, y, this->PAREDE_SIZE, 1, EnumEstadoObjeto::VIVO, 0, 1, EnumDirecao::PARADO, this->paredeInvencivelSprite});
     }
 }
 
@@ -94,38 +119,13 @@ void Jogo::carregarSprites(){
         this->spritesTanquePlayer.push_back(sp4d);
     }
 
-    // for (unsigned int i{0}; i <= 16; i += 16) {
-    //     Allegro::Sprite sp1{this->spritesheet, i, 0, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE};
-    //     Allegro::Sprite sp2{this->spritesheet, i+32, 0, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE};
-    //     Allegro::Sprite sp3{this->spritesheet, i+32*2, 0, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE};
-    //     Allegro::Sprite sp4{this->spritesheet, i+32*3, 0, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE};
-    //     this->spritesTanquePlayer.push_back(new Allegro::Sprite4D{sp1.getBitmap(), sp2.getBitmap(), sp3.getBitmap(), sp4.getBitmap()});
-    // }
-
-    // pega 2 matrizes de sprites
-    // unsigned int offsetlin = Jogo::TANK_HEI * Jogo::TANK_MAT_HEI;
-    // unsigned int offsetcol = Jogo::TANK_WID * Jogo::TANK_MAT_WID;
-    // for (unsigned int num_cor{0}; num_cor < 2; ++num_cor)
-    //     for (unsigned int lin{0}; lin < Jogo::TANK_MAT_HEI; ++lin)
-    //         for (unsigned int col{0}; col < Jogo::TANK_MAT_WID; ++col)
-    //             spritesTanque[num_cor].push_back(
-    //                 new Allegro::Sprite(this->spritesheet, 
-    //                     offsetcol*num_cor + col*Jogo::TANK_WID, 
-    //                     offsetlin*num_cor + lin*Jogo::TANK_HEI,
-    //                     Jogo::TANK_WID, Jogo::TANK_HEI));
     
     Allegro::Sprite *parede{new Allegro::Sprite{this->spritesheet, 256, 64, Jogo::PAREDE_SIZE, Jogo::PAREDE_SIZE}};
     this->parede = parede;
 
-    Allegro::Sprite *muro{new Allegro::Sprite{this->spritesheet, 256, 16, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE}};
-    this->muro = muro;
+    Allegro::Sprite *paredeInvencivelSprite{new Allegro::Sprite{this->spritesheet, 256, 72, Jogo::PAREDE_SIZE, Jogo::PAREDE_SIZE}};
+    this->paredeInvencivelSprite = paredeInvencivelSprite;
 
-    Allegro::Sprite *agua{new Allegro::Sprite{this->spritesheet, 256, 48, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE}};
-    this->agua = agua;
-
-    Allegro::Sprite *mato{new Allegro::Sprite{this->spritesheet, 272, 31, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE}};
-    this->mato = mato;
- 
     this->insignias.push_back(new Allegro::Sprite(this->spritesheet, 304, 31, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE));
     this->insignias.push_back(new Allegro::Sprite(this->spritesheet, 320, 31, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE));
 
