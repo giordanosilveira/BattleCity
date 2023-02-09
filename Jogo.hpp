@@ -8,7 +8,7 @@
 #include "Parede.hpp"
 #include "allegro/Sprite4D.hpp"
 #include "Tanque.hpp"
-// #include "Muro.hpp"
+#include "Mapa.hpp"
 // #include "Parede.hpp"
 // #include "Explosao.hpp"
 // #include "Mato.hpp"
@@ -23,8 +23,12 @@ class Jogo{
 
         static Jogo *getInstancia();
 
+        Mapa *mapa;
         Player *player;
         std::vector<const Parede *> paredes;
+        std::vector<const Parede *> paredeInvencivel;
+        std::list<const Tanque *> tanques;
+        
         
         void moverPlayer();
 
@@ -36,11 +40,8 @@ class Jogo{
         void desenharTanque(const Tanque* tanque) const;
 
         Allegro::Sprite *spritesheet;
-        Allegro::Sprite *muro;
-        Allegro::Sprite *agua;
-        Allegro::Sprite *mato;
         Allegro::Sprite *parede;
-        Allegro::Sprite *paredeInvencivel;
+        Allegro::Sprite *paredeInvencivelSprite;
         std::vector<Allegro::Sprite*>insignias;
 
 
@@ -48,6 +49,7 @@ class Jogo{
         Jogo();
         static Jogo *instancia;
 
+        void montarObjetos();
         void carregarSprites();
 
         /* Funções auxiliares */
@@ -64,6 +66,7 @@ class Jogo{
         const unsigned short int TANK_HEI = 16;
         const unsigned short int PAREDE_SIZE = 8;
         const unsigned short int BLOCO_SIZE = 16;
+        const unsigned short int OFFSET = 8;
         enum corTanque {
             TANQUE_AMARELO = 0,
             TANQUE_VERMELHO
