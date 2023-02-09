@@ -24,16 +24,14 @@ class ControleJogo{
         static const unsigned int KEY_RELEASED = 2;
 
         /* ===== AÇÕES DE CONTROLE DO JOGO ===== */
-        void inicializar();
 
         /*
             Testa se foi feita uma ação para sair imediatamente do jogo
         */
-        bool sairJogo();
-        void finalizar();
+        bool sairJogo() const;
 
         /* ===== MÉTODOS DE FILA DE EVENTOS ===== */
-        unsigned short int getEvento();
+        unsigned short int getEvento() const;
         void esperarEvento();
         void esvaziarFila();
 
@@ -41,12 +39,12 @@ class ControleJogo{
         void visualizarTeclas();
         void pressionarTecla();
         void soltarTecla();
-        bool teclaPressionada(const unsigned short int tecla);
+        bool teclaPressionada(const unsigned short int tecla) const;
 
         void registrarTela(ALLEGRO_DISPLAY *display);
 
         ALLEGRO_BITMAP* carregarSpritesheet(const std::string &nomeArquivo);
-        ALLEGRO_BITMAP *pegarSprite(ALLEGRO_BITMAP *sheet, int x, int y, int w, int h);
+        ALLEGRO_BITMAP* pegarSprite(ALLEGRO_BITMAP *sheet, const unsigned int x, const unsigned int y, const unsigned int w, const unsigned int h);
         
 
         enum evento{
@@ -73,7 +71,6 @@ class ControleJogo{
 
         std::vector<unsigned char> key;
 
-        void testInit(bool test, const std::string message);
 };
 
 }

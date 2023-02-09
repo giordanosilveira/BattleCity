@@ -11,12 +11,7 @@
 #include "allegro/ControleJogo.hpp"
 #include "allegro/Tela.hpp"
 
-short int Estado::atual = Estado::INICIALIZAR;
-
-void Estado::inicializar(){
-
-    Estado::atual = Estado::JOGO;
-}
+short int Estado::atual = Estado::JOGO;
 
 void Estado::jogo(){
     bool done = false;

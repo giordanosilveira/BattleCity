@@ -59,7 +59,7 @@ void ControleJogo::esvaziarFila(){
     al_flush_event_queue(this->queue);
 }
 
-void ControleJogo::esperarEvento(){
+void ControleJogo::esperarEvento() {
     al_wait_for_event(this->queue, &this->event);
 }
 
@@ -77,11 +77,11 @@ void ControleJogo::soltarTecla(){
     this->key[this->event.keyboard.keycode] &= KEY_RELEASED;
 }
 
-bool ControleJogo::sairJogo(){
+bool ControleJogo::sairJogo() const{
     return this->key[ALLEGRO_KEY_ESCAPE] || (this->event.type == ALLEGRO_EVENT_DISPLAY_CLOSE);
 }
 
-unsigned short int ControleJogo::getEvento(){
+unsigned short int ControleJogo::getEvento() const{
     if (this->event.type == ALLEGRO_EVENT_TIMER) 
         return TEMPO_QUADRO;
     if (this->event.type == ALLEGRO_EVENT_KEY_DOWN) 
@@ -105,7 +105,7 @@ ALLEGRO_BITMAP* ControleJogo::carregarSpritesheet(const std::string &nomeArquivo
     return spritesheet;
 }
 
-ALLEGRO_BITMAP *ControleJogo::pegarSprite(ALLEGRO_BITMAP *sheet, int x, int y, int w, int h)
+ALLEGRO_BITMAP *ControleJogo::pegarSprite(ALLEGRO_BITMAP *sheet, const unsigned int x, const unsigned int y, const unsigned int w, const unsigned int h)
 // carrega sprite de sheet e aborta em caso de erro
 {
     ALLEGRO_BITMAP *sprite = al_create_sub_bitmap(sheet, x, y, w, h);
@@ -113,6 +113,6 @@ ALLEGRO_BITMAP *ControleJogo::pegarSprite(ALLEGRO_BITMAP *sheet, int x, int y, i
     return sprite;
 }
 
-bool ControleJogo::teclaPressionada(const unsigned short int tecla){
+bool ControleJogo::teclaPressionada(const unsigned short int tecla) const{
     return this->key[tecla];
 }

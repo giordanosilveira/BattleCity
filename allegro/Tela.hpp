@@ -20,12 +20,12 @@ class Tela{
 
         static Tela *getInstancia();
 
-        void desenharTela();
-        void desenharSprite(const Allegro::Sprite *spr, float x, float y) const;
-        void limparTelaCor(const unsigned short int r, const unsigned short int g, const unsigned short int b);
+        void desenharTela() const;
+        void desenharSprite(const Allegro::Sprite* const spr, const float x, const float y) const;
+        void limparTelaCor(const unsigned short int r, const unsigned short int g, const unsigned short int b) const;
         void desenharTexto(const std::string &texto);
         void desenharRetanguloCheio(const unsigned int x1, const unsigned int y1, const unsigned int x2, const unsigned int y2,
-        const unsigned short int r, const unsigned short int g, const unsigned short int b, const float a);
+        const unsigned short int r, const unsigned short int g, const unsigned short int b, const float a) const;
 
         // define largura e altura do buffer intermediário do jogo
         static const unsigned int BUFFER_WIDTH = 256;

@@ -77,6 +77,10 @@ void Objeto::setDirecao(EnumDirecao direcao){
     this->direcao = direcao;
 }
 
+const Allegro::Sprite* Objeto::getSprite() const{
+    return this->sprite;
+}
+
 // const bool Objeto::colisao(const Objeto *obj) const {
 //     const Coordenada *coordInferiorDireita = obj->superiorEsquerda;
 //     const Coordenada *coordSuperiorEsquerda = obj->inferiorDireita;

@@ -12,28 +12,28 @@ namespace Allegro {
             virtual ~Sprite4D();
 
             enum direcao{
-                ESQ = 0,
+                CIM = 0,
+                ESQ,
                 BAI,
-                DIR,
-                CIM
+                DIR
             };
 
-            void inicializarSprite(const Sprite *sprite, const unsigned int inicioX, const unsigned int inicioY, const unsigned int larg, const unsigned int alt, int direcao);
+            void inicializarSprite(const Sprite* const sprite, const unsigned int inicioX, const unsigned int inicioY, const unsigned int larg, const unsigned int alt, const int direcao);
 
-            void setSpritePrincipal(int direcao);
             ALLEGRO_BITMAP* getBitmapPrincipal() const;
+            void setSpritePrincipal(const int direcao);
 
-            const ALLEGRO_BITMAP* getBitmapEsquerda() const;
-            void setBitmapEsquerda(ALLEGRO_BITMAP* bitmapEsquerda);
+            // const ALLEGRO_BITMAP* getBitmapEsquerda() const;
+            // void setBitmapEsquerda(ALLEGRO_BITMAP* bitmapEsquerda);
 
-            const ALLEGRO_BITMAP* getBitmapBaixo() const;
-            void setBitmapBaixo(ALLEGRO_BITMAP* bitmapBaixo);
+            // const ALLEGRO_BITMAP* getBitmapBaixo() const;
+            // void setBitmapBaixo(ALLEGRO_BITMAP* bitmapBaixo);
 
-            const ALLEGRO_BITMAP* getBitmapDireita() const;
-            void setBitmapDireita(ALLEGRO_BITMAP* bitmapDireita);
+            // const ALLEGRO_BITMAP* getBitmapDireita() const;
+            // void setBitmapDireita(ALLEGRO_BITMAP* bitmapDireita);
 
-            const ALLEGRO_BITMAP* getBitmapCima() const;
-            void setBitmapCima(ALLEGRO_BITMAP* bitmapCima);
+            // const ALLEGRO_BITMAP* getBitmapCima() const;
+            // void setBitmapCima(ALLEGRO_BITMAP* bitmapCima);
 
         private:
             ALLEGRO_BITMAP *bitmapEsquerda;

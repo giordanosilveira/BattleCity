@@ -21,7 +21,7 @@ class Jogo{
         Jogo(Jogo &outro) = delete;
         void operator=(const Jogo &outro) = delete;
 
-        static Jogo *getInstancia();
+        static Jogo *getInstancia() ;
 
         Player *player;
         std::vector<const Parede *> paredes;

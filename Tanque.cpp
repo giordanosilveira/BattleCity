@@ -16,7 +16,7 @@ Tanque::~Tanque(){
     
 }
 
-void Tanque::setSprite(Allegro::Sprite4D*  sprite){
+void Tanque::setSprite(Allegro::Sprite4D* sprite){
     this->sprites = sprite;
 }
 

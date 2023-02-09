@@ -35,7 +35,7 @@ void Jogo::desenharParedes() const{
     Allegro::Tela *tela{Allegro::Tela::getInstancia()};
     std::vector<const Parede *>::const_iterator it{this->paredes.begin()};
     for (; it < this->paredes.end(); ++it)
-        tela->desenharSprite((*it)->sprite, (*it)->getSuperiorEsquerda()->getX(), (*it)->getSuperiorEsquerda()->getY());
+        tela->desenharSprite((*it)->getSprite(), (*it)->getSuperiorEsquerda()->getX(), (*it)->getSuperiorEsquerda()->getY());
 }
 
 // void Jogo::desenharTanque(const Tanque* tanque) const{
