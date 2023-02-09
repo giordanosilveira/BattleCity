@@ -1,5 +1,7 @@
 #include <allegro5/allegro.h>
 #include <allegro5/events.h>
+#include <allegro5/allegro_primitives.h>
+
 #include <stdlib.h>
 
 #include "ControleJogo.hpp"

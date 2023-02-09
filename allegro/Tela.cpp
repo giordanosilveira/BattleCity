@@ -1,9 +1,11 @@
 #include "Tela.hpp"
 #include "ControleJogo.hpp"
 #include "Sprite.hpp"
-
+#include "../Objeto.hpp"
 #include "Util.hpp"
+
 #include <allegro5/display.h>
+#include <allegro5/allegro_primitives.h>
 
 using namespace Allegro;
 
@@ -21,6 +23,7 @@ Tela::Tela(){
     Util::testInit(this->buffer, "buffer intermediario");
 
     Util::testInit(al_init_image_addon(), "addon de imagem");
+    Util::testInit(al_init_primitives_addon(), "addon de primitivos");
 
     al_set_target_bitmap(this->buffer);
 
@@ -32,6 +35,7 @@ Tela::Tela(){
 Tela::~Tela(){
     al_destroy_font(this->font);
     al_destroy_display(this->display);
+    al_shutdown_primitives_addon();
 }
 
 Tela *Tela::getInstancia(){
@@ -50,6 +54,11 @@ void Tela::desenharTexto(const std::string &texto){ // n pode ser const
 
 void Tela::desenharSprite(const Allegro::Sprite *spr, float x, float y) const{
     al_draw_bitmap(spr->getBitmap(), x, y, 0);
+}
+
+void Tela::desenharRetanguloCheio(const unsigned int x1, const unsigned int y1, const unsigned int x2, const unsigned int y2,
+        const unsigned short int r, const unsigned short int g, const unsigned short int b, const float a){
+    al_draw_filled_rectangle(x1, y1, x2, y2, al_map_rgba_f(r, g, b, a));
 }
 
 void Tela::desenharTela() {

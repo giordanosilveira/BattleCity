@@ -40,6 +40,10 @@ const Coordenada* Objeto::getSuperiorEsquerda() const{
     return this->superiorEsquerda;
 }
 
+const Coordenada* Objeto::getInferiorDireita() const {
+    return this->inferiorDireita;
+}
+
 void Objeto::setSuperiorEsquerda (const unsigned short int x, unsigned short int y){
     this->superiorEsquerda->setX(x);
     this->superiorEsquerda->setY(y);
@@ -73,39 +77,42 @@ void Objeto::setDirecao(EnumDirecao direcao){
     this->direcao = direcao;
 }
 
-const bool Objeto::colisao(const Coordenada& coordSuperiorEsquerda, const Coordenada& coordInferiorDireira) const {
+// const bool Objeto::colisao(const Objeto *obj) const {
+//     const Coordenada *coordInferiorDireita = obj->superiorEsquerda;
+//     const Coordenada *coordSuperiorEsquerda = obj->inferiorDireita;
+//     if (this->superiorEsquerda->getX() > coordInferiorDireita->getX()) return false;
+//     if (this->inferiorDireita->getX() < coordSuperiorEsquerda->getX()) return false;
+//     if (this->superiorEsquerda->getY() > coordInferiorDireita->getY()) return false;
+//     if (this->inferiorDireita->getY() < coordSuperiorEsquerda->getY()) return false;
 
-    if (this->superiorEsquerda->getX() > coordInferiorDireira.getX()) return false;
-    if (this->inferiorDireita->getX() < coordSuperiorEsquerda.getX()) return false;
-    if (this->superiorEsquerda->getY() > coordInferiorDireira.getY()) return false;
-    if (this->inferiorDireita->getY() < coordSuperiorEsquerda.getY()) return false;
+//     return true;
+// }
 
-    return true;
+// void Objeto::mover(const std::vector<const Parede *> &paredes) {
+//     unsigned int old_x = this->superiorEsquerda->getX();
+//     unsigned int old_y = this->superiorEsquerda->getY();
 
-}
+//     unsigned int x = this->superiorEsquerda->getX();
+//     unsigned int y = this->superiorEsquerda->getY();
 
-void Objeto::mover() {
-    
-    unsigned int x = this->superiorEsquerda->getX();
-    unsigned int y = this->superiorEsquerda->getY();
-
-    switch (this->direcao)
-    {
-        case EnumDirecao::DIREITA:
-            x += this->velocidade; 
-            break;
-        case EnumDirecao::ESQUERDA:
-            x -= this->velocidade;
-            break; 
-        case EnumDirecao::CIMA:
-            y -= this->velocidade;
-            break; 
-        case EnumDirecao::BAIXO:
-            y += this->velocidade;
-            break;
-    }
+//     switch (this->direcao)
+//     {
+//         case EnumDirecao::DIREITA:
+//             x += this->velocidade; 
+//             break;
+//         case EnumDirecao::ESQUERDA:
+//             x -= this->velocidade;
+//             break; 
+//         case EnumDirecao::CIMA:
+//             y -= this->velocidade;
+//             break; 
+//         case EnumDirecao::BAIXO:
+//             y += this->velocidade;
+//             break;
+//     }
 
 
-    this->setSuperiorEsquerda(x, y);
-}
+//     this->setSuperiorEsquerda(x, y);
+//     this->setSuperiorEsquerda(old_x, old_y); 
+// }
 

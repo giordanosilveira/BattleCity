@@ -5,7 +5,10 @@
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_font.h>
 
+#include <vector>
+
 #include "Sprite.hpp"
+#include "../Objeto.hpp"
 
 namespace Allegro{
 
@@ -21,6 +24,12 @@ class Tela{
         void desenharSprite(const Allegro::Sprite *spr, float x, float y) const;
         void limparTelaCor(const unsigned short int r, const unsigned short int g, const unsigned short int b);
         void desenharTexto(const std::string &texto);
+        void desenharRetanguloCheio(const unsigned int x1, const unsigned int y1, const unsigned int x2, const unsigned int y2,
+        const unsigned short int r, const unsigned short int g, const unsigned short int b, const float a);
+
+        // define largura e altura do buffer intermediário do jogo
+        static const unsigned int BUFFER_WIDTH = 256;
+        static const unsigned int BUFFER_HEIGHT = 256;
 
     private:
         Tela();
@@ -30,10 +39,6 @@ class Tela{
         ALLEGRO_DISPLAY* display;
         ALLEGRO_FONT* font;
         ALLEGRO_BITMAP* buffer;
-
-        // define largura e altura do buffer intermediário do jogo
-        static const unsigned int BUFFER_WIDTH = 480;
-        static const unsigned int BUFFER_HEIGHT = 288;
 
         // define escala da janela do jogo em relação ao buffer intermediário
         static const unsigned int SCALE = 3;
