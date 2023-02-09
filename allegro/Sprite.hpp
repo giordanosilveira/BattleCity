@@ -9,13 +9,13 @@ class Sprite {
     public:
         Sprite();
         Sprite(const std::string &fileName);
-        Sprite(const Sprite *sprite, int x, int y, int w, int h);
+        Sprite(const Sprite *sprite, const unsigned int inicioX, const unsigned int inicioY, const unsigned int larg, const unsigned int alt);
         ~Sprite();
 
         ALLEGRO_BITMAP *getBitmap() const;
 
     private:
-        ALLEGRO_BITMAP *bitmap;
+        ALLEGRO_BITMAP *bitmap; // TODO mudar pra const
 };
 }
 #endif

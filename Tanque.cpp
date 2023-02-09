@@ -1,4 +1,6 @@
 #include "Tanque.hpp"
+#include "allegro/Sprite.hpp"
+#include "allegro/Sprite4D.hpp"
 #include "enums/EnumDirecao.hpp"
 #include "enums/EnumEstadoObjeto.hpp"
 
@@ -12,6 +14,29 @@ Tanque::Tanque(const unsigned int x, const unsigned int y, unsigned short int ta
 Tanque::~Tanque(){
     
 }
+const Allegro::Sprite* Tanque::getSprite() const{
+
+    switch (this->direcao){
+        case EnumDirecao::ESQUERDA:
+            // return 
+            break;
+        case EnumDirecao::BAIXO:
+            break;
+        case EnumDirecao::DIREITA:
+            break;
+        case EnumDirecao::CIMA:
+            break;
+        case EnumDirecao::PARADO:
+            break;
+    }
+    return nullptr;
+}
+
+// TODO adicionar outro estado de sprite se der tempo
+void Tanque::setSprites(Allegro::Sprite *spEsq, Allegro::Sprite *spBai, Allegro::Sprite *spDir, Allegro::Sprite *spCim){
+    this->sprites = new Allegro::Sprite4D{spEsq, spDir, spCim, spBai};
+}
+
 
 /**
  * @todo: Colocar a velocidade como uma constante 

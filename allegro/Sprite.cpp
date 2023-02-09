@@ -5,17 +5,10 @@
 
 #include "AllegroInitException.hpp"
 #include "Sprite.hpp"
+#include "Util.hpp"
 
 using namespace Allegro;
 
-
-// TODO: MUITO FEIO, FAZER CLASSE SEPARADA PARA O TESTINIT
-void testInit(bool test, const std::string &message)
-// Testa retorno de função de inicialização do Allegro
-{
-    if (test) return;
-    throw AllegroInitException(message);
-}
 
 Sprite::Sprite()
         :bitmap{nullptr}{
@@ -23,12 +16,12 @@ Sprite::Sprite()
 
 Sprite::Sprite(const std::string &fileName){
     this->bitmap = al_load_bitmap(fileName.c_str());
-    testInit((this->bitmap != NULL), "spritesheet");
+    Util::testInit((this->bitmap != NULL), "spritesheet");
 }
 
-Sprite::Sprite(const Sprite *sprite, int inicioX, int inicioY, int larg, int alt)
+Sprite::Sprite(const Sprite *sprite, const unsigned int inicioX, const unsigned int inicioY, const unsigned int larg, const unsigned int alt)
         :bitmap{al_create_sub_bitmap(sprite->bitmap, inicioX, inicioY, larg, alt)}{
-    testInit((this->bitmap != NULL), "sprite");
+    Util::testInit((this->bitmap != NULL), "sprite");
 }
 
 Sprite::~Sprite(){

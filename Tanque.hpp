@@ -3,7 +3,8 @@
 
 // #include "Tiro.hpp"
 #include "Objeto.hpp"
-#include "Tanque.hpp"
+#include "allegro/Sprite.hpp"
+#include "allegro/Sprite4D.hpp"
 #include "enums/EnumDirecao.hpp"
 #include "enums/EnumEstadoObjeto.hpp"
 #include <iostream>
@@ -27,6 +28,10 @@ class Tanque : public Objeto{
         // virtual void setDirecao(EnumDirecao direcao);
 
         // virtual const bool colisao(std::list<Objeto*>&objeto) const;// override;
+
+        const Allegro::Sprite* getSprite() const;
+        void setSprites(Allegro::Sprite *spEsq, Allegro::Sprite *spBai, Allegro::Sprite *spDir, Allegro::Sprite *spCim);
+        Allegro::Sprite4D * sprites;
 
     protected:
         // std::list<Tiro*>tiros;

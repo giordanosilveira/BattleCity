@@ -6,10 +6,10 @@
 #include "allegro/Sprite.hpp"
 #include "Player.hpp"
 #include "Parede.hpp"
-#include "Sprite4D.hpp"
+#include "allegro/Sprite4D.hpp"
+#include "Tanque.hpp"
 // #include "Muro.hpp"
 // #include "Parede.hpp"
-// #include "Tanque.hpp"
 // #include "Explosao.hpp"
 // #include "Mato.hpp"
 // #include "Agua.hpp"
@@ -32,7 +32,8 @@ class Jogo{
          * @todo: Instanciar todas as classes do jogo aqui
          */
         //std::list<>
-        void desenharParedes();
+        void desenharParedes() const;
+        void desenharTanque(const Tanque* tanque) const;
 
         Allegro::Sprite *spritesheet;
         Allegro::Sprite *muro;
@@ -42,12 +43,14 @@ class Jogo{
         Allegro::Sprite *paredeInvencivel;
         std::vector<Allegro::Sprite*>insignias;
 
+
     private:
         Jogo();
         static Jogo *instancia;
 
         void carregarSprites();
 
+        /* Funções auxiliares */
         void criarParedesBorda();
 
         std::list<std::shared_ptr<Objeto>> elementosTela;

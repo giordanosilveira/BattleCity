@@ -2,8 +2,7 @@
 
 Allegro::Sprite4D::Sprite4D(){}
 
-Allegro::Sprite4D::Sprite4D(ALLEGRO_BITMAP* bitmapEsquerda, ALLEGRO_BITMAP* bitmapDireita,
-    ALLEGRO_BITMAP* bitmapCima, ALLEGRO_BITMAP* bitmapBaixo):bitmapEsquerda{bitmapEsquerda}, bitmapDireita{bitmapDireita}, bitmapCima{bitmapCima}, bitmapBaixo{bitmapBaixo}{
+Allegro::Sprite4D::Sprite4D(Sprite* spriteEsquerda, Sprite* spriteBaixo, Sprite* spriteDireita, Sprite* spriteCima):bitmapEsquerda{spriteEsquerda->getBitmap()}, bitmapBaixo{spriteBaixo->getBitmap()}, bitmapDireita{spriteDireita->getBitmap()}, bitmapCima{spriteCima->getBitmap()}{
 }
 
 Allegro::Sprite4D::~Sprite4D(){}

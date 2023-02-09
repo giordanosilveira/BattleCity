@@ -3,6 +3,7 @@
 
 #include "Tanque.hpp"
 #include "Parede.hpp"
+#include "allegro/Sprite4D.hpp"
 #include "enums/EnumDirecao.hpp"
 #include "enums/EnumEstadoObjeto.hpp"
 #include "allegro/Sprite.hpp"
@@ -13,7 +14,7 @@ class Player : public Tanque {
     public:
         Player(const unsigned int x, const unsigned int y, unsigned short int tamanhoSprite, 
                 const unsigned short imortal, EnumEstadoObjeto estado, const unsigned short vida, const unsigned short velocidade, 
-                EnumDirecao direcao, Allegro::Sprite *sprite, std::vector<Allegro::Sprite*> sprites);
+                EnumDirecao direcao, const std::vector<Allegro::Sprite4D*> &sprites);
 
         ~Player();
 
