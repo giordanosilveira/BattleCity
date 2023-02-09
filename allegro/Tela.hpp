@@ -28,7 +28,7 @@ class Tela{
         const unsigned short int r, const unsigned short int g, const unsigned short int b, const float a);
 
         // define largura e altura do buffer intermediário do jogo
-        static const unsigned int BUFFER_WIDTH = 256;
+        static const unsigned int BUFFER_WIDTH = 296;
         static const unsigned int BUFFER_HEIGHT = 256;
 
     private:
