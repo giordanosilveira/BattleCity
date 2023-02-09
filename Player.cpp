@@ -5,17 +5,15 @@
 #include "enums/EnumEstadoObjeto.hpp"
 #include "enums/EnumDirecao.hpp"
 #include "allegro/Sprite.hpp"
+#include "allegro/Sprite4D.hpp"
 
 Player::Player(const unsigned int x, const unsigned int y, unsigned short int tamanhoSprite, 
                 const unsigned short imortal, EnumEstadoObjeto estado, const unsigned short vida, const unsigned short velocidade, 
-                EnumDirecao direcao, Allegro::Sprite *sprite, const std::vector<Allegro::Sprite*> sprites)
+                EnumDirecao direcao, Allegro::Sprite4D* const &sprites)
                 :Tanque{x, y, tamanhoSprite, imortal, estado, vida, velocidade, direcao}
 {
-    this->sprite = sprite;
-    std::vector<Allegro::Sprite*>::const_iterator it = sprites.begin();
-    for (; it != sprites.end(); ++it)
-        this->sprites.push_back(*it);
-    
+    this->sprites = sprites;
+    this->sprites->setSpritePrincipal(this->sprites->BAI);
 }
 
 Player::~Player()
@@ -55,20 +53,21 @@ void Player::mover(const std::vector<const Parede *> &paredes){
         {
             case EnumDirecao::DIREITA:
                 x += this->velocidade;
-                this->sprite = sprites[6];
-
+                this->sprites->setSpritePrincipal(this->sprites->DIR);
                 break;
             case EnumDirecao::ESQUERDA:
                 x -= this->velocidade;
-                this->sprite = sprites[2];
+                this->sprites->setSpritePrincipal(this->sprites->ESQ);
                 break; 
             case EnumDirecao::CIMA:
                 y -= this->velocidade;
-                this->sprite = sprites[0];
+                this->sprites->setSpritePrincipal(this->sprites->CIM);
                 break; 
             case EnumDirecao::BAIXO:
                 y += this->velocidade;
-                this->sprite = sprites[4];
+                this->sprites->setSpritePrincipal(this->sprites->BAI);
+                break;
+            case EnumDirecao::PARADO:
                 break;
         }
 

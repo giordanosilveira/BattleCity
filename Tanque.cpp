@@ -1,6 +1,9 @@
 #include "Tanque.hpp"
+#include "allegro/Sprite.hpp"
+#include "allegro/Sprite4D.hpp"
 #include "enums/EnumDirecao.hpp"
 #include "enums/EnumEstadoObjeto.hpp"
+#include <iostream>
 
 Tanque::Tanque(const unsigned int x, const unsigned int y, unsigned short int tamanhoSprite, // TODO colocar const?
         const unsigned short imortal, EnumEstadoObjeto estado, const unsigned short vida, const unsigned short velocidade, 
@@ -12,6 +15,28 @@ Tanque::Tanque(const unsigned int x, const unsigned int y, unsigned short int ta
 Tanque::~Tanque(){
     
 }
+
+void Tanque::setSprite(Allegro::Sprite4D*  sprite){
+    this->sprites = sprite;
+}
+
+// const Allegro::Sprite* Tanque::getSprite() const{
+
+//     switch (this->direcao){
+//         case EnumDirecao::ESQUERDA:
+//             // return 
+//             break;
+//         case EnumDirecao::BAIXO:
+//             break;
+//         case EnumDirecao::DIREITA:
+//             break;
+//         case EnumDirecao::CIMA:
+//             break;
+//         case EnumDirecao::PARADO:
+//             break;
+//     }
+//     return nullptr;
+// }
 
 /**
  * @todo: Colocar a velocidade como uma constante 
