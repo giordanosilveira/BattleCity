@@ -19,7 +19,7 @@ Jogo *Jogo::instancia{nullptr};
 Jogo::Jogo(){
     this->carregarSprites();
 
-    this->player = new Player{8, 8, 16, false, EnumEstadoObjeto::VIVO, 10, 2, EnumDirecao::BAIXO, this->spritesTanquePlayer[0]};
+    this->player = new Player{8, 8, 16, false, EnumEstadoObjeto::VIVO, 10, 2, EnumDirecao::BAIXO, this->spritesTanquePlayer[0], this->tiroSprite};
 
     // transformar em  funcao
     this->mapa = new Mapa{"./data/mapa.txt"};
@@ -101,20 +101,26 @@ void Jogo::criarParedesBorda(){
 
 void Jogo::moverPlayer(){
     Allegro::ControleJogo *al = Allegro::ControleJogo::getInstancia();
-    if (al->teclaPressionada(al->SETA_CIMA))
+    if (al->teclaPressionada(al->SETA_CIMA)) {
+        this->player->setVelocidade(2);
         this->player->setDirecao(EnumDirecao::CIMA);
-
-    else if (al->teclaPressionada(al->SETA_BAIXO)) 
+    }
+    else if (al->teclaPressionada(al->SETA_BAIXO)) {
+        this->player->setVelocidade(2);
         this->player->setDirecao(EnumDirecao::BAIXO);
+    }
     
-    else if (al->teclaPressionada(al->SETA_ESQUERDA)) 
+    else if (al->teclaPressionada(al->SETA_ESQUERDA)) {
+        this->player->setVelocidade(2);
         this->player->setDirecao(EnumDirecao::ESQUERDA);
-
-    else if (al->teclaPressionada(al->SETA_DIREITA)) 
+    }
+    else if (al->teclaPressionada(al->SETA_DIREITA)) {
+        this->player->setVelocidade(2);
         this->player->setDirecao(EnumDirecao::DIREITA);
-
-    else 
-        this->player->setDirecao(EnumDirecao::PARADO);
+    }
+    else {
+        this->player->setVelocidade(0); 
+    }
 
     this->player->mover(this->paredes, this->paredeInvencivel);
 }
@@ -138,10 +144,10 @@ void Jogo::carregarSprites(){
     }
 
     Allegro::Sprite4D *spritesTiro = new Allegro::Sprite4D();
-    spritesTiro->inicializarSprite(this->spritesheet, 323, 102, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE, spritesTiro->CIM);
-    spritesTiro->inicializarSprite(this->spritesheet, 330, 102, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE, spritesTiro->ESQ);
-    spritesTiro->inicializarSprite(this->spritesheet, 339, 102, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE, spritesTiro->BAI);
-    spritesTiro->inicializarSprite(this->spritesheet, 346, 102, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE, spritesTiro->DIR);
+    spritesTiro->inicializarSprite(this->spritesheet, 323, 102, 4, 4, spritesTiro->CIM);
+    spritesTiro->inicializarSprite(this->spritesheet, 330, 102, 4, 4, spritesTiro->ESQ);
+    spritesTiro->inicializarSprite(this->spritesheet, 339, 102, 4, 4, spritesTiro->BAI);
+    spritesTiro->inicializarSprite(this->spritesheet, 346, 102, 4, 4, spritesTiro->DIR);
     this->tiroSprite = spritesTiro;
 
     Allegro::Sprite *parede{new Allegro::Sprite{this->spritesheet, 256, 64, Jogo::PAREDE_SIZE, Jogo::PAREDE_SIZE}};

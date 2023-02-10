@@ -19,7 +19,8 @@ class Tiro : public Objeto{
             const unsigned short vida,
             const unsigned short velocidade, 
             EnumDirecao direcao,
-            Allegro::Sprite4D* const &sprites);
+            Allegro::Sprite4D* const &sprites,
+            const unsigned int direcao_tiro);
         
         virtual ~Tiro();
 

@@ -14,10 +14,11 @@ Tiro::Tiro(
         const unsigned short vida,
         const unsigned short velocidade, 
         EnumDirecao direcao,
-        Allegro::Sprite4D* const &sprites)
+        Allegro::Sprite4D* const &sprites, const unsigned int direcao_tiro)
         : Objeto{x,y,tamanhoSprite, imortal, estado, vida, velocidade, direcao}{
     this->sprites = new Allegro::Sprite4D{*sprites}; // shallow copy
-    this->sprites->setSpritePrincipal(sprites->CIM);
+    std::cerr << "tiro construtor" << std::endl;
+    this->sprites->setSpritePrincipal(direcao_tiro);
 }
 
 Tiro::~Tiro(){}
