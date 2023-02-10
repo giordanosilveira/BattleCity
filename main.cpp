@@ -9,14 +9,9 @@ int main(int argc, char **argv){
             case Estado::JOGO: 
                 Estado::jogo();
                 break;
-            case Estado::INICIALIZAR: 
-                Estado::inicializar();
-                break;
             case Estado::ENCERRAR: 
                 Estado::encerrar();
                 break;
-            default: 
-                std::cerr << "Algo deu errado no estado\n" << std::endl;
                 exit(1);
         }
     }
