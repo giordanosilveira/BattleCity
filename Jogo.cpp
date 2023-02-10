@@ -1,3 +1,4 @@
+#include "Tiro.hpp"
 #include "allegro/Sprite4D.hpp"
 #include "allegro/Tela.hpp"
 #include "allegro/ControleJogo.hpp"
@@ -18,7 +19,9 @@ Jogo *Jogo::instancia{nullptr};
 Jogo::Jogo(){
     this->carregarSprites();
 
-    this->player = new Player{8, 8, 16, false, EnumEstadoObjeto::VIVO, 10, 2, EnumDirecao::BAIXO, this->spritesTanquePlayer[0]};
+    this->player = new Player{8, 8, 16, false, EnumEstadoObjeto::VIVO, 10, 2, EnumDirecao::BAIXO, this->spritesTanquePlayer[0], this->tiroSprite};
+
+    // transformar em  funcao
     this->mapa = new Mapa{"./data/mapa.txt"};
 
     std::vector<std::string> matriz = this->mapa->getMatriz();
@@ -63,6 +66,21 @@ void Jogo::desenharParedes() const{
         tela->desenharSprite((*it2)->sprite, (*it2)->getSuperiorEsquerda()->getX(), (*it2)->getSuperiorEsquerda()->getY());
 }
 
+void Jogo::atualizarTiros(){
+    std::list<Tiro*>::const_iterator it{this->player->tiros.begin()};
+    for (; it != this->player->tiros.end(); ++it)
+        (*it)->mover();
+}
+
+void Jogo::desenharTiros() const{
+    Allegro::Tela *tela{Allegro::Tela::getInstancia()};
+
+    std::list<Tiro*>::const_iterator it{this->player->tiros.begin()};
+    for (; it != this->player->tiros.end(); ++it){
+        tela->desenharSprite((*it)->sprites, (*it)->getSuperiorEsquerda()->getX(), (*it)->getSuperiorEsquerda()->getY());
+    }
+}
+
 // void Jogo::desenharTanque(const Tanque* tanque) const{
 //     Allegro::Tela *tela{Allegro::Tela::getInstancia()};
 
@@ -83,27 +101,33 @@ void Jogo::criarParedesBorda(){
 
 void Jogo::moverPlayer(){
     Allegro::ControleJogo *al = Allegro::ControleJogo::getInstancia();
-    if (al->teclaPressionada(al->SETA_CIMA))
+    if (al->teclaPressionada(al->SETA_CIMA)) {
+        this->player->setVelocidade(2);
         this->player->setDirecao(EnumDirecao::CIMA);
-
-    else if (al->teclaPressionada(al->SETA_BAIXO)) 
+    }
+    else if (al->teclaPressionada(al->SETA_BAIXO)) {
+        this->player->setVelocidade(2);
         this->player->setDirecao(EnumDirecao::BAIXO);
+    }
     
-    else if (al->teclaPressionada(al->SETA_ESQUERDA)) 
+    else if (al->teclaPressionada(al->SETA_ESQUERDA)) {
+        this->player->setVelocidade(2);
         this->player->setDirecao(EnumDirecao::ESQUERDA);
-
-    else if (al->teclaPressionada(al->SETA_DIREITA)) 
+    }
+    else if (al->teclaPressionada(al->SETA_DIREITA)) {
+        this->player->setVelocidade(2);
         this->player->setDirecao(EnumDirecao::DIREITA);
+    }
+    else {
+        this->player->setVelocidade(0); 
+    }
 
-    else 
-        this->player->setDirecao(EnumDirecao::PARADO);
-
-    this->player->mover(this->paredes);
+    this->player->mover(this->paredes, this->paredeInvencivel);
 }
 
 void Jogo::carregarSprites(){
     // Carrega spritesheet, usar move attribution(?)
-    this->spritesheet = new Allegro::Sprite("./data/spritesheet.png");
+    this->spritesheet = new Allegro::Sprite("./data/spritesheet2.png");
 
     this->spritesTanque.resize(2);
 
@@ -119,7 +143,13 @@ void Jogo::carregarSprites(){
         this->spritesTanquePlayer.push_back(sp4d);
     }
 
-    
+    Allegro::Sprite4D *spritesTiro = new Allegro::Sprite4D();
+    spritesTiro->inicializarSprite(this->spritesheet, 323, 102, 4, 4, spritesTiro->CIM);
+    spritesTiro->inicializarSprite(this->spritesheet, 330, 102, 4, 4, spritesTiro->ESQ);
+    spritesTiro->inicializarSprite(this->spritesheet, 339, 102, 4, 4, spritesTiro->BAI);
+    spritesTiro->inicializarSprite(this->spritesheet, 346, 102, 4, 4, spritesTiro->DIR);
+    this->tiroSprite = spritesTiro;
+
     Allegro::Sprite *parede{new Allegro::Sprite{this->spritesheet, 256, 64, Jogo::PAREDE_SIZE, Jogo::PAREDE_SIZE}};
     this->parede = parede;
 

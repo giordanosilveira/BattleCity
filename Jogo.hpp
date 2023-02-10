@@ -27,10 +27,11 @@ class Jogo{
         Player *player;
         std::vector<const Parede *> paredes;
         std::vector<const Parede *> paredeInvencivel;
-        std::list<const Tanque *> tanques;
-        
+        std::list<const Tanque *> inimigos;
+        std::list<const Tanque *> proximosInimigos;
         
         void moverPlayer();
+        void atualizarTiros();
 
         /**
          * @todo: Instanciar todas as classes do jogo aqui
@@ -38,10 +39,12 @@ class Jogo{
         //std::list<>
         void desenharParedes() const;
         void desenharTanque(const Tanque* tanque) const;
+        void desenharTiros() const;
 
         Allegro::Sprite *spritesheet;
         Allegro::Sprite *parede;
         Allegro::Sprite *paredeInvencivelSprite;
+        Allegro::Sprite4D *tiroSprite;
         std::vector<Allegro::Sprite*>insignias;
 
 

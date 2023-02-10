@@ -14,11 +14,11 @@ class Player : public Tanque {
     public:
         Player(const unsigned int x, const unsigned int y, unsigned short int tamanhoSprite, 
                 const unsigned short imortal, EnumEstadoObjeto estado, const unsigned short vida, const unsigned short velocidade, 
-                EnumDirecao direcao, Allegro::Sprite4D* const &sprites);
+                EnumDirecao direcao, Allegro::Sprite4D* const &sprites, Allegro::Sprite4D* const &tiroSprites);
 
         ~Player();
 
-        void mover(const std::vector<const Parede *> &paredes);
+        void mover(const std::vector<const Parede *> &paredes, const std::vector<const Parede *> &paredesInvenciveis);
 
         /**
          * @todo: a colisão funciona, porém ela não é aqui e é com objeto genérico 

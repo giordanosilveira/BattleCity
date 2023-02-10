@@ -1,6 +1,7 @@
 #include "Player.hpp"
 #include "Parede.hpp"
 #include "Tanque.hpp"
+#include "Tiro.hpp"
 #include "allegro/ControleJogo.hpp"
 #include "enums/EnumEstadoObjeto.hpp"
 #include "enums/EnumDirecao.hpp"
@@ -9,8 +10,8 @@
 
 Player::Player(const unsigned int x, const unsigned int y, unsigned short int tamanhoSprite, 
                 const unsigned short imortal, EnumEstadoObjeto estado, const unsigned short vida, const unsigned short velocidade, 
-                EnumDirecao direcao, Allegro::Sprite4D* const &sprites)
-                :Tanque{x, y, tamanhoSprite, imortal, estado, vida, velocidade, direcao}
+                EnumDirecao direcao, Allegro::Sprite4D* const &sprites, Allegro::Sprite4D* const &tiroSprites)
+                :Tanque{x, y, tamanhoSprite, imortal, estado, vida, velocidade, direcao, sprites, tiroSprites}
 {
     this->sprites = sprites;
     this->sprites->setSpritePrincipal(this->sprites->BAI);
@@ -42,7 +43,7 @@ const bool Player::colisao(const Parede *parede) const {
 }
 
 
-void Player::mover(const std::vector<const Parede *> &paredes){
+void Player::mover(const std::vector<const Parede *> &paredes, const std::vector<const Parede *> &paredesInvenciveis){
         unsigned int old_x = this->superiorEsquerda->getX();
         unsigned int old_y = this->superiorEsquerda->getY();
 
@@ -72,7 +73,7 @@ void Player::mover(const std::vector<const Parede *> &paredes){
         }
 
         this->setSuperiorEsquerda(x, y);
-        if (this->algumaColisao(paredes)) {
+        if (this->algumaColisao(paredes) || this->algumaColisao(paredesInvenciveis)) {
             this->setSuperiorEsquerda(old_x, old_y);
         }
         
