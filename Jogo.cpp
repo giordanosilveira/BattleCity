@@ -20,6 +20,8 @@ Jogo::Jogo(){
     this->carregarSprites();
 
     this->player = new Player{8, 8, 16, false, EnumEstadoObjeto::VIVO, 10, 2, EnumDirecao::BAIXO, this->spritesTanquePlayer[0]};
+
+    // transformar em  funcao
     this->mapa = new Mapa{"./data/mapa.txt"};
 
     std::vector<std::string> matriz = this->mapa->getMatriz();

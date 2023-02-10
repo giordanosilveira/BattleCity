@@ -10,7 +10,7 @@
 
 Tanque::Tanque(const unsigned int x, const unsigned int y, unsigned short int tamanhoSprite, // TODO colocar const?
         const unsigned short imortal, EnumEstadoObjeto estado, const unsigned short vida, const unsigned short velocidade, 
-        EnumDirecao direcao)
+        EnumDirecao direcao, Allegro::Sprite4D* const &sprites)
         :Objeto{x, y, tamanhoSprite, imortal, estado, vida, velocidade, direcao}{
     
 }
@@ -37,20 +37,20 @@ void Tanque::atirar() {
     switch (this->direcao)
     {
         case EnumDirecao::DIREITA:
-            y = this->superiorEsquerda->getY() + this->getTamanhoSprite()/2;
+            y = this->superiorEsquerda->getY() + this->getTamanhoSprite()/2 - getTamanhoSprite()/2;
             x = this->inferiorDireita->getX();
         break;
         case EnumDirecao::ESQUERDA:
-            y = this->superiorEsquerda->getY() + this->getTamanhoSprite()/2;
+            y = this->superiorEsquerda->getY() + this->getTamanhoSprite()/2 - this->getTamanhoSprite()/2; // trocar este por tamanho do tiro
             x = this->superiorEsquerda->getX() - this->getTamanhoSprite(); // tem que ser o sprite do tiro
         break;
         case EnumDirecao::CIMA:
             y = this->superiorEsquerda->getY() - this->getTamanhoSprite(); // tem que ser sprite do tiro
-            x = this->superiorEsquerda->getX() + this->getTamanhoSprite()/2;
+            x = this->superiorEsquerda->getX() + this->getTamanhoSprite()/2 - this->getTamanhoSprite()/2; // trocar por tamanho do tiro
         break;
         case EnumDirecao::BAIXO:
             y = this->inferiorDireita->getY();
-            x = this->superiorEsquerda->getX() + this->getTamanhoSprite()/2;
+            x = this->superiorEsquerda->getX() + this->getTamanhoSprite()/2 - this->getTamanhoSprite()/2; // trocar por tamanho do tiro;
         break;
         case EnumDirecao::PARADO:
         break;
