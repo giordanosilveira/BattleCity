@@ -27,7 +27,8 @@ class Jogo{
         Player *player;
         std::vector<const Parede *> paredes;
         std::vector<const Parede *> paredeInvencivel;
-        std::list<const Tanque *> tanques;
+        std::list<const Tanque *> inimigos;
+        std::list<const Tanque *> proximosInimigos;
         
         void moverPlayer();
         void atualizarTiros();
