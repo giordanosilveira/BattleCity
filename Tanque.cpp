@@ -1,11 +1,12 @@
 #include "Tanque.hpp"
+#include "Tiro.hpp"
 #include "allegro/Sprite.hpp"
 #include "allegro/Sprite4D.hpp"
 #include "enums/EnumDirecao.hpp"
 #include "enums/EnumEstadoObjeto.hpp"
 #include <iostream>
 
-#include "Tiro.hpp"
+// #include "Tiro.hpp"
 
 Tanque::Tanque(const unsigned int x, const unsigned int y, unsigned short int tamanhoSprite, // TODO colocar const?
         const unsigned short imortal, EnumEstadoObjeto estado, const unsigned short vida, const unsigned short velocidade, 
@@ -49,6 +50,8 @@ void Tanque::atirar() {
             y = (this->superiorEsquerda->getY() + this->getTamanhoSprite());
             x = (this->superiorEsquerda->getX() + this->getTamanhoSprite())/2;
         break;
+        case EnumDirecao::PARADO:
+        break;
     }
 
     unsigned short int tamanhoSprite = 4;
@@ -56,6 +59,8 @@ void Tanque::atirar() {
 
     try {
         Tiro *tiro{new Tiro{x, y, tamanhoSprite, imortal, EnumEstadoObjeto::VIVO, 1, 2, EnumDirecao::DIREITA, this->sprites}};
+        // if (this->sprites->getBitmap() == nullptr)
+        //     std::cout << "nao tenho spritessss" << std::endl;
         tiro->setTanque(this);
     }
     catch (std::bad_alloc& ba) {

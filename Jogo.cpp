@@ -1,3 +1,4 @@
+#include "Tiro.hpp"
 #include "allegro/Sprite4D.hpp"
 #include "allegro/Tela.hpp"
 #include "allegro/ControleJogo.hpp"
@@ -63,6 +64,17 @@ void Jogo::desenharParedes() const{
         tela->desenharSprite((*it2)->sprite, (*it2)->getSuperiorEsquerda()->getX(), (*it2)->getSuperiorEsquerda()->getY());
 }
 
+void Jogo::desenharTiros() const{
+    Allegro::Tela *tela{Allegro::Tela::getInstancia()};
+
+    std::list<Tiro*>::const_iterator it{this->player->tiros.begin()};
+    for (; it != this->player->tiros.end(); ++it){
+        std::cout << "Vai desenhar sprite" << std::endl;
+        tela->desenharSprite((*it)->sprites, (*it)->getSuperiorEsquerda()->getX(), (*it)->getSuperiorEsquerda()->getY());
+        std::cout << "Vai desenhar sprite" << std::endl;
+    }
+}
+
 // void Jogo::desenharTanque(const Tanque* tanque) const{
 //     Allegro::Tela *tela{Allegro::Tela::getInstancia()};
 
@@ -119,12 +131,12 @@ void Jogo::carregarSprites(){
         this->spritesTanquePlayer.push_back(sp4d);
     }
 
-    Allegro::Sprite4D *sp4d = new Allegro::Sprite4D();
-    sp4d->inicializarSprite(this->spritesheet, 323, 102, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE, sp4d->CIM);
-    sp4d->inicializarSprite(this->spritesheet, 330, 102, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE, sp4d->ESQ);
-    sp4d->inicializarSprite(this->spritesheet, 339, 102, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE, sp4d->BAI);
-    sp4d->inicializarSprite(this->spritesheet, 346, 102, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE, sp4d->DIR);
-    this->tiroSprite = sp4d;
+    Allegro::Sprite4D *spritesTiro = new Allegro::Sprite4D();
+    spritesTiro->inicializarSprite(this->spritesheet, 323, 102, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE, spritesTiro->CIM);
+    spritesTiro->inicializarSprite(this->spritesheet, 330, 102, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE, spritesTiro->ESQ);
+    spritesTiro->inicializarSprite(this->spritesheet, 339, 102, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE, spritesTiro->BAI);
+    spritesTiro->inicializarSprite(this->spritesheet, 346, 102, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE, spritesTiro->DIR);
+    this->tiroSprite = spritesTiro;
 
     Allegro::Sprite *parede{new Allegro::Sprite{this->spritesheet, 256, 64, Jogo::PAREDE_SIZE, Jogo::PAREDE_SIZE}};
     this->parede = parede;

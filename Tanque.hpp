@@ -1,7 +1,6 @@
 #ifndef TANQUE_HPP
 #define TANQUE_HPP
 
-#include "Tiro.hpp"
 #include "Objeto.hpp"
 #include "allegro/Sprite.hpp"
 #include "allegro/Sprite4D.hpp"
@@ -10,7 +9,9 @@
 #include <iostream>
 #include <list>
 
-class Tiro;
+#include "Tiro.hpp"
+
+// class Tiro;
 
 class Tanque : public Objeto{
 
@@ -34,8 +35,8 @@ class Tanque : public Objeto{
         void setSprite(Allegro::Sprite4D*  sprite);
         Allegro::Sprite4D * sprites;
 
+        std::list<Tiro*> tiros;
     protected:
-        std::list<Tiro*>tiros;
 
 };
 

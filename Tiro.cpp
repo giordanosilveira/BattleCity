@@ -5,16 +5,17 @@
 Tiro::Tiro(){}
 
 Tiro::Tiro(
-    const unsigned int x, 
-    const unsigned int y, 
-    const unsigned short int tamanhoSprite, 
-    const unsigned short imortal, 
-    EnumEstadoObjeto estado, 
-    const unsigned short vida,
-    const unsigned short velocidade, 
-    EnumDirecao direcao,
-    Allegro::Sprite4D* const &sprites): Objeto{x,y,tamanhoSprite, imortal, estado, vida, velocidade, direcao}{
-    this->sprites = sprites;
+        const unsigned int x, 
+        const unsigned int y, 
+        const unsigned short int tamanhoSprite, 
+        const unsigned short imortal, 
+        EnumEstadoObjeto estado, 
+        const unsigned short vida,
+        const unsigned short velocidade, 
+        EnumDirecao direcao,
+        Allegro::Sprite4D* const &sprites)
+        : Objeto{x,y,tamanhoSprite, imortal, estado, vida, velocidade, direcao}{
+    this->sprites = new Allegro::Sprite4D{*sprites}; // shallow copy
     sprites->setSpritePrincipal(sprites->CIM);
 }
 
@@ -24,11 +25,10 @@ Tiro::~Tiro(){}
 void Tiro::setTanque (Tanque *tanque) {
     if (tanque == nullptr)
         throw std::runtime_error{"Ponteiro nulo: setTanque"};
-        
     this->tanque = tanque;
     this->tanque->tiros.push_back(this);
 
-    if (this->tanque != nullptr);
+    // if (this->tanque != nullptr);
 }
 
 // const bool Tiro::colisao(std::list<Objeto*>&objetos) const {

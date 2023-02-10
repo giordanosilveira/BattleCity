@@ -61,6 +61,7 @@ void Estado::jogo(){
             tela->desenharRetanguloCheio(0, 0, tela->BUFFER_WIDTH - 32, tela->BUFFER_HEIGHT, 0, 0, 0, 1);
             tela->desenharSprite(j->player->sprites, j->player->getSuperiorEsquerda()->getX(), j->player->getSuperiorEsquerda()->getY());
 
+            j->desenharTiros();
             j->desenharParedes();
             // tela->desenharSprite(j->mato, 20, 20);
             // tela->desenharSprite(j->parede, 40, 40);

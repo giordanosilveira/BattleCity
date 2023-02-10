@@ -38,6 +38,7 @@ class Jogo{
         //std::list<>
         void desenharParedes() const;
         void desenharTanque(const Tanque* tanque) const;
+        void desenharTiros() const;
 
         Allegro::Sprite *spritesheet;
         Allegro::Sprite *parede;

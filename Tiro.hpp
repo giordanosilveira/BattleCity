@@ -2,7 +2,8 @@
 #define TIRO_HPP
 
 #include "Objeto.hpp"
-#include "Tanque.hpp"
+#include "allegro/Sprite4D.hpp"
+// #include "Tanque.hpp"
 
 class Tanque;
 
@@ -25,9 +26,9 @@ class Tiro : public Objeto{
         void setTanque(Tanque *tanque);
 
 
+        Allegro::Sprite4D *sprites;
     private:
         Tanque *tanque;
-        Allegro::Sprite4D *sprites;
 
         
 };
