@@ -38,6 +38,7 @@ void Estado::jogo(){
             if (al->atirou()){
                 j->player->atirar();
             }
+            j->atualizarTiros();
             j->moverPlayer();
             redesenhar = true;
         }

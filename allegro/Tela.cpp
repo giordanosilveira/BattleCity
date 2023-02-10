@@ -53,10 +53,7 @@ void Tela::desenharTexto(const std::string &texto){ // n pode ser const
 }   
 
 void Tela::desenharSprite(const Allegro::Sprite *spr, float x, float y) const{
-    if (spr->getBitmap() == nullptr)
-        std::cout << "NÃO DA PRA DESENHAR" << std::endl;
-    else 
-        al_draw_bitmap(spr->getBitmap(), x, y, 0);
+    al_draw_bitmap(spr->getBitmap(), x, y, 0);
 }
 
 void Tela::desenharRetanguloCheio(const unsigned int x1, const unsigned int y1, const unsigned int x2, const unsigned int y2,

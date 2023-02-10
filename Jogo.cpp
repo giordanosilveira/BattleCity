@@ -64,14 +64,18 @@ void Jogo::desenharParedes() const{
         tela->desenharSprite((*it2)->sprite, (*it2)->getSuperiorEsquerda()->getX(), (*it2)->getSuperiorEsquerda()->getY());
 }
 
+void Jogo::atualizarTiros(){
+    std::list<Tiro*>::const_iterator it{this->player->tiros.begin()};
+    for (; it != this->player->tiros.end(); ++it)
+        (*it)->mover();
+}
+
 void Jogo::desenharTiros() const{
     Allegro::Tela *tela{Allegro::Tela::getInstancia()};
 
     std::list<Tiro*>::const_iterator it{this->player->tiros.begin()};
     for (; it != this->player->tiros.end(); ++it){
-        std::cout << "Vai desenhar sprite" << std::endl;
         tela->desenharSprite((*it)->sprites, (*it)->getSuperiorEsquerda()->getX(), (*it)->getSuperiorEsquerda()->getY());
-        std::cout << "Vai desenhar sprite" << std::endl;
     }
 }
 

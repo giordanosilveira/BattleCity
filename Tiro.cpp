@@ -1,6 +1,7 @@
 #include "allegro/Sprite4D.hpp"
 #include "Tiro.hpp"
 #include "Tanque.hpp"
+#include "enums/EnumDirecao.hpp"
 
 Tiro::Tiro(){}
 
@@ -16,7 +17,7 @@ Tiro::Tiro(
         Allegro::Sprite4D* const &sprites)
         : Objeto{x,y,tamanhoSprite, imortal, estado, vida, velocidade, direcao}{
     this->sprites = new Allegro::Sprite4D{*sprites}; // shallow copy
-    sprites->setSpritePrincipal(sprites->CIM);
+    this->sprites->setSpritePrincipal(sprites->CIM);
 }
 
 Tiro::~Tiro(){}
@@ -27,8 +28,39 @@ void Tiro::setTanque (Tanque *tanque) {
         throw std::runtime_error{"Ponteiro nulo: setTanque"};
     this->tanque = tanque;
     this->tanque->tiros.push_back(this);
-
     // if (this->tanque != nullptr);
+}
+
+void Tiro::mover(){
+
+    unsigned int old_x = this->superiorEsquerda->getX();
+    unsigned int old_y = this->superiorEsquerda->getY();
+
+    unsigned int x = this->superiorEsquerda->getX();
+    unsigned int y = this->superiorEsquerda->getY();
+
+    switch (this->direcao)
+    {
+        case EnumDirecao::DIREITA:
+            x += this->velocidade;
+            break;
+        case EnumDirecao::ESQUERDA:
+            x -= this->velocidade;
+            break; 
+        case EnumDirecao::CIMA:
+            y -= this->velocidade;
+            break; 
+        case EnumDirecao::BAIXO:
+            y += this->velocidade;
+            break;
+        case EnumDirecao::PARADO:
+            break;
+    }
+
+    this->setSuperiorEsquerda(x, y);
+    // if (this->algumaColisao(paredes) || this->algumaColisao(paredesInvenciveis)) {
+    //     this->setSuperiorEsquerda(old_x, old_y);
+    // }
 }
 
 // const bool Tiro::colisao(std::list<Objeto*>&objetos) const {

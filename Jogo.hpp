@@ -29,8 +29,8 @@ class Jogo{
         std::vector<const Parede *> paredeInvencivel;
         std::list<const Tanque *> tanques;
         
-        
         void moverPlayer();
+        void atualizarTiros();
 
         /**
          * @todo: Instanciar todas as classes do jogo aqui

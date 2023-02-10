@@ -26,6 +26,8 @@ void Tanque::setSprite(Allegro::Sprite4D*  sprite){
 /**
  * @todo: Colocar a velocidade como uma constante 
  * 
+ * TODO tamanho do sprite deve ser atributo
+ * TODO repositorio com todos os sprites
  */
 void Tanque::atirar() {
 
@@ -35,20 +37,20 @@ void Tanque::atirar() {
     switch (this->direcao)
     {
         case EnumDirecao::DIREITA:
-            y = (this->superiorEsquerda->getY() + this->getTamanhoSprite())/2;
-            x = this->superiorEsquerda->getX() + this->getTamanhoSprite();
+            y = this->superiorEsquerda->getY() + this->getTamanhoSprite()/2;
+            x = this->inferiorDireita->getX();
         break;
         case EnumDirecao::ESQUERDA:
-            y = (this->superiorEsquerda->getY() + this->getTamanhoSprite())/2;
-            x = this->superiorEsquerda->getX();
+            y = this->superiorEsquerda->getY() + this->getTamanhoSprite()/2;
+            x = this->superiorEsquerda->getX() - this->getTamanhoSprite(); // tem que ser o sprite do tiro
         break;
         case EnumDirecao::CIMA:
-            y = this->superiorEsquerda->getY();
-            x = (this->superiorEsquerda->getX() + this->getTamanhoSprite())/2;
+            y = this->superiorEsquerda->getY() - this->getTamanhoSprite(); // tem que ser sprite do tiro
+            x = this->superiorEsquerda->getX() + this->getTamanhoSprite()/2;
         break;
         case EnumDirecao::BAIXO:
-            y = (this->superiorEsquerda->getY() + this->getTamanhoSprite());
-            x = (this->superiorEsquerda->getX() + this->getTamanhoSprite())/2;
+            y = this->inferiorDireita->getY();
+            x = this->superiorEsquerda->getX() + this->getTamanhoSprite()/2;
         break;
         case EnumDirecao::PARADO:
         break;
@@ -58,9 +60,7 @@ void Tanque::atirar() {
     bool imortal = false;
 
     try {
-        Tiro *tiro{new Tiro{x, y, tamanhoSprite, imortal, EnumEstadoObjeto::VIVO, 1, 2, EnumDirecao::DIREITA, this->sprites}};
-        // if (this->sprites->getBitmap() == nullptr)
-        //     std::cout << "nao tenho spritessss" << std::endl;
+        Tiro *tiro{new Tiro{x, y, tamanhoSprite, imortal, EnumEstadoObjeto::VIVO, 1, 3, this->direcao, this->sprites}};
         tiro->setTanque(this);
     }
     catch (std::bad_alloc& ba) {

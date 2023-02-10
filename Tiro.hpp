@@ -25,6 +25,7 @@ class Tiro : public Objeto{
 
         void setTanque(Tanque *tanque);
 
+        void mover();
 
         Allegro::Sprite4D *sprites;
     private:
