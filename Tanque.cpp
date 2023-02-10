@@ -29,7 +29,7 @@ void Tanque::setSprite(Allegro::Sprite4D*  sprite){
  * TODO tamanho do sprite deve ser atributo
  * TODO repositorio com todos os sprites
  */
-void Tanque::atirar() {
+Tiro* const Tanque::atirar(unsigned short int tamanhoTiro) {
 
     unsigned int y;
     unsigned int x;
@@ -38,37 +38,35 @@ void Tanque::atirar() {
     switch (this->direcao)
     {
         case EnumDirecao::DIREITA:
-            y = this->superiorEsquerda->getY() + this->getTamanhoSprite()/2 - 2;
+            y = this->superiorEsquerda->getY() + this->getTamanhoSprite()/2 - tamanhoTiro/2;
             x = this->inferiorDireita->getX();
             direcao_tiro = this->tiroSprites->DIR;
             this->tiroSprites->setSpritePrincipal(this->tiroSprites->DIR);
         break;
         case EnumDirecao::ESQUERDA:
-            y = this->superiorEsquerda->getY() + this->getTamanhoSprite()/2 - 2; // trocar este por tamanho do tiro
-            x = this->superiorEsquerda->getX() - this->getTamanhoSprite(); // tem que ser o sprite do tiro
+            y = this->superiorEsquerda->getY() + this->getTamanhoSprite()/2 - tamanhoTiro/2; // trocar este por tamanho do tiro
+            x = this->superiorEsquerda->getX(); // tem que ser o sprite do tiro
             direcao_tiro = this->tiroSprites->ESQ;
             this->tiroSprites->setSpritePrincipal(this->tiroSprites->ESQ);
         break;
         case EnumDirecao::CIMA:
-            y = this->superiorEsquerda->getY() - this->getTamanhoSprite(); // tem que ser sprite do tiro
-            x = this->superiorEsquerda->getX() + this->getTamanhoSprite()/2 - 2; // trocar por tamanho do tiro
+            y = this->superiorEsquerda->getY(); // tem que ser sprite do tiro
+            x = this->superiorEsquerda->getX() + this->getTamanhoSprite()/2 - tamanhoTiro/2; // trocar por tamanho do tiro
             direcao_tiro = this->tiroSprites->CIM;
             this->tiroSprites->setSpritePrincipal(this->tiroSprites->CIM);
         break;
         case EnumDirecao::BAIXO:
             y = this->inferiorDireita->getY();
-            x = this->superiorEsquerda->getX() + this->getTamanhoSprite()/2 - 2; // trocar por tamanho do tiro;
+            x = this->superiorEsquerda->getX() + this->getTamanhoSprite()/2 - tamanhoTiro/2; // trocar por tamanho do tiro;
             direcao_tiro = this->tiroSprites->BAI;
             this->tiroSprites->setSpritePrincipal(this->tiroSprites->BAI);
         break;
     }
 
-    unsigned short int tamanhoSprite = 4;
     bool imortal = false;
 
     try {
-        Tiro *tiro{new Tiro{x, y, tamanhoSprite, imortal, EnumEstadoObjeto::VIVO, 1, 2, this->direcao, this->tiroSprites, direcao_tiro}};
-        tiro->setTanque(this);
+        return new Tiro{x, y, tamanhoSprite, imortal, EnumEstadoObjeto::VIVO, 1, 2, this->direcao, this->tiroSprites, direcao_tiro};
     }
     catch (std::bad_alloc& ba) {
         std::cerr << "Erro na alocação do tiro" << std::endl;
@@ -76,5 +74,6 @@ void Tanque::atirar() {
     catch (std::runtime_error& re) {
         std::cerr << "Erro na alocação do tiro" << std::endl;
     }
+    return nullptr;
 
 }

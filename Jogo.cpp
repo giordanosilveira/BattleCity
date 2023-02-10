@@ -57,26 +57,25 @@ Jogo *Jogo::getInstancia(){
 
 void Jogo::desenharParedes() const{
     Allegro::Tela *tela{Allegro::Tela::getInstancia()};
-    std::vector<const Parede *>::const_iterator it{this->paredes.begin()};
+    std::vector<Parede *>::const_iterator it{this->paredes.begin()};
     for (; it < this->paredes.end(); ++it)
         tela->desenharSprite((*it)->sprite, (*it)->getSuperiorEsquerda()->getX(), (*it)->getSuperiorEsquerda()->getY());
 
-    std::vector<const Parede *>::const_iterator it2{this->paredeInvencivel.begin()};
+    std::vector<Parede *>::const_iterator it2{this->paredeInvencivel.begin()};
     for (; it2 < this->paredeInvencivel.end(); ++it2)
         tela->desenharSprite((*it2)->sprite, (*it2)->getSuperiorEsquerda()->getX(), (*it2)->getSuperiorEsquerda()->getY());
 }
 
 void Jogo::atualizarTiros(){
-    std::list<Tiro*>::const_iterator it{this->player->tiros.begin()};
-    for (; it != this->player->tiros.end(); ++it)
+    std::list<Tiro*>::const_iterator it{this->tiros.begin()};
+    for (; it != this->tiros.end(); ++it)
         (*it)->mover();
 }
 
 void Jogo::desenharTiros() const{
     Allegro::Tela *tela{Allegro::Tela::getInstancia()};
-
-    std::list<Tiro*>::const_iterator it{this->player->tiros.begin()};
-    for (; it != this->player->tiros.end(); ++it){
+    std::list<Tiro*>::const_iterator it{this->tiros.begin()};
+    for (; it != this->tiros.end(); ++it){
         tela->desenharSprite((*it)->sprites, (*it)->getSuperiorEsquerda()->getX(), (*it)->getSuperiorEsquerda()->getY());
     }
 }
@@ -123,6 +122,10 @@ void Jogo::moverPlayer(){
     }
 
     this->player->mover(this->paredes, this->paredeInvencivel);
+}
+
+void Jogo::adicionarTiro(Tiro * const tiro){
+    this->tiros.push_back(tiro);
 }
 
 void Jogo::carregarSprites(){

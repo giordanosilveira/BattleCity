@@ -25,7 +25,7 @@ class Tanque : public Objeto{
 
         // virtual void mover();
 
-        virtual void atirar();
+        virtual Tiro* const atirar(unsigned short int tamanhoTiro);
 
         // virtual void setDirecao(EnumDirecao direcao);
 

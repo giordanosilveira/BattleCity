@@ -11,12 +11,7 @@
 #include "allegro/ControleJogo.hpp"
 #include "allegro/Tela.hpp"
 
-short int Estado::atual = Estado::INICIALIZAR;
-
-void Estado::inicializar(){
-
-    Estado::atual = Estado::JOGO;
-}
+short int Estado::atual = Estado::JOGO;
 
 void Estado::jogo(){
     bool done = false;
@@ -27,7 +22,6 @@ void Estado::jogo(){
     Jogo *j{Jogo::getInstancia()};
     bool redesenhar = false;
     
-
     al->esvaziarFila();
     for (;;){
         al->esperarEvento();
@@ -36,7 +30,7 @@ void Estado::jogo(){
             al->visualizarTeclas();
 
             if (al->atirou()){
-                j->player->atirar();
+                j->adicionarTiro(j->player->atirar(4));
             }
             j->atualizarTiros();
             j->moverPlayer();

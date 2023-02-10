@@ -25,10 +25,11 @@ class Jogo{
 
         Mapa *mapa;
         Player *player;
-        std::vector<const Parede *> paredes;
-        std::vector<const Parede *> paredeInvencivel;
-        std::list<const Tanque *> inimigos;
-        std::list<const Tanque *> proximosInimigos;
+        std::vector<Parede*> paredes;
+        std::vector<Parede*> paredeInvencivel;
+        std::list<Tanque*> inimigos;
+        std::list<Tanque*> proximosInimigos;
+        std::list<Tiro*> tiros;
         
         void moverPlayer();
         void atualizarTiros();
@@ -47,6 +48,7 @@ class Jogo{
         Allegro::Sprite4D *tiroSprite;
         std::vector<Allegro::Sprite*>insignias;
 
+        void adicionarTiro(Tiro * const tiro);
 
     private:
         Jogo();
