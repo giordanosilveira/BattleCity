@@ -127,7 +127,7 @@ void Jogo::moverPlayer(){
 
 void Jogo::carregarSprites(){
     // Carrega spritesheet, usar move attribution(?)
-    this->spritesheet = new Allegro::Sprite("./data/spritesheet.png");
+    this->spritesheet = new Allegro::Sprite("./data/spritesheet2.png");
 
     this->spritesTanque.resize(2);
 
