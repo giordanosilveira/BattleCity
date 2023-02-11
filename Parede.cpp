@@ -19,9 +19,3 @@ Parede::Parede(
 
 Parede::~Parede(){}
 
-const unsigned short int Parede::getVida() const {
-    return this->vida;
-}
-void Parede::setVida (const unsigned short int vida) {
-    this->vida = (unsigned char)vida;
-}

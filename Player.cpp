@@ -21,16 +21,16 @@ Player::~Player()
 {
 }
 
-bool Player::algumaColisao(const std::vector<Parede *> &paredes){
-    std::vector<Parede *>::const_iterator it;
+bool Player::algumaColisao(const std::list<Parede *> &paredes){
+    std::list<Parede *>::const_iterator it;
     it = paredes.begin();
-    for (; it < paredes.end(); ++it)
+    for (; it != paredes.end(); ++it)
         if (this->colisao(*it))
             return true;
     return false;
 }
 
-void Player::mover(const std::vector<Parede *> &paredes, const std::vector<Parede *> &paredesInvenciveis){
+void Player::mover(const std::list<Parede *> &paredes, const std::list<Parede *> &paredesInvenciveis){
         unsigned int old_x = this->superiorEsquerda->getX();
         unsigned int old_y = this->superiorEsquerda->getY();
 

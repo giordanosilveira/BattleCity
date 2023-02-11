@@ -80,8 +80,9 @@ void Objeto::setDirecao(EnumDirecao direcao){
 void Objeto::levarDano(const unsigned short int dano){
     if (this->imortal) return;
 
-    if (this->vida <= static_cast<unsigned char>(dano))
+    if (this->vida <= static_cast<unsigned char>(dano)){
         this->vida = 0;
+    }
     else
         this->vida -= static_cast<unsigned char>(dano);
 }

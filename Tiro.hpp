@@ -25,7 +25,7 @@ class Tiro : public Objeto{
         
         virtual ~Tiro();
 
-        void mover(std::vector<Parede *>paredes, std::vector<Parede *> paredes2);
+        void mover(std::list<Parede *> &paredes, std::list<Parede *> &paredes2);
 
         void setTanque(Tanque *tanque);
 
@@ -33,7 +33,7 @@ class Tiro : public Objeto{
         Allegro::Sprite4D *sprites;
     private:
         Tanque *tanque;
-        bool algumaColisao(const std::vector<Parede *> &objetos);
+        bool algumaColisao(const std::list<Parede *> &objetos);
 
         
 };

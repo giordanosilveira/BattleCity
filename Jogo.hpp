@@ -30,14 +30,15 @@ class Jogo{
 
         Mapa *mapa;
         Player *player;
-        std::vector<Parede*> paredes;
-        std::vector<Parede*> paredeInvencivel;
+        std::list<Parede*> paredes;
+        std::list<Parede*> paredeInvencivel;
         std::list<Tanque*> inimigos;
         std::list<Tanque*> proximosInimigos;
         std::list<Tiro*> tiros;
         
         void moverPlayer();
         void atualizarTiros();
+        void atualizarParedes();
 
         /**
          * @todo: Instanciar todas as classes do jogo aqui
