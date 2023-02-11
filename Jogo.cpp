@@ -68,8 +68,14 @@ void Jogo::desenharParedes() const{
 
 void Jogo::atualizarTiros(){
     std::list<Tiro*>::const_iterator it{this->tiros.begin()};
-    for (; it != this->tiros.end(); ++it)
-        (*it)->mover();
+    for (; it != this->tiros.end();){
+        (*it)->mover(this->paredes, this->paredeInvencivel);
+        
+        if ((*it)->getVida() == 0)
+            it = this->tiros.erase(it);
+        else 
+            ++it;
+    }
 }
 
 void Jogo::desenharTiros() const{
@@ -108,7 +114,6 @@ void Jogo::moverPlayer(){
         this->player->setVelocidade(this->TANQUE_VELOCIDADE);
         this->player->setDirecao(EnumDirecao::BAIXO);
     }
-    
     else if (al->teclaPressionada(al->SETA_ESQUERDA)) {
         this->player->setVelocidade(this->TANQUE_VELOCIDADE);
         this->player->setDirecao(EnumDirecao::ESQUERDA);

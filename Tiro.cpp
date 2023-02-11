@@ -22,10 +22,21 @@ Tiro::Tiro(
 Tiro::~Tiro(){}
 
 
-void Tiro::mover(){
+bool Tiro::algumaColisao(const std::vector<Parede *> &paredes){
+    std::vector<Parede *>::const_iterator it;
+    it = paredes.begin();
 
-    unsigned int old_x = this->superiorEsquerda->getX();
-    unsigned int old_y = this->superiorEsquerda->getY();
+    for (; it < paredes.end(); ++it)
+        if (this->colisao(*it)){
+            (*it)->levarDano(1);
+            return true;
+        }
+    return false;
+}
+
+
+
+void Tiro::mover(std::vector<Parede *>paredes, std::vector<Parede *> paredes2){
 
     unsigned int x = this->superiorEsquerda->getX();
     unsigned int y = this->superiorEsquerda->getY();
@@ -49,9 +60,9 @@ void Tiro::mover(){
     }
 
     this->setSuperiorEsquerda(x, y);
-    // if (this->algumaColisao(paredes) || this->algumaColisao(paredesInvenciveis)) {
-    //     this->setSuperiorEsquerda(old_x, old_y);
-    // }
+    if (this->algumaColisao(paredes) || this->algumaColisao(paredes2)) {
+        this->morrer();
+    }
 }
 
 // const bool Tiro::colisao(std::list<Objeto*>&objetos) const {

@@ -20,10 +20,10 @@ Objeto::Objeto(
     this->superiorEsquerda = cse;
     this->inferiorDireita = cid;
     this->tamanhoSprite = tamanhoSprite;
-    this->imortal = (unsigned char)imortal;
-    this->estado = (unsigned char)estado;
-    this->vida = (unsigned char)vida;
-    this->velocidade = (unsigned char)velocidade;
+    this->imortal = static_cast<unsigned char>(imortal);
+    this->estado = static_cast<unsigned char>(estado);
+    this->vida = static_cast<unsigned char>(vida);
+    this->velocidade = static_cast<unsigned char>(velocidade);
     this->direcao = direcao;
 }
 
@@ -76,6 +76,47 @@ const EnumDirecao Objeto::getDirecao() const {
 void Objeto::setDirecao(EnumDirecao direcao){
     this->direcao = direcao;
 }
+
+void Objeto::levarDano(const unsigned short int dano){
+    if (this->imortal) return;
+
+    if (this->vida <= static_cast<unsigned char>(dano))
+        this->vida = 0;
+    else
+        this->vida -= static_cast<unsigned char>(dano);
+}
+
+void Objeto::morrer(){
+    this->vida = 0;
+}
+
+unsigned short int Objeto::getVida(){
+    return static_cast<unsigned short int>(this->vida);
+}
+
+const bool Objeto::colisao(const Objeto *obj) const {
+    const Coordenada *coordInferiorDireita = obj->getInferiorDireita();
+    const Coordenada *coordSuperiorEsquerda = obj->getSuperiorEsquerda();
+
+    if (this->superiorEsquerda->getY() >= coordInferiorDireita->getY()) return false;
+    if (this->inferiorDireita->getY() <= coordSuperiorEsquerda->getY()) return false;
+    if (this->superiorEsquerda->getX() >= coordInferiorDireita->getX()) return false;
+    if (this->inferiorDireita->getX() <= coordSuperiorEsquerda->getX()) return false;
+
+    return true;
+}
+
+
+bool Objeto::algumaColisao(const std::vector<Objeto *> &obj){
+    std::vector<Objeto *>::const_iterator it;
+    it = obj.begin();
+    for (; it < obj.end(); ++it)
+        if (this->colisao(*it))
+            return true;
+    return false;
+}
+
+
 
 // const bool Objeto::colisao(const Objeto *obj) const {
 //     const Coordenada *coordInferiorDireita = obj->superiorEsquerda;

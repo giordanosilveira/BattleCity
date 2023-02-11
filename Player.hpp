@@ -23,10 +23,10 @@ class Player : public Tanque {
         /**
          * @todo: a colisão funciona, porém ela não é aqui e é com objeto genérico 
          */
-        const bool colisao(const Parede *parede) const;
 
-    private:
         bool algumaColisao(const std::vector<Parede *> &paredes);
+        
+    private:
 };
 
 

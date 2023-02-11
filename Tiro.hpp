@@ -2,6 +2,7 @@
 #define TIRO_HPP
 
 #include "Objeto.hpp"
+#include "Parede.hpp"
 #include "allegro/Sprite4D.hpp"
 // #include "Tanque.hpp"
 
@@ -24,13 +25,15 @@ class Tiro : public Objeto{
         
         virtual ~Tiro();
 
+        void mover(std::vector<Parede *>paredes, std::vector<Parede *> paredes2);
+
         void setTanque(Tanque *tanque);
 
-        void mover();
 
         Allegro::Sprite4D *sprites;
     private:
         Tanque *tanque;
+        bool algumaColisao(const std::vector<Parede *> &objetos);
 
         
 };
