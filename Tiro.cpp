@@ -1,6 +1,5 @@
 #include "allegro/Sprite4D.hpp"
 #include "Tiro.hpp"
-#include "Tanque.hpp"
 #include "enums/EnumDirecao.hpp"
 
 Tiro::Tiro(){}
@@ -23,18 +22,21 @@ Tiro::Tiro(
 Tiro::~Tiro(){}
 
 
-void Tiro::setTanque (Tanque *tanque) {
-    if (tanque == nullptr)
-        throw std::runtime_error{"Ponteiro nulo: setTanque"};
-    this->tanque = tanque;
-    this->tanque->tiros.push_back(this);
-    // if (this->tanque != nullptr);
+bool Tiro::algumaColisao(const std::list<Parede *> &paredes){
+    std::list<Parede *>::const_iterator it;
+    it = paredes.begin();
+
+    for (; it != paredes.end(); ++it)
+        if (this->colisao(*it)){
+            (*it)->levarDano(1);
+            return true;
+        }
+    return false;
 }
 
-void Tiro::mover(){
 
-    unsigned int old_x = this->superiorEsquerda->getX();
-    unsigned int old_y = this->superiorEsquerda->getY();
+
+void Tiro::mover(std::list<Parede *>&paredes, std::list<Parede *> &paredes2){
 
     unsigned int x = this->superiorEsquerda->getX();
     unsigned int y = this->superiorEsquerda->getY();
@@ -58,9 +60,9 @@ void Tiro::mover(){
     }
 
     this->setSuperiorEsquerda(x, y);
-    // if (this->algumaColisao(paredes) || this->algumaColisao(paredesInvenciveis)) {
-    //     this->setSuperiorEsquerda(old_x, old_y);
-    // }
+    if (this->algumaColisao(paredes) || this->algumaColisao(paredes2)) {
+        this->morrer();
+    }
 }
 
 // const bool Tiro::colisao(std::list<Objeto*>&objetos) const {

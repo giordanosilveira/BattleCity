@@ -109,6 +109,14 @@ class Objeto {
     
         // virtual void setDirecao() = 0;
 
+        void levarDano(const unsigned short int dano);
+        void morrer();
+        unsigned short int getVida();
+
+        const bool colisao(const Objeto *obj) const;
+        bool algumaColisao(const std::vector<Objeto *> &objetos);
+
+
         // TODO: MUITO FEIO, DEIXAR PRIVADO DEPOIS
         const Allegro::Sprite* sprite;
         

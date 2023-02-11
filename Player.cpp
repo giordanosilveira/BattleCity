@@ -21,29 +21,16 @@ Player::~Player()
 {
 }
 
-bool Player::algumaColisao(const std::vector<const Parede *> &paredes){
-    std::vector<const Parede *>::const_iterator it;
+bool Player::algumaColisao(const std::list<Parede *> &paredes){
+    std::list<Parede *>::const_iterator it;
     it = paredes.begin();
-    for (; it < paredes.end(); ++it)
+    for (; it != paredes.end(); ++it)
         if (this->colisao(*it))
             return true;
     return false;
 }
 
-const bool Player::colisao(const Parede *parede) const {
-
-    const Coordenada *coordInferiorDireita = parede->getInferiorDireita();
-    const Coordenada *coordSuperiorEsquerda = parede->getSuperiorEsquerda();
-    if (this->superiorEsquerda->getY() >= coordInferiorDireita->getY()) return false;
-    if (this->inferiorDireita->getY() <= coordSuperiorEsquerda->getY()) return false;
-    if (this->superiorEsquerda->getX() >= coordInferiorDireita->getX()) return false;
-    if (this->inferiorDireita->getX() <= coordSuperiorEsquerda->getX()) return false;
-
-    return true;
-}
-
-
-void Player::mover(const std::vector<const Parede *> &paredes, const std::vector<const Parede *> &paredesInvenciveis){
+void Player::mover(const std::list<Parede *> &paredes, const std::list<Parede *> &paredesInvenciveis){
         unsigned int old_x = this->superiorEsquerda->getX();
         unsigned int old_y = this->superiorEsquerda->getY();
 

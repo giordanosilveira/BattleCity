@@ -18,15 +18,15 @@ class Player : public Tanque {
 
         ~Player();
 
-        void mover(const std::vector<const Parede *> &paredes, const std::vector<const Parede *> &paredesInvenciveis);
+        void mover(const std::list<Parede *> &paredes, const std::list<Parede *> &paredesInvenciveis);
 
         /**
          * @todo: a colisão funciona, porém ela não é aqui e é com objeto genérico 
          */
-        const bool colisao(const Parede *parede) const;
 
+        bool algumaColisao(const std::list<Parede *> &paredes);
+        
     private:
-        bool algumaColisao(const std::vector<const Parede *> &paredes);
 };
 
 

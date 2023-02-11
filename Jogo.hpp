@@ -23,15 +23,23 @@ class Jogo{
 
         static Jogo *getInstancia();
 
+        const unsigned short int TIRO_SIZE = 4;
+        const unsigned short int TIRO_VELOCIDADE = 3;
+        const unsigned short int TANQUE_SIZE = 16;
+        const unsigned short int TANQUE_VELOCIDADE = 2;
+
         Mapa *mapa;
         Player *player;
-        std::vector<const Parede *> paredes;
-        std::vector<const Parede *> paredeInvencivel;
-        std::list<const Tanque *> inimigos;
-        std::list<const Tanque *> proximosInimigos;
+        std::list<Parede*> paredes;
+        std::list<Parede*> paredeInvencivel;
+        std::list<Tanque*> inimigos;
+        std::list<Tanque*> proximosInimigos;
+        std::list<Tiro*> tiros;
         
         void moverPlayer();
         void atualizarTiros();
+        void atualizarParedes();
+        void atualizarPlayer();
 
         /**
          * @todo: Instanciar todas as classes do jogo aqui
@@ -47,6 +55,7 @@ class Jogo{
         Allegro::Sprite4D *tiroSprite;
         std::vector<Allegro::Sprite*>insignias;
 
+        void adicionarTiro(Tiro * const tiro);
 
     private:
         Jogo();
@@ -63,6 +72,8 @@ class Jogo{
         std::vector<Allegro::Sprite4D*>spritesTanque;
         std::vector<Allegro::Sprite4D*>spritesTanquePlayer;
 
+        const unsigned short int LIMITE_TIROS_PLAYER = 3;
+        
         const unsigned short int TANK_MAT_WID = 8;
         const unsigned short int TANK_MAT_HEI = 8;
         const unsigned short int TANK_WID = 16;
@@ -70,6 +81,8 @@ class Jogo{
         const unsigned short int PAREDE_SIZE = 8;
         const unsigned short int BLOCO_SIZE = 16;
         const unsigned short int OFFSET = 8;
+
+
         enum corTanque {
             TANQUE_AMARELO = 0,
             TANQUE_VERMELHO

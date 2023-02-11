@@ -9,12 +9,7 @@ class Parede : public Objeto {
         Parede();
         Parede(const unsigned int x, const unsigned int y, const unsigned short int tamanhoSprite, const unsigned short int imortal, EnumEstadoObjeto estado, const unsigned short int velocidade, const unsigned short int vida, EnumDirecao direcao,  const Allegro::Sprite *sprite);
 
-        const unsigned short int getVida() const;
-        void setVida (const unsigned short int vida);
-
         virtual ~Parede();
-    private:
-        unsigned char vida;
 };
 
 #endif
