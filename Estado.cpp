@@ -30,11 +30,13 @@ void Estado::jogo(){
             al->visualizarTeclas();
 
             if (al->atirou()){
-                j->adicionarTiro(j->player->atirar(j->TIRO_SIZE, j->TIRO_VELOCIDADE));
+                Tiro *t = j->player->atirar(j->TIRO_SIZE, j->TIRO_VELOCIDADE);
+                if (t != nullptr)
+                    j->adicionarTiro(t);
             }
             j->atualizarTiros();
             j->atualizarParedes();
-            j->moverPlayer();
+            j->atualizarPlayer();
             redesenhar = true;
         }
         

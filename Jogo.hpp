@@ -39,6 +39,7 @@ class Jogo{
         void moverPlayer();
         void atualizarTiros();
         void atualizarParedes();
+        void atualizarPlayer();
 
         /**
          * @todo: Instanciar todas as classes do jogo aqui
@@ -71,6 +72,8 @@ class Jogo{
         std::vector<Allegro::Sprite4D*>spritesTanque;
         std::vector<Allegro::Sprite4D*>spritesTanquePlayer;
 
+        const unsigned short int LIMITE_TIROS_PLAYER = 3;
+        
         const unsigned short int TANK_MAT_WID = 8;
         const unsigned short int TANK_MAT_HEI = 8;
         const unsigned short int TANK_WID = 16;

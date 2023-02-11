@@ -11,7 +11,7 @@
 Tanque::Tanque(const unsigned int x, const unsigned int y, unsigned short int tamanhoSprite, // TODO colocar const?
         const unsigned short imortal, EnumEstadoObjeto estado, const unsigned short vida, const unsigned short velocidade, 
         EnumDirecao direcao, Allegro::Sprite4D* const &sprites, Allegro::Sprite4D* const &tiroSprites)
-        :Objeto{x, y, tamanhoSprite, imortal, estado, vida, velocidade, direcao}{
+        :Objeto{x, y, tamanhoSprite, imortal, estado, vida, velocidade, direcao}, timerTiro{0}{
     this->tiroSprites = tiroSprites;
 }
 
@@ -23,13 +23,21 @@ void Tanque::setSprite(Allegro::Sprite4D*  sprite){
     this->sprites = sprite;
 }
 
+void Tanque::decrementarTimerTiro(){
+    if (this->timerTiro)
+        this->timerTiro--;
+}
+
 /**
  * @todo: Colocar a velocidade como uma constante 
  * 
  * TODO tamanho do sprite deve ser atributo
  * TODO repositorio com todos os sprites
  */
-Tiro* const Tanque::atirar(const unsigned short int tamanhoTiro, const unsigned short int velocidadeTiro) {
+Tiro* Tanque::atirar(const unsigned short int tamanhoTiro, const unsigned short int velocidadeTiro) {
+    if (this->timerTiro > 0) return nullptr;
+    this->timerTiro = this->TIMER_INICIAL_TIRO;
+
     const bool imortal = false;
 
     unsigned int y;

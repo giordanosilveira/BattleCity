@@ -88,6 +88,12 @@ void Jogo::atualizarParedes(){
     }
 }
 
+void Jogo::atualizarPlayer(){
+    moverPlayer();
+    if (this->tiros.size() < this->LIMITE_TIROS_PLAYER)
+    this->player->decrementarTimerTiro();
+}
+
 void Jogo::desenharTiros() const{
     Allegro::Tela *tela{Allegro::Tela::getInstancia()};
     std::list<Tiro*>::const_iterator it{this->tiros.begin()};

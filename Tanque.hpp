@@ -23,16 +23,21 @@ class Tanque : public Objeto{
 
         // virtual void mover();
 
-        virtual Tiro* const atirar(const unsigned short int tamanhoTiro, const unsigned short int velocidadeTiro);
+        virtual Tiro* atirar(const unsigned short int tamanhoTiro, const unsigned short int velocidadeTiro);
 
         // virtual void setDirecao(EnumDirecao direcao);
 
         // virtual const bool colisao(std::list<Objeto*>&objeto) const;// override;
 
+        void decrementarTimerTiro();
         const Allegro::Sprite* getSprite() const;
         void setSprite(Allegro::Sprite4D*  sprite);
         Allegro::Sprite4D * sprites;
         Allegro::Sprite4D * tiroSprites;
+
+    private:
+        unsigned short int timerTiro;
+        const unsigned short int TIMER_INICIAL_TIRO = 6;
 
 };
 
