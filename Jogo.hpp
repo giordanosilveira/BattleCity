@@ -25,6 +25,8 @@ class Jogo{
 
         const unsigned short int TIRO_SIZE = 4;
         const unsigned short int TIRO_VELOCIDADE = 3;
+        const unsigned short int TANQUE_SIZE = 16;
+        const unsigned short int TANQUE_VELOCIDADE = 2;
 
         Mapa *mapa;
         Player *player;

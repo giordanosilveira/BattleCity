@@ -3,7 +3,6 @@
 
 class Estado {
     public:
-        static void inicializar();
         static void jogo();
         static void encerrar();
         

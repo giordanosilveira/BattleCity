@@ -101,20 +101,20 @@ void Jogo::criarParedesBorda(){
 void Jogo::moverPlayer(){
     Allegro::ControleJogo *al = Allegro::ControleJogo::getInstancia();
     if (al->teclaPressionada(al->SETA_CIMA)) {
-        this->player->setVelocidade(2);
+        this->player->setVelocidade(this->TANQUE_VELOCIDADE);
         this->player->setDirecao(EnumDirecao::CIMA);
     }
     else if (al->teclaPressionada(al->SETA_BAIXO)) {
-        this->player->setVelocidade(2);
+        this->player->setVelocidade(this->TANQUE_VELOCIDADE);
         this->player->setDirecao(EnumDirecao::BAIXO);
     }
     
     else if (al->teclaPressionada(al->SETA_ESQUERDA)) {
-        this->player->setVelocidade(2);
+        this->player->setVelocidade(this->TANQUE_VELOCIDADE);
         this->player->setDirecao(EnumDirecao::ESQUERDA);
     }
     else if (al->teclaPressionada(al->SETA_DIREITA)) {
-        this->player->setVelocidade(2);
+        this->player->setVelocidade(this->TANQUE_VELOCIDADE);
         this->player->setDirecao(EnumDirecao::DIREITA);
     }
     else {
@@ -137,30 +137,30 @@ void Jogo::carregarSprites(){
     Allegro::Tela *tela = Allegro::Tela::getInstancia();
     
     for (unsigned int i{0}; i <= 16; i += 16) {
-        Allegro::Sprite4D *sp4d = new Allegro::Sprite4D();
+        Allegro::Sprite4D *spritesTanque = new Allegro::Sprite4D();
 
-        sp4d->inicializarSprite(this->spritesheet, i, 0, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE, sp4d->CIM);
-        sp4d->inicializarSprite(this->spritesheet, i+32, 0, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE, sp4d->ESQ);
-        sp4d->inicializarSprite(this->spritesheet, i+32*2, 0, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE, sp4d->BAI);
-        sp4d->inicializarSprite(this->spritesheet, i+32*3, 0, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE, sp4d->DIR);
-        this->spritesTanquePlayer.push_back(sp4d);
+        spritesTanque->inicializarSprite(this->spritesheet, i, 0, this->BLOCO_SIZE, this->BLOCO_SIZE, spritesTanque->CIM);
+        spritesTanque->inicializarSprite(this->spritesheet, i+32, 0, this->BLOCO_SIZE, this->BLOCO_SIZE, spritesTanque->ESQ);
+        spritesTanque->inicializarSprite(this->spritesheet, i+32*2, 0, this->BLOCO_SIZE, this->BLOCO_SIZE, spritesTanque->BAI);
+        spritesTanque->inicializarSprite(this->spritesheet, i+32*3, 0, this->BLOCO_SIZE, this->BLOCO_SIZE, spritesTanque->DIR);
+        this->spritesTanquePlayer.push_back(spritesTanque);
     }
 
     Allegro::Sprite4D *spritesTiro = new Allegro::Sprite4D();
-    spritesTiro->inicializarSprite(this->spritesheet, 323, 102, 4, 4, spritesTiro->CIM);
-    spritesTiro->inicializarSprite(this->spritesheet, 330, 102, 4, 4, spritesTiro->ESQ);
-    spritesTiro->inicializarSprite(this->spritesheet, 339, 102, 4, 4, spritesTiro->BAI);
-    spritesTiro->inicializarSprite(this->spritesheet, 346, 102, 4, 4, spritesTiro->DIR);
+    spritesTiro->inicializarSprite(this->spritesheet, 323, 102, this->TIRO_SIZE, this->TIRO_SIZE, spritesTiro->CIM);
+    spritesTiro->inicializarSprite(this->spritesheet, 330, 102, this->TIRO_SIZE, this->TIRO_SIZE, spritesTiro->ESQ);
+    spritesTiro->inicializarSprite(this->spritesheet, 339, 102, this->TIRO_SIZE, this->TIRO_SIZE, spritesTiro->BAI);
+    spritesTiro->inicializarSprite(this->spritesheet, 346, 102, this->TIRO_SIZE, this->TIRO_SIZE, spritesTiro->DIR);
     this->tiroSprite = spritesTiro;
 
-    Allegro::Sprite *parede{new Allegro::Sprite{this->spritesheet, 256, 64, Jogo::PAREDE_SIZE, Jogo::PAREDE_SIZE}};
+    Allegro::Sprite *parede{new Allegro::Sprite{this->spritesheet, 256, 64, this->PAREDE_SIZE, this->PAREDE_SIZE}};
     this->parede = parede;
 
-    Allegro::Sprite *paredeInvencivelSprite{new Allegro::Sprite{this->spritesheet, 256, 72, Jogo::PAREDE_SIZE, Jogo::PAREDE_SIZE}};
+    Allegro::Sprite *paredeInvencivelSprite{new Allegro::Sprite{this->spritesheet, 256, 72, this->PAREDE_SIZE, this->PAREDE_SIZE}};
     this->paredeInvencivelSprite = paredeInvencivelSprite;
 
-    this->insignias.push_back(new Allegro::Sprite(this->spritesheet, 304, 31, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE));
-    this->insignias.push_back(new Allegro::Sprite(this->spritesheet, 320, 31, Jogo::BLOCO_SIZE, Jogo::BLOCO_SIZE));
+    this->insignias.push_back(new Allegro::Sprite(this->spritesheet, 304, 31, this->BLOCO_SIZE, this->BLOCO_SIZE));
+    this->insignias.push_back(new Allegro::Sprite(this->spritesheet, 320, 31, this->BLOCO_SIZE, this->BLOCO_SIZE));
 
 
 }
