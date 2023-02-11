@@ -30,7 +30,7 @@ void Estado::jogo(){
             al->visualizarTeclas();
 
             if (al->atirou()){
-                j->adicionarTiro(j->player->atirar(4));
+                j->adicionarTiro(j->player->atirar(j->TIRO_SIZE, j->TIRO_VELOCIDADE));
             }
             j->atualizarTiros();
             j->moverPlayer();

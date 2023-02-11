@@ -29,7 +29,8 @@ void Tanque::setSprite(Allegro::Sprite4D*  sprite){
  * TODO tamanho do sprite deve ser atributo
  * TODO repositorio com todos os sprites
  */
-Tiro* const Tanque::atirar(unsigned short int tamanhoTiro) {
+Tiro* const Tanque::atirar(const unsigned short int tamanhoTiro, const unsigned short int velocidadeTiro) {
+    const bool imortal = false;
 
     unsigned int y;
     unsigned int x;
@@ -44,29 +45,28 @@ Tiro* const Tanque::atirar(unsigned short int tamanhoTiro) {
             this->tiroSprites->setSpritePrincipal(this->tiroSprites->DIR);
         break;
         case EnumDirecao::ESQUERDA:
-            y = this->superiorEsquerda->getY() + this->getTamanhoSprite()/2 - tamanhoTiro/2; // trocar este por tamanho do tiro
-            x = this->superiorEsquerda->getX(); // tem que ser o sprite do tiro
+            y = this->superiorEsquerda->getY() + this->getTamanhoSprite()/2 - tamanhoTiro/2; 
+            x = this->superiorEsquerda->getX(); 
             direcao_tiro = this->tiroSprites->ESQ;
             this->tiroSprites->setSpritePrincipal(this->tiroSprites->ESQ);
         break;
         case EnumDirecao::CIMA:
-            y = this->superiorEsquerda->getY(); // tem que ser sprite do tiro
-            x = this->superiorEsquerda->getX() + this->getTamanhoSprite()/2 - tamanhoTiro/2; // trocar por tamanho do tiro
+            y = this->superiorEsquerda->getY(); 
+            x = this->superiorEsquerda->getX() + this->getTamanhoSprite()/2 - tamanhoTiro/2; 
             direcao_tiro = this->tiroSprites->CIM;
             this->tiroSprites->setSpritePrincipal(this->tiroSprites->CIM);
         break;
         case EnumDirecao::BAIXO:
             y = this->inferiorDireita->getY();
-            x = this->superiorEsquerda->getX() + this->getTamanhoSprite()/2 - tamanhoTiro/2; // trocar por tamanho do tiro;
+            x = this->superiorEsquerda->getX() + this->getTamanhoSprite()/2 - tamanhoTiro/2;  
             direcao_tiro = this->tiroSprites->BAI;
             this->tiroSprites->setSpritePrincipal(this->tiroSprites->BAI);
         break;
     }
 
-    bool imortal = false;
 
     try {
-        return new Tiro{x, y, tamanhoSprite, imortal, EnumEstadoObjeto::VIVO, 1, 2, this->direcao, this->tiroSprites, direcao_tiro};
+        return new Tiro{x, y, tamanhoTiro, imortal, EnumEstadoObjeto::VIVO, 1, velocidadeTiro, this->direcao, this->tiroSprites, direcao_tiro};
     }
     catch (std::bad_alloc& ba) {
         std::cerr << "Erro na alocação do tiro" << std::endl;

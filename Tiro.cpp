@@ -1,6 +1,5 @@
 #include "allegro/Sprite4D.hpp"
 #include "Tiro.hpp"
-#include "Tanque.hpp"
 #include "enums/EnumDirecao.hpp"
 
 Tiro::Tiro(){}
@@ -22,14 +21,6 @@ Tiro::Tiro(
 
 Tiro::~Tiro(){}
 
-
-void Tiro::setTanque (Tanque *tanque) {
-    if (tanque == nullptr)
-        throw std::runtime_error{"Ponteiro nulo: setTanque"};
-    this->tanque = tanque;
-    this->tanque->tiros.push_back(this);
-    // if (this->tanque != nullptr);
-}
 
 void Tiro::mover(){
 

@@ -15,8 +15,6 @@
 
 class Tanque : public Objeto{
 
-    friend void Tiro::setTanque(Tanque*tanque);
-
     public:
         Tanque();
         Tanque(const unsigned int x, const unsigned int y, unsigned short int tamanhoSprite, const unsigned short imortal, EnumEstadoObjeto estado, const unsigned short vida, const unsigned short velocidade, EnumDirecao direcao, Allegro::Sprite4D* const &sprites, Allegro::Sprite4D* const &tiroSprites);
@@ -25,7 +23,7 @@ class Tanque : public Objeto{
 
         // virtual void mover();
 
-        virtual Tiro* const atirar(unsigned short int tamanhoTiro);
+        virtual Tiro* const atirar(const unsigned short int tamanhoTiro, const unsigned short int velocidadeTiro);
 
         // virtual void setDirecao(EnumDirecao direcao);
 
@@ -35,9 +33,6 @@ class Tanque : public Objeto{
         void setSprite(Allegro::Sprite4D*  sprite);
         Allegro::Sprite4D * sprites;
         Allegro::Sprite4D * tiroSprites;
-
-        std::list<Tiro*> tiros;
-    protected:
 
 };
 

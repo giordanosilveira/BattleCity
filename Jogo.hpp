@@ -23,6 +23,9 @@ class Jogo{
 
         static Jogo *getInstancia();
 
+        const unsigned short int TIRO_SIZE = 4;
+        const unsigned short int TIRO_VELOCIDADE = 3;
+
         Mapa *mapa;
         Player *player;
         std::vector<Parede*> paredes;
@@ -72,6 +75,8 @@ class Jogo{
         const unsigned short int PAREDE_SIZE = 8;
         const unsigned short int BLOCO_SIZE = 16;
         const unsigned short int OFFSET = 8;
+
+
         enum corTanque {
             TANQUE_AMARELO = 0,
             TANQUE_VERMELHO
