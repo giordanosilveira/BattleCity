@@ -456,7 +456,6 @@ void Jogo::carregarSprites(){
     this->insignias.push_back(new Allegro::Sprite(this->spritesheet, 304, 32, this->BLOCO_SIZE, this->BLOCO_SIZE));
     this->insignias.push_back(new Allegro::Sprite(this->spritesheet, 320, 32, this->BLOCO_SIZE, this->BLOCO_SIZE));
 
-
     Allegro::Sprite *backgroudPontuacao{new Allegro::Sprite{this->spritesheet, 376, 24, 16, 80}};
     this->backgroudPontuacao = backgroudPontuacao;
 
