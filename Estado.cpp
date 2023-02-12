@@ -65,6 +65,7 @@ void Estado::jogo(){
             tela->desenharSprite(j->player->sprites, j->player->getSuperiorEsquerda()->getX(), j->player->getSuperiorEsquerda()->getY());
             tela->desenharSprite(j->backgroudPontuacao, 271, 16);
             j->desenharTanquesPontos();
+            // tela->desenharSprite(j->insignia->sprite, j->insignia->getSuperiorEsquerda()->getX(), j->insignia->getSuperiorEsquerda()->getY());
 
             j->desenharTiros();
             j->desenharParedes();

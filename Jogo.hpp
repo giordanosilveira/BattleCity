@@ -9,11 +9,11 @@
 #include "allegro/Sprite4D.hpp"
 #include "Tanque.hpp"
 #include "Mapa.hpp"
+#include "Insignia.hpp"
 // #include "Parede.hpp"
 // #include "Explosao.hpp"
 // #include "Mato.hpp"
 // #include "Agua.hpp"
-// #include "Insignia.hpp"
 
 class Jogo{
     public:
@@ -37,6 +37,7 @@ class Jogo{
         std::list<Tiro*> tiros;
         std::list<Tiro*> tirosInimigos;
         unsigned short int n_tanques;
+        Insignia *insignia;
         
         void moverPlayer();
         void atualizarTiros();
@@ -57,10 +58,10 @@ class Jogo{
          */
         //std::list<>
         void desenharParedes() const;
-        void desenharTanque(const Tanque* tanque) const;
         void desenharTiros() const;
         void desenharInimigos() const;
         void desenharTanquesPontos() const;
+        void desenharObjeto(Objeto* const objeto) const;
 
         Allegro::Sprite *spritesheet;
         Allegro::Sprite *parede;
