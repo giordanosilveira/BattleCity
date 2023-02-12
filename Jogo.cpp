@@ -20,7 +20,7 @@ Jogo::Jogo(){
     this->carregarSprites();
 
     this->player = new Player{8, 8, 16, false, EnumEstadoObjeto::VIVO, 10, 2, EnumDirecao::BAIXO, this->spritesTanquePlayer[0], this->tiroSprite};
-    this->tanque = new Tanque{0+Jogo::OFFSET, 29*8+Jogo::OFFSET, 16, false, EnumEstadoObjeto::VIVO, 2, 2, EnumDirecao::ESQUERDA, this->spritesTanqueInimigos[0], this->tiroSprite};
+    this->tanque = new Tanque{232, 8, 16, false, EnumEstadoObjeto::VIVO, 2, 2, EnumDirecao::ESQUERDA, this->spritesTanqueInimigos[0], this->tiroSprite};
 
     // transformar em  funcao
     this->mapa = new Mapa{"./data/mapa.txt"};
@@ -70,7 +70,7 @@ void Jogo::desenharParedes() const{
 void Jogo::atualizarTiros(){
     std::list<Tiro*>::const_iterator it{this->tiros.begin()};
     for (; it != this->tiros.end();){
-        (*it)->mover(this->paredes, this->paredeInvencivel);
+        (*it)->mover(this->paredes, this->paredeInvencivel, this->tanque);
 
         if ((*it)->getVida() == 0)
             it = this->tiros.erase(it);
@@ -105,7 +105,7 @@ void Jogo::desenharTiros() const{
 
 void Jogo::desenharInimigos() const{
     Allegro::Tela *tela{Allegro::Tela::getInstancia()};
-    tela->desenharSprite(this->tanque->sprites, this->tanque->getSuperiorEsquerda()->getY(), this->tanque->getSuperiorEsquerda()->getX());
+    tela->desenharSprite(this->tanque->sprites, this->tanque->getSuperiorEsquerda()->getX(), this->tanque->getSuperiorEsquerda()->getY());
 }
 
 void Jogo::criarParedesBorda(){

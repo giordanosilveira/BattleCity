@@ -25,15 +25,15 @@ class Tiro : public Objeto{
         
         virtual ~Tiro();
 
-        void mover(std::list<Parede *> &paredes, std::list<Parede *> &paredes2);
-
-        void setTanque(Tanque *tanque);
+        void mover(std::list<Parede *> &paredes, std::list<Parede *> &paredes2, Tanque *tanque);
+        virtual const bool colisao(const Tanque *tanque) const;
 
 
         Allegro::Sprite4D *sprites;
     private:
         Tanque *tanque;
         bool algumaColisao(const std::list<Parede *> &objetos);
+        bool algumaColisao(Tanque * tanque);
 
         
 };
