@@ -36,14 +36,13 @@ bool Tiro::algumaColisao(const std::list<Parede *> &paredes){
 }
 
 const bool Tiro::colisao(const Tanque *tanque) const {
+    
+    if (tanque == nullptr)
+        return false;
+
     const Coordenada *coordSuperiorEsquerda = tanque->getSuperiorEsquerda();
     const Coordenada *coordInferiorDireita = tanque->getInferiorDireita();
     
-    std::cerr << "Tiro X: " << this->getSuperiorEsquerda()->getX() << " " << "Y: " << this->getSuperiorEsquerda()->getY() << std::endl;
-    std::cerr << "Tiro X: " << this->getInferiorDireita()->getX() << " " << "Y: " << this->getInferiorDireita()->getY() << std::endl;
-    std::cerr << "X: " << coordSuperiorEsquerda->getX() << " " << "Y: " << coordSuperiorEsquerda->getY() << std::endl;
-    std::cerr << "X: " << coordInferiorDireita->getX() << " " << "Y: " << coordInferiorDireita->getY() << std::endl;  
-
     if (this->superiorEsquerda->getY() >= coordInferiorDireita->getY()) return false;
     if (this->inferiorDireita->getY() <= coordSuperiorEsquerda->getY()) return false;
     if (this->superiorEsquerda->getX() >= coordInferiorDireita->getX()) return false;
@@ -54,6 +53,10 @@ const bool Tiro::colisao(const Tanque *tanque) const {
 
 
 bool Tiro::algumaColisao(Tanque * tanque) {
+    
+    if (tanque == nullptr)
+        return false;
+
 
     if (this->Tiro::colisao(tanque)) {
         std::cerr << "Aqui po" << std::endl;

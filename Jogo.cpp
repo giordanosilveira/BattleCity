@@ -79,6 +79,19 @@ void Jogo::atualizarTiros(){
     }
 }
 
+
+void Jogo::atualizarInimigos(){
+    
+    if (this->tanque == nullptr)
+        return;
+
+    if (this->tanque->getVida() == 0) {
+        delete this->tanque;
+        this->tanque = nullptr;
+    }
+}
+
+
 void Jogo::atualizarParedes(){
     std::list<Parede*>::const_iterator it{this->paredes.begin()};
     for (; it != this->paredes.end();){
@@ -105,7 +118,8 @@ void Jogo::desenharTiros() const{
 
 void Jogo::desenharInimigos() const{
     Allegro::Tela *tela{Allegro::Tela::getInstancia()};
-    tela->desenharSprite(this->tanque->sprites, this->tanque->getSuperiorEsquerda()->getX(), this->tanque->getSuperiorEsquerda()->getY());
+    if (this->tanque != nullptr)
+        tela->desenharSprite(this->tanque->sprites, this->tanque->getSuperiorEsquerda()->getX(), this->tanque->getSuperiorEsquerda()->getY());
 }
 
 void Jogo::criarParedesBorda(){

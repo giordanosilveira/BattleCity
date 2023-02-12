@@ -35,6 +35,7 @@ void Estado::jogo(){
                     j->adicionarTiro(t);
             }
             j->atualizarTiros();
+            j->atualizarInimigos();
             j->atualizarParedes();
             j->atualizarPlayer();
             redesenhar = true;

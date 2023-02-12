@@ -42,6 +42,7 @@ class Jogo{
         void atualizarTiros();
         void atualizarParedes();
         void atualizarPlayer();
+        void atualizarInimigos();
 
         /**
          * @todo: Instanciar todas as classes do jogo aqui
