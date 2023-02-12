@@ -20,6 +20,7 @@ Jogo::Jogo(){
     this->carregarSprites();
 
     this->player = new Player{8, 8, 16, false, EnumEstadoObjeto::VIVO, 10, 2, EnumDirecao::BAIXO, this->spritesTanquePlayer[0], this->tiroSprite};
+    this->tanque = new Tanque{0+Jogo::OFFSET, 29*8+Jogo::OFFSET, 16, false, EnumEstadoObjeto::VIVO, 2, 2, EnumDirecao::ESQUERDA, this->spritesTanqueInimigos[0], this->tiroSprite};
 
     // transformar em  funcao
     this->mapa = new Mapa{"./data/mapa.txt"};
@@ -102,11 +103,10 @@ void Jogo::desenharTiros() const{
     }
 }
 
-// void Jogo::desenharTanque(const Tanque* tanque) const{
-//     Allegro::Tela *tela{Allegro::Tela::getInstancia()};
-
-//     tela->desenharSprite(tanque->getSprite(), tanque->getSuperiorEsquerda()->getX(), tanque->getSuperiorEsquerda()->getY());
-// }
+void Jogo::desenharInimigos() const{
+    Allegro::Tela *tela{Allegro::Tela::getInstancia()};
+    tela->desenharSprite(this->tanque->sprites, this->tanque->getSuperiorEsquerda()->getY(), this->tanque->getSuperiorEsquerda()->getX());
+}
 
 void Jogo::criarParedesBorda(){
     Allegro::Tela *tela{Allegro::Tela::getInstancia()};
@@ -165,6 +165,16 @@ void Jogo::carregarSprites(){
         spritesTanque->inicializarSprite(this->spritesheet, i+32*2, 0, this->BLOCO_SIZE, this->BLOCO_SIZE, spritesTanque->BAI);
         spritesTanque->inicializarSprite(this->spritesheet, i+32*3, 0, this->BLOCO_SIZE, this->BLOCO_SIZE, spritesTanque->DIR);
         this->spritesTanquePlayer.push_back(spritesTanque);
+    }
+    
+    for (unsigned int i{128}; i <= 144; i += 16) {
+        Allegro::Sprite4D *spritesTanque = new Allegro::Sprite4D();
+
+        spritesTanque->inicializarSprite(this->spritesheet, i, 128, this->BLOCO_SIZE, this->BLOCO_SIZE, spritesTanque->CIM);
+        spritesTanque->inicializarSprite(this->spritesheet, i+32, 128, this->BLOCO_SIZE, this->BLOCO_SIZE, spritesTanque->ESQ);
+        spritesTanque->inicializarSprite(this->spritesheet, i+32*2, 128, this->BLOCO_SIZE, this->BLOCO_SIZE, spritesTanque->BAI);
+        spritesTanque->inicializarSprite(this->spritesheet, i+32*3, 128, this->BLOCO_SIZE, this->BLOCO_SIZE, spritesTanque->DIR);
+        this->spritesTanqueInimigos.push_back(spritesTanque);
     }
 
     Allegro::Sprite4D *spritesTiro = new Allegro::Sprite4D();

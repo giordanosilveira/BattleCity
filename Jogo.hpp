@@ -30,11 +30,13 @@ class Jogo{
 
         Mapa *mapa;
         Player *player;
+        Tanque *tanque;
         std::list<Parede*> paredes;
         std::list<Parede*> paredeInvencivel;
-        std::list<Tanque*> inimigos;
-        std::list<Tanque*> proximosInimigos;
+        //std::list<Tanque*> inimigos;
+        //std::list<Tanque*> proximosInimigos;
         std::list<Tiro*> tiros;
+        std::list<Tiro*> tirosInimigos;
         
         void moverPlayer();
         void atualizarTiros();
@@ -48,6 +50,7 @@ class Jogo{
         void desenharParedes() const;
         void desenharTanque(const Tanque* tanque) const;
         void desenharTiros() const;
+        void desenharInimigos() const;
 
         Allegro::Sprite *spritesheet;
         Allegro::Sprite *parede;
@@ -70,6 +73,7 @@ class Jogo{
         std::list<std::shared_ptr<Objeto>> elementosTela;
 
         std::vector<Allegro::Sprite4D*>spritesTanque;
+        std::vector<Allegro::Sprite4D*>spritesTanqueInimigos;
         std::vector<Allegro::Sprite4D*>spritesTanquePlayer;
 
         const unsigned short int LIMITE_TIROS_PLAYER = 3;

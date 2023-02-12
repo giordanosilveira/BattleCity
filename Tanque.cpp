@@ -8,10 +8,20 @@
 
 // #include "Tiro.hpp"
 
-Tanque::Tanque(const unsigned int x, const unsigned int y, unsigned short int tamanhoSprite, // TODO colocar const?
-        const unsigned short imortal, EnumEstadoObjeto estado, const unsigned short vida, const unsigned short velocidade, 
-        EnumDirecao direcao, Allegro::Sprite4D* const &sprites, Allegro::Sprite4D* const &tiroSprites)
-        :Objeto{x, y, tamanhoSprite, imortal, estado, vida, velocidade, direcao}, timerTiro{0}{
+Tanque::Tanque(
+    const unsigned int x, 
+    const unsigned int y, 
+    unsigned short int tamanhoSprite, 
+    const unsigned short imortal, 
+    EnumEstadoObjeto estado, 
+    const unsigned short vida, 
+    const unsigned short velocidade, 
+    EnumDirecao direcao, 
+    Allegro::Sprite4D* const &sprites, 
+    Allegro::Sprite4D* const &tiroSprites) :Objeto{x, y, tamanhoSprite, imortal, estado, vida, velocidade, direcao}, timerTiro{0}
+{        
+    this->sprites = sprites;
+    this->sprites->setSpritePrincipal(this->sprites->BAI);
     this->tiroSprites = tiroSprites;
 }
 

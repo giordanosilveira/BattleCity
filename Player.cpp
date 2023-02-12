@@ -8,13 +8,20 @@
 #include "allegro/Sprite.hpp"
 #include "allegro/Sprite4D.hpp"
 
-Player::Player(const unsigned int x, const unsigned int y, unsigned short int tamanhoSprite, 
-                const unsigned short imortal, EnumEstadoObjeto estado, const unsigned short vida, const unsigned short velocidade, 
-                EnumDirecao direcao, Allegro::Sprite4D* const &sprites, Allegro::Sprite4D* const &tiroSprites)
-                :Tanque{x, y, tamanhoSprite, imortal, estado, vida, velocidade, direcao, sprites, tiroSprites}
+Player::Player(
+    const unsigned int x,
+    const unsigned int y, 
+    unsigned short int tamanhoSprite, 
+    const unsigned short imortal, 
+    EnumEstadoObjeto estado, 
+    const unsigned short vida, 
+    const unsigned short velocidade, 
+    EnumDirecao direcao, 
+    Allegro::Sprite4D* const &sprites, 
+    Allegro::Sprite4D* const &tiroSprites
+    ):Tanque{x, y, tamanhoSprite, imortal, estado, vida, velocidade, direcao, sprites, tiroSprites}
 {
-    this->sprites = sprites;
-    this->sprites->setSpritePrincipal(this->sprites->BAI);
+
 }
 
 Player::~Player()
