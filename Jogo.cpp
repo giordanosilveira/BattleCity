@@ -20,7 +20,6 @@ Jogo::Jogo(){
     this->carregarSprites();
 
     this->player = new Player{8, 8, 16, false, EnumEstadoObjeto::VIVO, 10, 2, EnumDirecao::BAIXO, this->spritesTanquePlayer[0], this->tiroSprite};
-    this->tanque = new Tanque{232, 8, 16, false, EnumEstadoObjeto::VIVO, 2, 1, EnumDirecao::BAIXO, this->spritesTanqueInimigos[0], this->tiroSprite};
 
     // transformar em  funcao
     this->mapa = new Mapa{"./data/mapa.txt"};
@@ -72,8 +71,14 @@ void Jogo::atualizarTirosPlayer() {
     
     std::list<Tiro*>::const_iterator it{this->tiros.begin()};
     for (; it != this->tiros.end();){
-        (*it)->mover(this->paredes, this->paredeInvencivel, this->tanque);
+        
+        std::list<Tanque*>::const_iterator it2{this->inimigos.begin()};
+        for (; it2 != this->inimigos.end(); ++it2){
 
+            (*it)->mover(this->paredes, this->paredeInvencivel, (*it2));
+
+        }
+        
         if ((*it)->getVida() == 0)
             it = this->tiros.erase(it);
         else 
@@ -152,32 +157,91 @@ void Jogo::moverTanque(Tanque *tanque) {
 
 void Jogo::acaoInimigos() {
 
-    int num = (rand() % 50);
-    if (num <= 40)
-        this->moverTanque(this->tanque);
-    else {
-        Tiro *t = this->tanque->atirar(Jogo::TIRO_SIZE, 2);
-        if (t != nullptr)
-            this->adicionarTirosInimigos(t);
+    std::list<Tanque*>::iterator it{this->inimigos.begin()};
+    for (; it != this->inimigos.end(); ++it) {
+        int num = (rand() % 50);
+        if (num <= 40)
+            this->moverTanque((*it));
+        else {
+            Tiro *t = (*it)->atirar(Jogo::TIRO_SIZE, 2);
+            if (t != nullptr)
+                this->adicionarTirosInimigos(t);
+        }
     }    
+}
+
+
+void Jogo::decrementarTimerTirosInimigos() {
+
+    std::list<Tanque *>::iterator it{this->inimigos.begin()};
+    for (; it != this->inimigos.end(); ++it) {
+        if (this->tirosInimigos.size() < Jogo::LIMITE_TIROS_INIMIGOS)
+            (*it)->decrementarTimerTiro();
+    }
+
+}
+
+
+void Jogo::matarInimigos() {
+   
+    std::list<Tanque*>::const_iterator it{this->inimigos.begin()};
+    for (; it != this->inimigos.end();){
+        if ((*it)->getVida() == 0)
+            it = this->inimigos.erase(it);
+        else 
+            ++it;
+    }
+
+}
+
+
+void Jogo::criarInimigos() {
+
+    Tanque *tanque;
+    if (this->inimigos.size() < Jogo::LIMITE_INIMIGOS) {
+        switch (rand() % 5)
+        {
+            case 0:
+                tanque = new Tanque{232, 8, 16, false, EnumEstadoObjeto::VIVO, 2, 1, EnumDirecao::BAIXO, this->spritesTanqueInimigos[0], this->tiroSprite};
+                break;
+            case 1:
+                tanque = new Tanque{232, 104, 16, false, EnumEstadoObjeto::VIVO, 2, 1, EnumDirecao::ESQUERDA, this->spritesTanqueInimigos[0], this->tiroSprite};
+                break;
+            case 2:
+                tanque = new Tanque{8, 104, 16, false, EnumEstadoObjeto::VIVO, 2, 1, EnumDirecao::DIREITA, this->spritesTanqueInimigos[0], this->tiroSprite};
+                break;
+                
+            case 3:
+                tanque = new Tanque{136, 88, 16, false, EnumEstadoObjeto::VIVO, 2, 1, EnumDirecao::BAIXO, this->spritesTanqueInimigos[0], this->tiroSprite};
+                break;
+                
+            case 4:
+                tanque = new Tanque{136, 136, 16, false, EnumEstadoObjeto::VIVO, 2, 1, EnumDirecao::CIMA, this->spritesTanqueInimigos[0], this->tiroSprite};
+                break;
+               
+        }
+        std::list<Tanque*>::iterator it{this->inimigos.begin()};
+        for (; it != this->inimigos.end(); ++it) {
+            if ((*it)->colisao(tanque)) {
+                delete tanque;
+                return;
+            }
+        }
+        this->inimigos.push_back(tanque);
+    }
+
 }
 
 
 void Jogo::atualizarInimigos(){
     
-    if (this->tanque == nullptr)
-        return;
-
-    if (this->tirosInimigos.size() < this->LIMITE_TIROS_INIMIGOS)
-        this->tanque->decrementarTimerTiro();
-    
+    this->decrementarTimerTirosInimigos();
+    this->matarInimigos();
+    this->criarInimigos();
+    std::cerr << "Bloco atualizar inimigos  " << std::endl;
     this->acaoInimigos();
+    std::cerr << "Erro é aqui" << std::endl;
     
-
-    if (this->tanque->getVida() == 0) {
-        delete this->tanque;
-        this->tanque = nullptr;
-    }
 }
 
 
@@ -211,8 +275,11 @@ void Jogo::desenharTiros() const{
 
 void Jogo::desenharInimigos() const{
     Allegro::Tela *tela{Allegro::Tela::getInstancia()};
-    if (this->tanque != nullptr)
-        tela->desenharSprite(this->tanque->sprites, this->tanque->getSuperiorEsquerda()->getX(), this->tanque->getSuperiorEsquerda()->getY());
+
+    std::list<Tanque*>::const_iterator it2{this->inimigos.begin()};
+    for (; it2 != this->inimigos.end(); ++it2){
+        tela->desenharSprite((*it2)->sprites, (*it2)->getSuperiorEsquerda()->getX(), (*it2)->getSuperiorEsquerda()->getY());
+    }
 }
 
 void Jogo::criarParedesBorda(){

@@ -30,10 +30,9 @@ class Jogo{
 
         Mapa *mapa;
         Player *player;
-        Tanque *tanque;
         std::list<Parede*> paredes;
         std::list<Parede*> paredeInvencivel;
-        //std::list<Tanque*> inimigos;
+        std::list<Tanque*> inimigos;
         //std::list<Tanque*> proximosInimigos;
         std::list<Tiro*> tiros;
         std::list<Tiro*> tirosInimigos;
@@ -48,6 +47,9 @@ class Jogo{
         void atualizarInimigos();
         void acaoInimigos();
         void moverTanque(Tanque *tanque);
+        void decrementarTimerTirosInimigos();
+        void matarInimigos();
+        void criarInimigos();
 
         /**
          * @todo: Instanciar todas as classes do jogo aqui
@@ -84,7 +86,8 @@ class Jogo{
         std::vector<Allegro::Sprite4D*>spritesTanquePlayer;
 
         const unsigned short int LIMITE_TIROS_PLAYER = 3;
-        const unsigned short int LIMITE_TIROS_INIMIGOS = 20;
+        const unsigned short int LIMITE_INIMIGOS = 3;
+        const unsigned short int LIMITE_TIROS_INIMIGOS = 10;
         
         const unsigned short int TANK_MAT_WID = 8;
         const unsigned short int TANK_MAT_HEI = 8;

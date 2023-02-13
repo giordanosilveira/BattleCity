@@ -36,8 +36,10 @@ void Estado::jogo(){
             }
             j->atualizarTiros();
             j->atualizarInimigos();
+            std::cerr << "Bloco" << std::endl;
             j->atualizarParedes();
             j->atualizarPlayer();
+            std::cerr << "Chegou aqui ?" << std::endl;
             redesenhar = true;
         }
         
