@@ -60,6 +60,12 @@ void Estado::jogo(){
             Estado::atual = Estado::JOGO_PERDIDO;
         }
 
+        if (j->semInimigos()){
+            done = true;
+            redesenhar = true;
+            Estado::atual = Estado::JOGO_VENCIDO;
+        }
+
 
         if (redesenhar){
             tela->limparTelaCor(103, 103, 103, 255);
@@ -73,6 +79,7 @@ void Estado::jogo(){
             j->desenharTiros();
             j->desenharParedes();
             j->desenharInimigos();
+            j->desenharHUD();
             // tela->desenharSprite(j->mato, 20, 20);
             // tela->desenharSprite(j->parede, 40, 40);
             // tela->desenharSprite(j->muro, 60, 60);
@@ -95,6 +102,34 @@ void Estado::jogoPerdido(){
     bool sair = false;
     tela->limparTelaCor(0, 0, 0, 128);
     tela->desenharTexto("Perdeste!", 100, 100);
+    tela->desenharTexto("Aperte ESC para sair.", 50, 120);
+    tela->desenharTela();
+
+    for (;;) {
+        al->esperarEvento();
+
+        if (al->getEvento() == al->TECLA_PRESSIONADA)
+            al->pressionarTecla();
+        
+        if (al->sairJogo())
+                sair = true;
+
+        if (sair)
+            break;
+    }
+
+    Estado::atual = Estado::ENCERRAR;
+}
+
+void Estado::jogoVencido(){
+
+    Allegro::ControleJogo *al{Allegro::ControleJogo::getInstancia()};
+    Allegro::Tela *tela{Allegro::Tela::getInstancia()};
+    Jogo *jogo{Jogo::getInstancia()};
+
+    bool sair = false;
+    tela->limparTelaCor(0, 0, 0, 128);
+    tela->desenharTexto("Venceste!", 100, 100);
     tela->desenharTexto("Aperte ESC para sair.", 50, 120);
     tela->desenharTela();
 

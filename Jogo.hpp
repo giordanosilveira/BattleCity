@@ -58,14 +58,19 @@ class Jogo{
         void desenharInimigos() const;
         void desenharTanquesPontos() const;
         void desenharObjeto(Objeto* const objeto) const;
+        void desenharHUD() const;
 
-        Allegro::Sprite *spritesheet;
+        bool semInimigos() const;
+
+        Allegro::Sprite *spritesheet, *spritesheet2;
         Allegro::Sprite *parede;
         Allegro::Sprite *paredeInvencivelSprite;
         Allegro::Sprite4D *tiroSprite;
         Allegro::Sprite *backgroudPontuacao;
         Allegro::Sprite* tanquePonto;
         std::vector<Allegro::Sprite*>insignias;
+        Allegro::Sprite *simboloTanqueSprite;
+
 
         void adicionarTiro(Tiro * const tiro);
         void adicionarTirosInimigos(Tiro * const tiro);
@@ -98,6 +103,9 @@ class Jogo{
         std::vector<Allegro::Sprite4D*>spritesTanquePlayer;
         
 
+        unsigned short int tanques_restantes;
+
+        const unsigned short int TANQUES_INICIAIS = 1;
         const unsigned short int LIMITE_TIROS_PLAYER = 3;
         const unsigned short int LIMITE_INIMIGOS = 3;
         const unsigned short int MAX_TANQUES = 20;
@@ -110,6 +118,9 @@ class Jogo{
         const unsigned short int PAREDE_SIZE = 8;
         const unsigned short int BLOCO_SIZE = 16;
         const unsigned short int OFFSET = 8;
+
+        const unsigned short int BASE_TANQUES_X = 272; // TODO talvez virar constexpr dps
+        const unsigned short int BASE_TANQUES_Y = 96;
 
 
         enum corTanque {
