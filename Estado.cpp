@@ -60,12 +60,6 @@ void Estado::jogo(){
             Estado::atual = Estado::JOGO_PERDIDO;
         }
 
-        if (j->semInimigos()){
-            done = true;
-            redesenhar = true;
-            Estado::atual = Estado::JOGO_VENCIDO;
-        }
-
 
         if (redesenhar){
             tela->limparTelaCor(103, 103, 103, 255);
@@ -79,7 +73,6 @@ void Estado::jogo(){
             j->desenharTiros();
             j->desenharParedes();
             j->desenharInimigos();
-            j->desenharHUD();
             // tela->desenharSprite(j->mato, 20, 20);
             // tela->desenharSprite(j->parede, 40, 40);
             // tela->desenharSprite(j->muro, 60, 60);

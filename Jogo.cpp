@@ -51,7 +51,6 @@ Jogo::Jogo(){
 
     this->criarParedesBorda();
 
-    this->tanques_restantes = this->TANQUES_INICIAIS;
 }
 
 Jogo *Jogo::getInstancia(){
@@ -60,13 +59,6 @@ Jogo *Jogo::getInstancia(){
     return Jogo::instancia;
 }
 
-
-void Jogo::desenharHUD() const{
-    Allegro::Tela *tela{Allegro::Tela::getInstancia()};
-    for (unsigned int i{0}; i < this->tanques_restantes; ++i){
-        tela->desenharSprite(this->simboloTanqueSprite, static_cast<float>(this->BASE_TANQUES_X + 8*(i%2)),  static_cast<float>(this->BASE_TANQUES_Y - 8*(i/2)) );
-    }
-}
 
 void Jogo::desenharParedes() const{
     Allegro::Tela *tela{Allegro::Tela::getInstancia()};
@@ -281,7 +273,6 @@ void Jogo::matarInimigos() {
 
 
 void Jogo::criarInimigos() {
-    if (this->tanques_restantes == 0) return;
     
     Tanque *tanque;
     if (this->inimigos.size() < Jogo::LIMITE_INIMIGOS) {
@@ -468,8 +459,4 @@ void Jogo::carregarSprites(){
     this->tanquePonto = tanquePonto;
 
 
-}
-
-bool Jogo::semInimigos() const{
-    return this->tanques_restantes == 0 && this->inimigos.size() == 0;
 }

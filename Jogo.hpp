@@ -58,9 +58,6 @@ class Jogo{
         void desenharInimigos() const;
         void desenharTanquesPontos() const;
         void desenharObjeto(Objeto* const objeto) const;
-        void desenharHUD() const;
-
-        bool semInimigos() const;
 
         Allegro::Sprite *spritesheet, *spritesheet2;
         Allegro::Sprite *parede;
@@ -103,9 +100,6 @@ class Jogo{
         std::vector<Allegro::Sprite4D*>spritesTanquePlayer;
         
 
-        unsigned short int tanques_restantes;
-
-        const unsigned short int TANQUES_INICIAIS = 1;
         const unsigned short int LIMITE_TIROS_PLAYER = 3;
         const unsigned short int LIMITE_INIMIGOS = 3;
         const unsigned short int MAX_TANQUES = 20;
