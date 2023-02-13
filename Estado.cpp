@@ -38,10 +38,8 @@ void Estado::jogo(){
                 if (t != nullptr)
                     j->adicionarTiro(t);
             }
-            j->atualizarTiros();
-            j->atualizarInimigos();
-            j->atualizarParedes();
-            j->atualizarPlayer();
+            j->atualizarEntidades();
+
             redesenhar = true;
         }
         
@@ -56,15 +54,21 @@ void Estado::jogo(){
             Estado::atual = Estado::ENCERRAR;
         }
 
+        if (j->insignia->morto()){
+            done = true;
+            redesenhar = true;
+            Estado::atual = Estado::JOGO_PERDIDO;
+        }
 
-        if (done) break;
 
         if (redesenhar){
-            tela->limparTelaCor(103, 103, 103);
+            tela->limparTelaCor(103, 103, 103, 255);
             tela->desenharRetanguloCheio(0, 0, tela->BUFFER_WIDTH - 32, tela->BUFFER_HEIGHT, 0, 0, 0, 1);
             tela->desenharSprite(j->player->sprites, j->player->getSuperiorEsquerda()->getX(), j->player->getSuperiorEsquerda()->getY());
             tela->desenharSprite(j->backgroudPontuacao, 271, 16);
             j->desenharTanquesPontos();
+            // tela->desenharSprite(j->insignia->sprite, j->insignia->getSuperiorEsquerda()->getX(), j->insignia->getSuperiorEsquerda()->getY());
+            tela->desenharSprite(j->insignia->sprite, j->insignia->getSuperiorEsquerda()->getX(), j->insignia->getSuperiorEsquerda()->getY());
 
             j->desenharTiros();
             j->desenharParedes();
@@ -77,13 +81,44 @@ void Estado::jogo(){
             redesenhar = false;
         }
         
+        if (done) break;
     }
 
 }
 
+void Estado::jogoPerdido(){
+
+    Allegro::ControleJogo *al{Allegro::ControleJogo::getInstancia()};
+    Allegro::Tela *tela{Allegro::Tela::getInstancia()};
+    Jogo *jogo{Jogo::getInstancia()};
+
+    bool sair = false;
+    tela->limparTelaCor(0, 0, 0, 128);
+    tela->desenharTexto("Perdeste!", 100, 100);
+    tela->desenharTexto("Aperte ESC para sair.", 50, 120);
+    tela->desenharTela();
+
+    for (;;) {
+        al->esperarEvento();
+
+        if (al->getEvento() == al->TECLA_PRESSIONADA)
+            al->pressionarTecla();
+        
+        if (al->sairJogo())
+                sair = true;
+
+        if (sair)
+            break;
+    }
+
+    Estado::atual = Estado::ENCERRAR;
+}
+
 void Estado::encerrar(){
-    Allegro::ControleJogo *al = Allegro::ControleJogo::getInstancia();
-    delete al; // TODO ver se faz sentido
+    Allegro::ControleJogo *al{Allegro::ControleJogo::getInstancia()};
+    Allegro::Tela *tela{Allegro::Tela::getInstancia()};
+    delete al; // TODO ver se faz sentido (ver se chama destrutor)
+    delete tela;
     
 
     exit(0);

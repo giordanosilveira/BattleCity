@@ -120,4 +120,8 @@ Objeto* Objeto::algumaColisao(const std::list<Objeto *> &objetos){
     return nullptr;
 }
 
+bool Objeto::morto(){
+    return this->vida == 0;
+}
+
 

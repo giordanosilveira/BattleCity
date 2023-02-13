@@ -88,6 +88,8 @@ unsigned short int ControleJogo::getEvento(){
         return TECLA_PRESSIONADA;
     if (this->event.type == ALLEGRO_EVENT_KEY_UP) 
         return TECLA_SOLTA;
+    if (this->event.type == ALLEGRO_EVENT_DISPLAY_CLOSE) 
+        return FECHAR_DISPLAY;
     return INDEFINIDO;
 }
 

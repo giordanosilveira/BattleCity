@@ -5,12 +5,15 @@ class Estado {
     public:
         static void jogo();
         static void encerrar();
+        static void jogoPerdido();
         
         static short int atual;
 
-        static constexpr short int INICIALIZAR = 0; // mudar estados para enum
-        static constexpr short int JOGO = 1; 
-        static constexpr short int ENCERRAR = 2; 
+        enum estado_atual{
+            JOGO = 0,
+            JOGO_PERDIDO,
+            ENCERRAR
+        };
 };
 
 #endif

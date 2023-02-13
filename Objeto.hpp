@@ -110,6 +110,7 @@ class Objeto {
         void levarDano(const unsigned short int dano);
         void morrer();
         unsigned short int getVida();
+        bool morto();
 
         const bool colisao(const Objeto *obj) const;
         Objeto* algumaColisao(const std::list<Objeto *> &objetos);
