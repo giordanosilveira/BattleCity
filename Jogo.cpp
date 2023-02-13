@@ -47,7 +47,7 @@ Jogo::Jogo(){
     }
 
     this->n_tanques = Jogo::MAX_TANQUES;
-    this->insignia = new Insignia{128, 0, this->BLOCO_SIZE, 0, EnumEstadoObjeto::VIVO, 1, 0, EnumDirecao::PARADO, this->insignias[0], this->insignias[1]};
+    this->insignia = new Insignia{120, 232, this->BLOCO_SIZE, 0, EnumEstadoObjeto::VIVO, 1, 0, EnumDirecao::PARADO, this->insignias[0], this->insignias[1]};
 
     this->criarParedesBorda();
     
@@ -93,6 +93,14 @@ void Jogo::desenharTanquesPontos() const {
     }
 }
 
+
+void Jogo::atualizarEntidades(){
+    this->atualizarTiros();
+    this->atualizarInimigos();
+    this->atualizarParedes();
+    this->atualizarPlayer();
+    this->atualizarInsignia();
+}
 
 void Jogo::atualizarTirosPlayer() {
     
@@ -175,6 +183,8 @@ void Jogo::geraListaColisaoTiro(std::list<Objeto*> &objetos){
 
     for (std::list<Tiro*>::const_iterator it{this->tirosInimigos.begin()}; it != this->tirosInimigos.end(); ++it)
         objetos.push_back(static_cast< Objeto*>(*it));
+
+    objetos.push_back(this->insignia);
 
     objetos.push_back(this->player);
 }
@@ -318,6 +328,9 @@ void Jogo::atualizarInimigos(){
     
 }
 
+void Jogo::atualizarInsignia(){
+    this->insignia->atualizarSprite();
+}
 
 void Jogo::atualizarParedes(){
     std::list<Parede*>::const_iterator it{this->paredes.begin()};

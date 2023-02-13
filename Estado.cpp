@@ -38,10 +38,8 @@ void Estado::jogo(){
                 if (t != nullptr)
                     j->adicionarTiro(t);
             }
-            j->atualizarTiros();
-            j->atualizarInimigos();
-            j->atualizarParedes();
-            j->atualizarPlayer();
+            j->atualizarEntidades();
+            
             redesenhar = true;
         }
         
@@ -66,6 +64,7 @@ void Estado::jogo(){
             tela->desenharSprite(j->backgroudPontuacao, 271, 16);
             j->desenharTanquesPontos();
             // tela->desenharSprite(j->insignia->sprite, j->insignia->getSuperiorEsquerda()->getX(), j->insignia->getSuperiorEsquerda()->getY());
+            tela->desenharSprite(j->insignia->sprite, j->insignia->getSuperiorEsquerda()->getX(), j->insignia->getSuperiorEsquerda()->getY());
 
             j->desenharTiros();
             j->desenharParedes();

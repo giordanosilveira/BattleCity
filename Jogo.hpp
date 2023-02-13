@@ -33,20 +33,16 @@ class Jogo{
         std::list<Parede*> paredes;
         std::list<Parede*> paredeInvencivel;
         std::list<Tanque*> inimigos;
-        //std::list<Tanque*> proximosInimigos;
         std::list<Tiro*> tiros;
         std::list<Tiro*> tirosInimigos;
         unsigned short int n_tanques;
         Insignia *insignia;
         
-        void moverPlayer();
-        void atualizarTiros();
-        void atualizarTirosPlayer();
-        void atualizarTirosInimigos();
 
-        void atualizarParedes();
-        void atualizarPlayer();
-        void atualizarInimigos();
+        void moverPlayer();
+        
+        void atualizarEntidades();
+
         void acaoInimigos();
         void moverTanque(Tanque *tanque);
         void decrementarTimerTirosInimigos();
@@ -85,6 +81,15 @@ class Jogo{
         void criarParedesBorda();
         void geraListaColisaoTanque(std::list<Objeto*> &objetos);
         void geraListaColisaoTiro(std::list<Objeto*> &objetos);
+
+        void atualizarTiros();
+        void atualizarTirosPlayer();
+        void atualizarTirosInimigos();
+        void atualizarInsignia();
+        void atualizarParedes();
+        void atualizarPlayer();
+        void atualizarInimigos();
+        
 
         std::list<std::shared_ptr<Objeto>> elementosTela;
 

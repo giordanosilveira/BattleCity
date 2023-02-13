@@ -5,7 +5,7 @@ Insignia::Insignia(const unsigned int x, const unsigned int y, const unsigned sh
         const unsigned short velocidade, EnumDirecao direcao, Allegro::Sprite *spriteVivo, 
         Allegro::Sprite *spriteMorto)
         :Objeto{x, y, tamanhoSprite, imortal, estado, vida, velocidade, direcao}, spriteVivo{spriteVivo}, spriteMorto{spriteMorto}{
-    this->sprite = spriteMorto;
+    this->sprite = this->spriteVivo;
 }
 
 void Insignia::atualizarSprite(){
