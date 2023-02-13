@@ -39,7 +39,7 @@ void Estado::jogo(){
                     j->adicionarTiro(t);
             }
             j->atualizarEntidades();
-
+            
             redesenhar = true;
         }
         
