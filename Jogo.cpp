@@ -212,11 +212,11 @@ void Jogo::criarInimigos() {
                 break;
                 
             case 3:
-                tanque = new Tanque{136, 88, 16, false, EnumEstadoObjeto::VIVO, 2, 1, EnumDirecao::BAIXO, this->spritesTanqueInimigos[0], this->tiroSprite};
+                tanque = new Tanque{136, 96, 16, false, EnumEstadoObjeto::VIVO, 2, 1, EnumDirecao::BAIXO, this->spritesTanqueInimigos[0], this->tiroSprite};
                 break;
                 
             case 4:
-                tanque = new Tanque{136, 136, 16, false, EnumEstadoObjeto::VIVO, 2, 1, EnumDirecao::CIMA, this->spritesTanqueInimigos[0], this->tiroSprite};
+                tanque = new Tanque{128, 136, 16, false, EnumEstadoObjeto::VIVO, 2, 1, EnumDirecao::CIMA, this->spritesTanqueInimigos[0], this->tiroSprite};
                 break;
                
         }
@@ -238,9 +238,7 @@ void Jogo::atualizarInimigos(){
     this->decrementarTimerTirosInimigos();
     this->matarInimigos();
     this->criarInimigos();
-    std::cerr << "Bloco atualizar inimigos  " << std::endl;
     this->acaoInimigos();
-    std::cerr << "Erro é aqui" << std::endl;
     
 }
 
