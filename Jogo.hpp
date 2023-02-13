@@ -78,6 +78,8 @@ class Jogo{
 
         /* Funções auxiliares */
         void criarParedesBorda();
+        void geraListaColisaoTanque(std::list<Objeto*> &objetos);
+        void geraListaColisaoTiro(std::list<Objeto*> &objetos);
 
         std::list<std::shared_ptr<Objeto>> elementosTela;
 

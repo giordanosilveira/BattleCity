@@ -1,3 +1,4 @@
+#include "Objeto.hpp"
 #include "Tiro.hpp"
 #include "allegro/Sprite4D.hpp"
 #include "allegro/Tela.hpp"
@@ -69,15 +70,15 @@ void Jogo::desenharParedes() const{
 
 void Jogo::atualizarTirosPlayer() {
     
+    std::list<Objeto*> objetos;
+    this->geraListaColisaoTiro(objetos);
+
     std::list<Tiro*>::const_iterator it{this->tiros.begin()};
     for (; it != this->tiros.end();){
+
         
         std::list<Tanque*>::const_iterator it2{this->inimigos.begin()};
-        for (; it2 != this->inimigos.end(); ++it2){
-
-            (*it)->mover(this->paredes, this->paredeInvencivel, (*it2));
-
-        }
+        (*it)->mover(objetos);
         
         if ((*it)->getVida() == 0)
             it = this->tiros.erase(it);
@@ -90,7 +91,10 @@ void Jogo::atualizarTirosInimigos() {
     
     std::list<Tiro*>::const_iterator it{this->tirosInimigos.begin()};
     for (; it != this->tirosInimigos.end();){
-        (*it)->mover(this->paredes, this->paredeInvencivel, this->player);
+
+        std::list<Objeto*> objetos;
+        this->geraListaColisaoTiro(objetos);
+        (*it)->mover(objetos);
 
         if ((*it)->getVida() == 0)
             it = this->tirosInimigos.erase(it);
@@ -114,12 +118,48 @@ void Jogo::adicionarTirosInimigos(Tiro * const tiro) {
 }
 
 
+void Jogo::geraListaColisaoTanque(std::list< Objeto*> &objetos){
+
+    for(std::list<Parede*>::const_iterator it{this->paredes.begin()};it != this->paredes.end(); ++it)
+        objetos.push_back(static_cast<Objeto*>(*it));
+
+    for (std::list<Parede*>::const_iterator it{this->paredeInvencivel.begin()}; it != this->paredeInvencivel.end(); ++it)
+        objetos.push_back(static_cast<Objeto*>(*it));
+
+    for (std::list<Tanque*>::const_iterator it{this->inimigos.begin()}; it != this->inimigos.end(); ++it)
+        objetos.push_back(static_cast<Objeto*>(*it));
+
+    objetos.push_back(this->player);
+}
+
+void Jogo::geraListaColisaoTiro(std::list<Objeto*> &objetos){
+
+    for(std::list<Parede*>::const_iterator it{this->paredes.begin()};it != this->paredes.end(); ++it)
+        objetos.push_back(static_cast<Objeto*>(*it));
+
+    for (std::list<Parede*>::const_iterator it{this->paredeInvencivel.begin()}; it != this->paredeInvencivel.end(); ++it)
+        objetos.push_back(static_cast<Objeto*>(*it));
+
+    for (std::list<Tanque*>::const_iterator it{this->inimigos.begin()}; it != this->inimigos.end(); ++it)
+        objetos.push_back(static_cast< Objeto*>(*it));
+
+    for (std::list<Tiro*>::const_iterator it{this->tiros.begin()}; it != this->tiros.end(); ++it)
+        objetos.push_back(static_cast< Objeto*>(*it));
+
+    for (std::list<Tiro*>::const_iterator it{this->tirosInimigos.begin()}; it != this->tirosInimigos.end(); ++it)
+        objetos.push_back(static_cast< Objeto*>(*it));
+
+    objetos.push_back(this->player);
+}
+
 void Jogo::moverTanque(Tanque *tanque) {
 
     EnumDirecao nova_direcao, antiga_direcao;
-    
+    std::list<Objeto*> objetos;
+    this->geraListaColisaoTanque(objetos);
+
     if (tanque->getDirecao() == EnumDirecao::BAIXO) {
-        if (! tanque->mover(this->paredes, this->paredeInvencivel, this->inimigos, this->player) ){
+        if (! tanque->mover(objetos) ){
             
             unsigned short int num = rand() % 100;
             if (num <= 35) 
@@ -132,12 +172,12 @@ void Jogo::moverTanque(Tanque *tanque) {
                 nova_direcao = EnumDirecao::CIMA;
             
             tanque->setDirecao(nova_direcao);
-            tanque->mover(this->paredes, this->paredeInvencivel, this->inimigos, this->player);
+            tanque->mover(objetos);
         }
 
     }
     else {
-        if (!tanque->mover(this->paredes, this->paredeInvencivel, this->inimigos, this->player)) {
+        if (!tanque->mover(objetos)) {
              unsigned short int num = rand() % 100;
             if (num <= 35) 
                 nova_direcao = EnumDirecao::BAIXO;
@@ -314,7 +354,9 @@ void Jogo::moverPlayer(){
         this->player->setVelocidade(0); 
     }
 
-    this->player->mover(this->paredes, this->paredeInvencivel, this->inimigos, this->player);
+    std::list<Objeto*> objetos;
+    geraListaColisaoTanque(objetos);
+    this->player->mover(objetos);
 }
 
 void Jogo::adicionarTiro(Tiro * const tiro){

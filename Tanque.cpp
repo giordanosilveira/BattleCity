@@ -38,17 +38,17 @@ void Tanque::decrementarTimerTiro(){
         this->timerTiro--;
 }
 
-bool Tanque::algumaColisao(const std::list<Objeto *> &objetos) const{
-    std::list<Objeto *>::const_iterator it;
-    it = objetos.begin();
-    for (; it != objetos.end(); ++it)
-        if (this->colisao(*it))
-            return true;
-    return false;
-}
+// bool Tanque::algumaColisao(const std::list<const Objeto *> &objetos) const{
+//     std::list<const Objeto *>::const_iterator it;
+//     it = objetos.begin();
+//     for (; it != objetos.end(); ++it)
+//         if (this->colisao(*it))
+//             return true;
+//     return false;
+// }
 
 // TODO tentar criar uma lista apenas, mas não sei se da tempo
-const bool Tanque::mover(const std::list<Parede *> &paredes, const std::list<Parede *> &paredesInvenciveis, const std::list<Tanque *> &tanques, Tanque* const player){
+const bool Tanque::mover(const std::list<Objeto*> &objetos){
         unsigned int old_x = this->superiorEsquerda->getX();
         unsigned int old_y = this->superiorEsquerda->getY();
 
@@ -78,21 +78,8 @@ const bool Tanque::mover(const std::list<Parede *> &paredes, const std::list<Par
         }
 
         this->setSuperiorEsquerda(x, y);
-        std::list<Objeto *> objetos;
-        
-        
-        for (std::list<Parede *>::const_iterator it{paredes.begin()}; it != paredes.end(); ++it)
-            objetos.push_back(static_cast<Objeto*>(*it));
-        for (std::list<Parede *>::const_iterator it{paredesInvenciveis.begin()}; it != paredesInvenciveis.end(); ++it)
-            objetos.push_back(static_cast<Objeto*>(*it));
-        for (std::list<Tanque *>::const_iterator it{tanques.begin()}; it != tanques.end(); ++it){
-            if (*it != this)
-                objetos.push_back(static_cast<Objeto*>(*it));
-        }
-        if (player != this)
-            objetos.push_back(static_cast<Objeto*>(player));
 
-        if (this->algumaColisao(objetos)) {
+        if (this->algumaColisao(objetos) != nullptr) {
             this->setSuperiorEsquerda(old_x, old_y);
             return false;
         }
@@ -128,12 +115,12 @@ Tiro* Tanque::atirar(const unsigned short int tamanhoTiro, const unsigned short 
         break;
         case EnumDirecao::ESQUERDA:
             y = this->superiorEsquerda->getY() + this->getTamanhoSprite()/2 - tamanhoTiro/2; 
-            x = this->superiorEsquerda->getX(); 
+            x = this->superiorEsquerda->getX() - tamanhoTiro; 
             direcao_tiro = this->tiroSprites->ESQ;
             this->tiroSprites->setSpritePrincipal(this->tiroSprites->ESQ);
         break;
         case EnumDirecao::CIMA:
-            y = this->superiorEsquerda->getY(); 
+            y = this->superiorEsquerda->getY() - tamanhoTiro; 
             x = this->superiorEsquerda->getX() + this->getTamanhoSprite()/2 - tamanhoTiro/2; 
             direcao_tiro = this->tiroSprites->CIM;
             this->tiroSprites->setSpritePrincipal(this->tiroSprites->CIM);

@@ -24,52 +24,34 @@ Tiro::Tiro(
 Tiro::~Tiro(){}
 
 
-bool Tiro::algumaColisao(const std::list<Parede *> &paredes){
-    std::list<Parede *>::const_iterator it;
-    it = paredes.begin();
+// Objeto* Tiro::algumaColisao(const std::list<Objeto *> &objetos){
+//     std::list<Objeto *>::const_iterator it;
+//     it = objetos.begin();
 
-    for (; it != paredes.end(); ++it)
-        if (this->Objeto::colisao(*it)){
-            (*it)->levarDano(1);
-            return true;
-        }
-    return false;
-}
+//     for (; it != objetos.end(); ++it)
+//         if (this->Objeto::colisao(*it))
+//             return *it;
+//     return nullptr;
+// }
 
-const bool Tiro::colisao(const Tanque *tanque) const {
+// const bool Tiro::colisao(const Tanque *tanque) const {
     
-    if (tanque == nullptr)
-        return false;
+//     if (tanque == nullptr)
+//         return false;
 
-    const Coordenada *coordSuperiorEsquerda = tanque->getSuperiorEsquerda();
-    const Coordenada *coordInferiorDireita = tanque->getInferiorDireita();
+//     const Coordenada *coordSuperiorEsquerda = tanque->getSuperiorEsquerda();
+//     const Coordenada *coordInferiorDireita = tanque->getInferiorDireita();
     
-    if (this->superiorEsquerda->getY() >= coordInferiorDireita->getY()) return false;
-    if (this->inferiorDireita->getY() <= coordSuperiorEsquerda->getY()) return false;
-    if (this->superiorEsquerda->getX() >= coordInferiorDireita->getX()) return false;
-    if (this->inferiorDireita->getX() <= coordSuperiorEsquerda->getX()) return false;
+//     if (this->superiorEsquerda->getY() >= coordInferiorDireita->getY()) return false;
+//     if (this->inferiorDireita->getY() <= coordSuperiorEsquerda->getY()) return false;
+//     if (this->superiorEsquerda->getX() >= coordInferiorDireita->getX()) return false;
+//     if (this->inferiorDireita->getX() <= coordSuperiorEsquerda->getX()) return false;
 
-    return true;
-}
-
-
-bool Tiro::algumaColisao(Tanque * tanque) {
-    
-    if (tanque == nullptr)
-        return false;
+//     return true;
+// }
 
 
-    if (this->Tiro::colisao(tanque)) {
-        tanque->levarDano(1);
-        return true;
-    }
-    return false;
-
-}
-
-
-
-void Tiro::mover(std::list<Parede *>&paredes, std::list<Parede *> &paredes2, Tanque *inimigo){
+void Tiro::mover(std::list<Objeto*> objetos){
 
     unsigned int x = this->superiorEsquerda->getX();
     unsigned int y = this->superiorEsquerda->getY();
@@ -93,7 +75,10 @@ void Tiro::mover(std::list<Parede *>&paredes, std::list<Parede *> &paredes2, Tan
     }
 
     this->setSuperiorEsquerda(x, y);
-    if (this->algumaColisao(paredes) || this->algumaColisao(paredes2) || this->algumaColisao(inimigo))  {
+    Objeto *obj = this->algumaColisao(objetos);
+    if (obj != nullptr){
+        obj->levarDano(1);
         this->morrer();
     }
+    
 }

@@ -114,7 +114,8 @@ class Objeto {
         unsigned short int getVida();
 
         const bool colisao(const Objeto *obj) const;
-        bool algumaColisao(const std::vector<Objeto *> &objetos);
+        // bool algumaColisao(const std::vector<Objeto *> &objetos);
+        Objeto* algumaColisao(const std::list<Objeto *> &objetos);
 
 
         // TODO: MUITO FEIO, DEIXAR PRIVADO DEPOIS

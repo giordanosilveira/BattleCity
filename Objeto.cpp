@@ -108,15 +108,30 @@ const bool Objeto::colisao(const Objeto *obj) const {
 }
 
 
-bool Objeto::algumaColisao(const std::vector<Objeto *> &obj){
-    std::vector<Objeto *>::const_iterator it;
-    it = obj.begin();
-    for (; it < obj.end(); ++it)
-        if (this->colisao(*it))
-            return true;
-    return false;
-}
+// bool Objeto::algumaColisao(const std::vector<Objeto *> &obj){
+//     std::vector<Objeto *>::const_iterator it;
+//     it = obj.begin();
+//     for (; it < obj.end(); ++it){
+//         if (*it == this) continue;
+//         if (this->colisao(*it))
+//             return true;
+//     }
 
+//     return false;
+// }
+
+
+Objeto* Objeto::algumaColisao(const std::list<Objeto *> &objetos){
+    std::list<Objeto *>::const_iterator it;
+    it = objetos.begin();
+
+    for (; it != objetos.end(); ++it){
+        if (*it == this) continue;
+        if (this->Objeto::colisao(*it))
+            return *it;
+    }
+    return nullptr;
+}
 
 
 // const bool Objeto::colisao(const Objeto *obj) const {
