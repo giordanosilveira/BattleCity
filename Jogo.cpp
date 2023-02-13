@@ -20,7 +20,7 @@ Jogo::Jogo(){
     this->carregarSprites();
 
     this->player = new Player{8, 8, 16, false, EnumEstadoObjeto::VIVO, 10, 2, EnumDirecao::BAIXO, this->spritesTanquePlayer[0], this->tiroSprite};
-    this->tanque = new Tanque{232, 8, 16, false, EnumEstadoObjeto::VIVO, 2, 2, EnumDirecao::BAIXO, this->spritesTanqueInimigos[0], this->tiroSprite};
+    this->tanque = new Tanque{232, 8, 16, false, EnumEstadoObjeto::VIVO, 2, 1, EnumDirecao::BAIXO, this->spritesTanqueInimigos[0], this->tiroSprite};
 
     // transformar em  funcao
     this->mapa = new Mapa{"./data/mapa.txt"};
@@ -109,48 +109,57 @@ void Jogo::adicionarTirosInimigos(Tiro * const tiro) {
 }
 
 
-// void Jogo::moverTanque(Tanque *tanque) {
+void Jogo::moverTanque(Tanque *tanque) {
 
-//     EnumDirecao nova_direcao;
-//     if (tanque->getDirecao() != EnumDirecao::BAIXO) {
-//         switch (rand() % 3)
-//         {
-//             case 0:
-//                 nova_direcao = EnumDirecao::CIMA;
-//                 break;
-//             case 1:
-//                 nova_direcao = EnumDirecao::ESQUERDA;
-//                 break;
-//             case 2:
-//                 nova_direcao = EnumDirecao::DIREITA;
-//                 break;
-//         }
-//     }
-//     tanque->setDirecao(nova_direcao);
-//     tanque-
+    EnumDirecao nova_direcao, antiga_direcao;
+    
+    if (tanque->getDirecao() == EnumDirecao::BAIXO) {
+        if (! tanque->mover(this->paredes, this->paredeInvencivel) ){
+            
+            unsigned short int num = rand() % 100;
+            if (num <= 35) 
+                nova_direcao = EnumDirecao::BAIXO;
+            else if (num > 35 && num <= 55)
+                nova_direcao = EnumDirecao::DIREITA;
+            else if (num > 55 && num <= 75)
+                nova_direcao = EnumDirecao::ESQUERDA;
+            else
+                nova_direcao = EnumDirecao::CIMA;
+            
+            tanque->setDirecao(nova_direcao);
+            tanque->mover(this->paredes, this->paredeInvencivel);
+        }
 
-// }
+    }
+    else {
+        if (!tanque->mover(this->paredes, this->paredeInvencivel)) {
+             unsigned short int num = rand() % 100;
+            if (num <= 35) 
+                nova_direcao = EnumDirecao::BAIXO;
+            else if (num > 35 && num <= 55)
+                nova_direcao = EnumDirecao::DIREITA;
+            else if (num > 55 && num <= 75)
+                nova_direcao = EnumDirecao::ESQUERDA;
+            else
+                nova_direcao = EnumDirecao::CIMA;
+            
+            tanque->setDirecao(nova_direcao);
+        }
+    }
+
+}
 
 
 void Jogo::acaoInimigos() {
 
-    int num = (rand() % 1) + 1;
-    switch (num)
-    {
-        // case 0:
-        //     this->moverTanque(this->tanque);
-        //     break;
-        case 1:
-            Tiro *t = this->tanque->atirar(Jogo::TIRO_SIZE, 2);
-            if (t != nullptr)
-                this->adicionarTirosInimigos(t);
-            break;
-        
-        // default:
-        //     break;
-    }
-
-    
+    int num = (rand() % 50);
+    if (num <= 40)
+        this->moverTanque(this->tanque);
+    else {
+        Tiro *t = this->tanque->atirar(Jogo::TIRO_SIZE, 2);
+        if (t != nullptr)
+            this->adicionarTirosInimigos(t);
+    }    
 }
 
 

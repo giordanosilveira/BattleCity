@@ -1,5 +1,6 @@
 #include "allegro/Sprite4D.hpp"
 #include "Tiro.hpp"
+#include "Parede.hpp"
 #include "Tanque.hpp"
 #include "enums/EnumDirecao.hpp"
 

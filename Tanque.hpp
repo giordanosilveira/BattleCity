@@ -2,6 +2,7 @@
 #define TANQUE_HPP
 
 #include "Objeto.hpp"
+#include "Parede.hpp"
 #include "allegro/Sprite.hpp"
 #include "allegro/Sprite4D.hpp"
 #include "enums/EnumDirecao.hpp"
@@ -23,7 +24,10 @@ class Tanque : public Objeto{
 
         // virtual void mover();
 
+        virtual const bool mover(const std::list<Parede *> &paredes, const std::list<Parede *> &paredesInvenciveis);
         virtual Tiro* atirar(const unsigned short int tamanhoTiro, const unsigned short int velocidadeTiro);
+
+        bool algumaColisao(const std::list<Parede *> &paredes);
 
         // virtual void setDirecao(EnumDirecao direcao);
 

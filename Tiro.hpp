@@ -2,11 +2,12 @@
 #define TIRO_HPP
 
 #include "Objeto.hpp"
-#include "Parede.hpp"
+//#include "Parede.hpp"
 #include "allegro/Sprite4D.hpp"
 // #include "Tanque.hpp"
 
 class Tanque;
+class Parede;
 
 class Tiro : public Objeto{
     public:
