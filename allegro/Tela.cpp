@@ -48,8 +48,8 @@ void Tela::limparTelaCor(const unsigned short int r, const unsigned short int g,
     al_clear_to_color(al_map_rgba(r, g, b, a));
 }
 
-void Tela::desenharTexto(const std::string &texto){ // n pode ser const
-    al_draw_text(this->font, al_map_rgb(0, 255, 255), 10, 10, 0, texto.c_str());
+void Tela::desenharTexto(const std::string &texto, const unsigned int x, const unsigned int y){ // n pode ser const
+    al_draw_text(this->font, al_map_rgb(0, 255, 255), x, y, 0, texto.c_str());
 }   
 
 void Tela::desenharSprite(const Allegro::Sprite *spr, float x, float y) const{

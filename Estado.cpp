@@ -94,6 +94,8 @@ void Estado::jogoPerdido(){
 
     bool sair = false;
     tela->limparTelaCor(0, 0, 0, 128);
+    tela->desenharTexto("Perdeste!", 100, 100);
+    tela->desenharTexto("Aperte ESC para sair.", 50, 120);
     tela->desenharTela();
 
     for (;;) {
