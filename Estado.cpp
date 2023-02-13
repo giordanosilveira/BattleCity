@@ -54,7 +54,7 @@ void Estado::jogo(){
             Estado::atual = Estado::ENCERRAR;
         }
 
-        if (j->insignia->morto()){
+        if (j->insignia->morto() || j->player->morto()){
             done = true;
             redesenhar = true;
             Estado::atual = Estado::JOGO_PERDIDO;
