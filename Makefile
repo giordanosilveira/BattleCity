@@ -6,7 +6,7 @@ FILES= main.o Estado.o allegro/ControleJogo.o allegro/Tela.o allegro/Sprite.o al
 all: $(EXEC)
 
 $(EXEC): $(FILES)
-	g++ $^ -o $(EXEC) $(CFLAGS) $(PKG_CONFIG)
+	g++ $^ -o $(EXEC) $(CFLAGS) -g $(PKG_CONFIG)
 
 
 clean: 

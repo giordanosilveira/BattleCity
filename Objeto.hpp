@@ -105,8 +105,6 @@ class Objeto {
         // virtual void mover(const std::vector<const Parede *> &paredes);
         
         
-        //virtual const bool colisao(const Objeto *obj) const ;
-    
         // virtual void setDirecao() = 0;
 
         void levarDano(const unsigned short int dano);
@@ -114,7 +112,7 @@ class Objeto {
         unsigned short int getVida();
 
         const bool colisao(const Objeto *obj) const;
-        bool algumaColisao(const std::vector<Objeto *> &objetos);
+        Objeto* algumaColisao(const std::list<Objeto *> &objetos);
 
 
         // TODO: MUITO FEIO, DEIXAR PRIVADO DEPOIS

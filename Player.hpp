@@ -2,7 +2,6 @@
 #define PLAYER_HPP
 
 #include "Tanque.hpp"
-#include "Parede.hpp"
 #include "allegro/Sprite4D.hpp"
 #include "enums/EnumDirecao.hpp"
 #include "enums/EnumEstadoObjeto.hpp"
@@ -18,13 +17,10 @@ class Player : public Tanque {
 
         ~Player();
 
-        void mover(const std::list<Parede *> &paredes, const std::list<Parede *> &paredesInvenciveis);
-
         /**
          * @todo: a colisão funciona, porém ela não é aqui e é com objeto genérico 
          */
 
-        bool algumaColisao(const std::list<Parede *> &paredes);
         
     private:
 };

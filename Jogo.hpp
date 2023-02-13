@@ -33,13 +33,23 @@ class Jogo{
         std::list<Parede*> paredes;
         std::list<Parede*> paredeInvencivel;
         std::list<Tanque*> inimigos;
-        std::list<Tanque*> proximosInimigos;
+        //std::list<Tanque*> proximosInimigos;
         std::list<Tiro*> tiros;
+        std::list<Tiro*> tirosInimigos;
         
         void moverPlayer();
         void atualizarTiros();
+        void atualizarTirosPlayer();
+        void atualizarTirosInimigos();
+
         void atualizarParedes();
         void atualizarPlayer();
+        void atualizarInimigos();
+        void acaoInimigos();
+        void moverTanque(Tanque *tanque);
+        void decrementarTimerTirosInimigos();
+        void matarInimigos();
+        void criarInimigos();
 
         /**
          * @todo: Instanciar todas as classes do jogo aqui
@@ -48,6 +58,7 @@ class Jogo{
         void desenharParedes() const;
         void desenharTanque(const Tanque* tanque) const;
         void desenharTiros() const;
+        void desenharInimigos() const;
 
         Allegro::Sprite *spritesheet;
         Allegro::Sprite *parede;
@@ -56,6 +67,7 @@ class Jogo{
         std::vector<Allegro::Sprite*>insignias;
 
         void adicionarTiro(Tiro * const tiro);
+        void adicionarTirosInimigos(Tiro * const tiro);
 
     private:
         Jogo();
@@ -66,13 +78,18 @@ class Jogo{
 
         /* Funções auxiliares */
         void criarParedesBorda();
+        void geraListaColisaoTanque(std::list<Objeto*> &objetos);
+        void geraListaColisaoTiro(std::list<Objeto*> &objetos);
 
         std::list<std::shared_ptr<Objeto>> elementosTela;
 
         std::vector<Allegro::Sprite4D*>spritesTanque;
+        std::vector<Allegro::Sprite4D*>spritesTanqueInimigos;
         std::vector<Allegro::Sprite4D*>spritesTanquePlayer;
 
         const unsigned short int LIMITE_TIROS_PLAYER = 3;
+        const unsigned short int LIMITE_INIMIGOS = 3;
+        const unsigned short int LIMITE_TIROS_INIMIGOS = 3;
         
         const unsigned short int TANK_MAT_WID = 8;
         const unsigned short int TANK_MAT_HEI = 8;

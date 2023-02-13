@@ -35,6 +35,7 @@ void Estado::jogo(){
                     j->adicionarTiro(t);
             }
             j->atualizarTiros();
+            j->atualizarInimigos();
             j->atualizarParedes();
             j->atualizarPlayer();
             redesenhar = true;
@@ -61,6 +62,7 @@ void Estado::jogo(){
 
             j->desenharTiros();
             j->desenharParedes();
+            j->desenharInimigos();
             // tela->desenharSprite(j->mato, 20, 20);
             // tela->desenharSprite(j->parede, 40, 40);
             // tela->desenharSprite(j->muro, 60, 60);

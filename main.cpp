@@ -4,6 +4,7 @@
 
 int main(int argc, char **argv){
 
+    srand(time(NULL));
     for (;;){ // É pra ser loop infinito
         switch (Estado::atual){
             case Estado::JOGO: 
