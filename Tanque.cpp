@@ -20,7 +20,7 @@ Tanque::Tanque(
     Allegro::Sprite4D* const &sprites, 
     Allegro::Sprite4D* const &tiroSprites) :Objeto{x, y, tamanhoSprite, imortal, estado, vida, velocidade, direcao}, timerTiro{0}
 {        
-    this->sprites = sprites;
+    this->sprites = new Allegro::Sprite4D{*sprites};
     this->sprites->setSpritePrincipal(this->sprites->BAI);
     this->tiroSprites = tiroSprites;
 }
