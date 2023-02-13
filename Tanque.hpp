@@ -24,10 +24,10 @@ class Tanque : public Objeto{
 
         // virtual void mover();
 
-        virtual const bool mover(const std::list<Parede *> &paredes, const std::list<Parede *> &paredesInvenciveis);
+        virtual const bool mover(const std::list<Parede *> &paredes, const std::list<Parede *> &paredesInvenciveis, const std::list<Tanque *> &tanques, Tanque* const player);
         virtual Tiro* atirar(const unsigned short int tamanhoTiro, const unsigned short int velocidadeTiro);
 
-        bool algumaColisao(const std::list<Parede *> &paredes);
+        bool algumaColisao(const std::list<Objeto *> &objetos) const;
 
         // virtual void setDirecao(EnumDirecao direcao);
 

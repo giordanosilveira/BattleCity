@@ -38,16 +38,17 @@ void Tanque::decrementarTimerTiro(){
         this->timerTiro--;
 }
 
-bool Tanque::algumaColisao(const std::list<Parede *> &paredes){
-    std::list<Parede *>::const_iterator it;
-    it = paredes.begin();
-    for (; it != paredes.end(); ++it)
+bool Tanque::algumaColisao(const std::list<Objeto *> &objetos) const{
+    std::list<Objeto *>::const_iterator it;
+    it = objetos.begin();
+    for (; it != objetos.end(); ++it)
         if (this->colisao(*it))
             return true;
     return false;
 }
 
-const bool Tanque::mover(const std::list<Parede *> &paredes, const std::list<Parede *> &paredesInvenciveis){
+// TODO tentar criar uma lista apenas, mas não sei se da tempo
+const bool Tanque::mover(const std::list<Parede *> &paredes, const std::list<Parede *> &paredesInvenciveis, const std::list<Tanque *> &tanques, Tanque* const player){
         unsigned int old_x = this->superiorEsquerda->getX();
         unsigned int old_y = this->superiorEsquerda->getY();
 
@@ -77,7 +78,21 @@ const bool Tanque::mover(const std::list<Parede *> &paredes, const std::list<Par
         }
 
         this->setSuperiorEsquerda(x, y);
-        if (this->algumaColisao(paredes) || this->algumaColisao(paredesInvenciveis)) {
+        std::list<Objeto *> objetos;
+        
+        
+        for (std::list<Parede *>::const_iterator it{paredes.begin()}; it != paredes.end(); ++it)
+            objetos.push_back(static_cast<Objeto*>(*it));
+        for (std::list<Parede *>::const_iterator it{paredesInvenciveis.begin()}; it != paredesInvenciveis.end(); ++it)
+            objetos.push_back(static_cast<Objeto*>(*it));
+        for (std::list<Tanque *>::const_iterator it{tanques.begin()}; it != tanques.end(); ++it){
+            if (*it != this)
+                objetos.push_back(static_cast<Objeto*>(*it));
+        }
+        if (player != this)
+            objetos.push_back(static_cast<Objeto*>(player));
+
+        if (this->algumaColisao(objetos)) {
             this->setSuperiorEsquerda(old_x, old_y);
             return false;
         }

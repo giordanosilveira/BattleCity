@@ -119,7 +119,7 @@ void Jogo::moverTanque(Tanque *tanque) {
     EnumDirecao nova_direcao, antiga_direcao;
     
     if (tanque->getDirecao() == EnumDirecao::BAIXO) {
-        if (! tanque->mover(this->paredes, this->paredeInvencivel) ){
+        if (! tanque->mover(this->paredes, this->paredeInvencivel, this->inimigos, this->player) ){
             
             unsigned short int num = rand() % 100;
             if (num <= 35) 
@@ -132,12 +132,12 @@ void Jogo::moverTanque(Tanque *tanque) {
                 nova_direcao = EnumDirecao::CIMA;
             
             tanque->setDirecao(nova_direcao);
-            tanque->mover(this->paredes, this->paredeInvencivel);
+            tanque->mover(this->paredes, this->paredeInvencivel, this->inimigos, this->player);
         }
 
     }
     else {
-        if (!tanque->mover(this->paredes, this->paredeInvencivel)) {
+        if (!tanque->mover(this->paredes, this->paredeInvencivel, this->inimigos, this->player)) {
              unsigned short int num = rand() % 100;
             if (num <= 35) 
                 nova_direcao = EnumDirecao::BAIXO;
@@ -314,7 +314,7 @@ void Jogo::moverPlayer(){
         this->player->setVelocidade(0); 
     }
 
-    this->player->mover(this->paredes, this->paredeInvencivel);
+    this->player->mover(this->paredes, this->paredeInvencivel, this->inimigos, this->player);
 }
 
 void Jogo::adicionarTiro(Tiro * const tiro){

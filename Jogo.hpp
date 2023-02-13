@@ -87,7 +87,7 @@ class Jogo{
 
         const unsigned short int LIMITE_TIROS_PLAYER = 3;
         const unsigned short int LIMITE_INIMIGOS = 3;
-        const unsigned short int LIMITE_TIROS_INIMIGOS = 10;
+        const unsigned short int LIMITE_TIROS_INIMIGOS = 3;
         
         const unsigned short int TANK_MAT_WID = 8;
         const unsigned short int TANK_MAT_HEI = 8;
