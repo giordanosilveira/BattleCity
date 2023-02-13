@@ -10,9 +10,13 @@ int main(int argc, char **argv){
             case Estado::JOGO: 
                 Estado::jogo();
                 break;
+            case Estado::JOGO_PERDIDO:
+                Estado::jogoPerdido();
+                break;
             case Estado::ENCERRAR: 
                 Estado::encerrar();
                 break;
+            default:
                 exit(1);
         }
     }

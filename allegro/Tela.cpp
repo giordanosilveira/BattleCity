@@ -44,8 +44,8 @@ Tela *Tela::getInstancia(){
     return Tela::instancia;
 }
 
-void Tela::limparTelaCor(const unsigned short int r, const unsigned short int g, const unsigned short int b){ // n pode ser const
-    al_clear_to_color(al_map_rgb(r, g, b));
+void Tela::limparTelaCor(const unsigned short int r, const unsigned short int g, const unsigned short int b, const unsigned short int a){ // n pode ser const
+    al_clear_to_color(al_map_rgba(r, g, b, a));
 }
 
 void Tela::desenharTexto(const std::string &texto){ // n pode ser const

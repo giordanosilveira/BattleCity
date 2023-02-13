@@ -3,6 +3,7 @@
 
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
+#include <allegro5/keycodes.h>
 #include <vector>
 #include <string>
 
@@ -54,10 +55,12 @@ class ControleJogo{
             TEMPO_QUADRO,
             TECLA_PRESSIONADA,
             TECLA_SOLTA,
+            FECHAR_DISPLAY,
             INDEFINIDO
         };
 
         enum tecla{
+            ESCAPE = ALLEGRO_KEY_ESCAPE,
             SETA_ESQUERDA = ALLEGRO_KEY_LEFT,
             SETA_DIREITA,
             SETA_CIMA,

@@ -22,7 +22,7 @@ class Tela{
 
         void desenharTela();
         void desenharSprite(const Allegro::Sprite *spr, float x, float y) const;
-        void limparTelaCor(const unsigned short int r, const unsigned short int g, const unsigned short int b);
+        void limparTelaCor(const unsigned short int r, const unsigned short int g, const unsigned short int b, const unsigned short int a);
         void desenharTexto(const std::string &texto);
         void desenharRetanguloCheio(const unsigned int x1, const unsigned int y1, const unsigned int x2, const unsigned int y2,
         const unsigned short int r, const unsigned short int g, const unsigned short int b, const float a);
