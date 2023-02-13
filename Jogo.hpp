@@ -40,9 +40,14 @@ class Jogo{
         
         void moverPlayer();
         void atualizarTiros();
+        void atualizarTirosPlayer();
+        void atualizarTirosInimigos();
+
         void atualizarParedes();
         void atualizarPlayer();
         void atualizarInimigos();
+        void acaoInimigos();
+        void moverTanque(Tanque *tanque);
 
         /**
          * @todo: Instanciar todas as classes do jogo aqui
@@ -60,6 +65,7 @@ class Jogo{
         std::vector<Allegro::Sprite*>insignias;
 
         void adicionarTiro(Tiro * const tiro);
+        void adicionarTirosInimigos(Tiro * const tiro);
 
     private:
         Jogo();
@@ -78,6 +84,7 @@ class Jogo{
         std::vector<Allegro::Sprite4D*>spritesTanquePlayer;
 
         const unsigned short int LIMITE_TIROS_PLAYER = 3;
+        const unsigned short int LIMITE_TIROS_INIMIGOS = 20;
         
         const unsigned short int TANK_MAT_WID = 8;
         const unsigned short int TANK_MAT_HEI = 8;

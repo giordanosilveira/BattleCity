@@ -59,7 +59,6 @@ bool Tiro::algumaColisao(Tanque * tanque) {
 
 
     if (this->Tiro::colisao(tanque)) {
-        std::cerr << "Aqui po" << std::endl;
         tanque->levarDano(1);
         return true;
     }

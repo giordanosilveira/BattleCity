@@ -20,7 +20,7 @@ Jogo::Jogo(){
     this->carregarSprites();
 
     this->player = new Player{8, 8, 16, false, EnumEstadoObjeto::VIVO, 10, 2, EnumDirecao::BAIXO, this->spritesTanquePlayer[0], this->tiroSprite};
-    this->tanque = new Tanque{232, 8, 16, false, EnumEstadoObjeto::VIVO, 2, 2, EnumDirecao::ESQUERDA, this->spritesTanqueInimigos[0], this->tiroSprite};
+    this->tanque = new Tanque{232, 8, 16, false, EnumEstadoObjeto::VIVO, 2, 2, EnumDirecao::BAIXO, this->spritesTanqueInimigos[0], this->tiroSprite};
 
     // transformar em  funcao
     this->mapa = new Mapa{"./data/mapa.txt"};
@@ -67,7 +67,9 @@ void Jogo::desenharParedes() const{
         tela->desenharSprite((*it2)->sprite, (*it2)->getSuperiorEsquerda()->getX(), (*it2)->getSuperiorEsquerda()->getY());
 }
 
-void Jogo::atualizarTiros(){
+
+void Jogo::atualizarTirosPlayer() {
+    
     std::list<Tiro*>::const_iterator it{this->tiros.begin()};
     for (; it != this->tiros.end();){
         (*it)->mover(this->paredes, this->paredeInvencivel, this->tanque);
@@ -79,11 +81,89 @@ void Jogo::atualizarTiros(){
     }
 }
 
+void Jogo::atualizarTirosInimigos() {
+    
+    std::list<Tiro*>::const_iterator it{this->tirosInimigos.begin()};
+    for (; it != this->tirosInimigos.end();){
+        (*it)->mover(this->paredes, this->paredeInvencivel, this->player);
+
+        if ((*it)->getVida() == 0)
+            it = this->tirosInimigos.erase(it);
+        else 
+            ++it;
+    }
+}
+
+
+void Jogo::atualizarTiros(){
+
+    this->atualizarTirosPlayer();
+    this->atualizarTirosInimigos();
+}
+
+
+void Jogo::adicionarTirosInimigos(Tiro * const tiro) {
+    if (this->tirosInimigos.size() < Jogo::LIMITE_TIROS_INIMIGOS) {
+        this->tirosInimigos.push_back(tiro);
+    }
+}
+
+
+// void Jogo::moverTanque(Tanque *tanque) {
+
+//     EnumDirecao nova_direcao;
+//     if (tanque->getDirecao() != EnumDirecao::BAIXO) {
+//         switch (rand() % 3)
+//         {
+//             case 0:
+//                 nova_direcao = EnumDirecao::CIMA;
+//                 break;
+//             case 1:
+//                 nova_direcao = EnumDirecao::ESQUERDA;
+//                 break;
+//             case 2:
+//                 nova_direcao = EnumDirecao::DIREITA;
+//                 break;
+//         }
+//     }
+//     tanque->setDirecao(nova_direcao);
+//     tanque-
+
+// }
+
+
+void Jogo::acaoInimigos() {
+
+    int num = (rand() % 1) + 1;
+    switch (num)
+    {
+        // case 0:
+        //     this->moverTanque(this->tanque);
+        //     break;
+        case 1:
+            Tiro *t = this->tanque->atirar(Jogo::TIRO_SIZE, 2);
+            if (t != nullptr)
+                this->adicionarTirosInimigos(t);
+            break;
+        
+        // default:
+        //     break;
+    }
+
+    
+}
+
 
 void Jogo::atualizarInimigos(){
     
     if (this->tanque == nullptr)
         return;
+
+    if (this->tirosInimigos.size() < this->LIMITE_TIROS_INIMIGOS)
+        this->tanque->decrementarTimerTiro();
+    
+    this->acaoInimigos();
+    
 
     if (this->tanque->getVida() == 0) {
         delete this->tanque;
@@ -113,6 +193,10 @@ void Jogo::desenharTiros() const{
     std::list<Tiro*>::const_iterator it{this->tiros.begin()};
     for (; it != this->tiros.end(); ++it){
         tela->desenharSprite((*it)->sprites, (*it)->getSuperiorEsquerda()->getX(), (*it)->getSuperiorEsquerda()->getY());
+    }
+    std::list<Tiro*>::const_iterator it2{this->tirosInimigos.begin()};
+    for (; it2 != this->tirosInimigos.end(); ++it2){
+        tela->desenharSprite((*it2)->sprites, (*it2)->getSuperiorEsquerda()->getX(), (*it2)->getSuperiorEsquerda()->getY());
     }
 }
 

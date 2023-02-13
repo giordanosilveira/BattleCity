@@ -46,6 +46,7 @@ void Tanque::decrementarTimerTiro(){
  */
 Tiro* Tanque::atirar(const unsigned short int tamanhoTiro, const unsigned short int velocidadeTiro) {
     if (this->timerTiro > 0) return nullptr;
+
     this->timerTiro = this->TIMER_INICIAL_TIRO;
 
     const bool imortal = false;
