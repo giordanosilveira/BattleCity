@@ -36,6 +36,7 @@ class Jogo{
         //std::list<Tanque*> proximosInimigos;
         std::list<Tiro*> tiros;
         std::list<Tiro*> tirosInimigos;
+        unsigned short int n_tanques;
         
         void moverPlayer();
         void atualizarTiros();
@@ -59,11 +60,14 @@ class Jogo{
         void desenharTanque(const Tanque* tanque) const;
         void desenharTiros() const;
         void desenharInimigos() const;
+        void desenharTanquesPontos() const;
 
         Allegro::Sprite *spritesheet;
         Allegro::Sprite *parede;
         Allegro::Sprite *paredeInvencivelSprite;
         Allegro::Sprite4D *tiroSprite;
+        Allegro::Sprite *backgroudPontuacao;
+        Allegro::Sprite* tanquePonto;
         std::vector<Allegro::Sprite*>insignias;
 
         void adicionarTiro(Tiro * const tiro);
@@ -86,9 +90,11 @@ class Jogo{
         std::vector<Allegro::Sprite4D*>spritesTanque;
         std::vector<Allegro::Sprite4D*>spritesTanqueInimigos;
         std::vector<Allegro::Sprite4D*>spritesTanquePlayer;
+        
 
         const unsigned short int LIMITE_TIROS_PLAYER = 3;
         const unsigned short int LIMITE_INIMIGOS = 3;
+        const unsigned short int MAX_TANQUES = 20;
         const unsigned short int LIMITE_TIROS_INIMIGOS = 3;
         
         const unsigned short int TANK_MAT_WID = 8;

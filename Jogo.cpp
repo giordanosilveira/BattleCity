@@ -46,7 +46,9 @@ Jogo::Jogo(){
         }
     }
 
+    this->n_tanques = Jogo::MAX_TANQUES;
     this->criarParedesBorda();
+    
 }
 
 Jogo *Jogo::getInstancia(){
@@ -65,6 +67,24 @@ void Jogo::desenharParedes() const{
     std::list<Parede *>::const_iterator it2{this->paredeInvencivel.begin()};
     for (; it2 != this->paredeInvencivel.end(); ++it2)
         tela->desenharSprite((*it2)->sprite, (*it2)->getSuperiorEsquerda()->getX(), (*it2)->getSuperiorEsquerda()->getY());
+}
+
+
+void Jogo::desenharTanquesPontos() const {
+    Allegro::Tela *tela{Allegro::Tela::getInstancia()};
+
+    unsigned short int qtd_tanque = this->n_tanques;
+    for (int i = 16; i <= 16 + 80; i += 8) {
+        for (int j = 271; j <= 271 + 8; j += 8) {
+            if (qtd_tanque > 0) {
+                //std::cout << "ola\n";
+                tela->desenharSprite(this->tanquePonto, j, i);
+            }
+            else
+                break;
+            qtd_tanque--;
+        }
+    }
 }
 
 
@@ -132,6 +152,7 @@ void Jogo::geraListaColisaoTanque(std::list< Objeto*> &objetos){
     objetos.push_back(this->player);
 }
 
+
 void Jogo::geraListaColisaoTiro(std::list<Objeto*> &objetos){
 
     for(std::list<Parede*>::const_iterator it{this->paredes.begin()};it != this->paredes.end(); ++it)
@@ -151,6 +172,7 @@ void Jogo::geraListaColisaoTiro(std::list<Objeto*> &objetos){
 
     objetos.push_back(this->player);
 }
+
 
 void Jogo::moverTanque(Tanque *tanque) {
 
@@ -226,8 +248,11 @@ void Jogo::matarInimigos() {
    
     std::list<Tanque*>::const_iterator it{this->inimigos.begin()};
     for (; it != this->inimigos.end();){
-        if ((*it)->getVida() == 0)
+        if ((*it)->getVida() == 0) {
             it = this->inimigos.erase(it);
+            if (this->n_tanques > 0)
+                this->n_tanques--;
+        }
         else 
             ++it;
     }
@@ -370,7 +395,7 @@ void Jogo::adicionarTiro(Tiro * const tiro){
 
 void Jogo::carregarSprites(){
     // Carrega spritesheet, usar move attribution(?)
-    this->spritesheet = new Allegro::Sprite("./data/spritesheet2.png");
+    this->spritesheet = new Allegro::Sprite("./data/spritesheet3.png");
 
     this->spritesTanque.resize(2);
 
@@ -411,6 +436,13 @@ void Jogo::carregarSprites(){
 
     this->insignias.push_back(new Allegro::Sprite(this->spritesheet, 304, 31, this->BLOCO_SIZE, this->BLOCO_SIZE));
     this->insignias.push_back(new Allegro::Sprite(this->spritesheet, 320, 31, this->BLOCO_SIZE, this->BLOCO_SIZE));
+
+
+    Allegro::Sprite *backgroudPontuacao{new Allegro::Sprite{this->spritesheet, 376, 24, 16, 80}};
+    this->backgroudPontuacao = backgroudPontuacao;
+
+    Allegro::Sprite *tanquePonto{new Allegro::Sprite{this->spritesheet, 376, 168, this->PAREDE_SIZE, this->PAREDE_SIZE}};
+    this->tanquePonto = tanquePonto;
 
 
 }

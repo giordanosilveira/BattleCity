@@ -24,6 +24,10 @@ void Estado::jogo(){
     
     al->esvaziarFila();
     for (;;){
+        if (j->n_tanques == 0) {
+            done = true;
+            Estado::atual = Estado::ENCERRAR;
+        }
         al->esperarEvento();
 
         if (al->getEvento() == al->TEMPO_QUADRO){
@@ -59,6 +63,8 @@ void Estado::jogo(){
             tela->limparTelaCor(103, 103, 103);
             tela->desenharRetanguloCheio(0, 0, tela->BUFFER_WIDTH - 32, tela->BUFFER_HEIGHT, 0, 0, 0, 1);
             tela->desenharSprite(j->player->sprites, j->player->getSuperiorEsquerda()->getX(), j->player->getSuperiorEsquerda()->getY());
+            tela->desenharSprite(j->backgroudPontuacao, 271, 16);
+            j->desenharTanquesPontos();
 
             j->desenharTiros();
             j->desenharParedes();
