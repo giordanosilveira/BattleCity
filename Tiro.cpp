@@ -24,33 +24,6 @@ Tiro::Tiro(
 Tiro::~Tiro(){}
 
 
-// Objeto* Tiro::algumaColisao(const std::list<Objeto *> &objetos){
-//     std::list<Objeto *>::const_iterator it;
-//     it = objetos.begin();
-
-//     for (; it != objetos.end(); ++it)
-//         if (this->Objeto::colisao(*it))
-//             return *it;
-//     return nullptr;
-// }
-
-// const bool Tiro::colisao(const Tanque *tanque) const {
-    
-//     if (tanque == nullptr)
-//         return false;
-
-//     const Coordenada *coordSuperiorEsquerda = tanque->getSuperiorEsquerda();
-//     const Coordenada *coordInferiorDireita = tanque->getInferiorDireita();
-    
-//     if (this->superiorEsquerda->getY() >= coordInferiorDireita->getY()) return false;
-//     if (this->inferiorDireita->getY() <= coordSuperiorEsquerda->getY()) return false;
-//     if (this->superiorEsquerda->getX() >= coordInferiorDireita->getX()) return false;
-//     if (this->inferiorDireita->getX() <= coordSuperiorEsquerda->getX()) return false;
-
-//     return true;
-// }
-
-
 void Tiro::mover(std::list<Objeto*> objetos){
 
     unsigned int x = this->superiorEsquerda->getX();

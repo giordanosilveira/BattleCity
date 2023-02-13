@@ -108,19 +108,6 @@ const bool Objeto::colisao(const Objeto *obj) const {
 }
 
 
-// bool Objeto::algumaColisao(const std::vector<Objeto *> &obj){
-//     std::vector<Objeto *>::const_iterator it;
-//     it = obj.begin();
-//     for (; it < obj.end(); ++it){
-//         if (*it == this) continue;
-//         if (this->colisao(*it))
-//             return true;
-//     }
-
-//     return false;
-// }
-
-
 Objeto* Objeto::algumaColisao(const std::list<Objeto *> &objetos){
     std::list<Objeto *>::const_iterator it;
     it = objetos.begin();
@@ -133,43 +120,4 @@ Objeto* Objeto::algumaColisao(const std::list<Objeto *> &objetos){
     return nullptr;
 }
 
-
-// const bool Objeto::colisao(const Objeto *obj) const {
-//     const Coordenada *coordInferiorDireita = obj->superiorEsquerda;
-//     const Coordenada *coordSuperiorEsquerda = obj->inferiorDireita;
-//     if (this->superiorEsquerda->getX() > coordInferiorDireita->getX()) return false;
-//     if (this->inferiorDireita->getX() < coordSuperiorEsquerda->getX()) return false;
-//     if (this->superiorEsquerda->getY() > coordInferiorDireita->getY()) return false;
-//     if (this->inferiorDireita->getY() < coordSuperiorEsquerda->getY()) return false;
-
-//     return true;
-// }
-
-// void Objeto::mover(const std::vector<const Parede *> &paredes) {
-//     unsigned int old_x = this->superiorEsquerda->getX();
-//     unsigned int old_y = this->superiorEsquerda->getY();
-
-//     unsigned int x = this->superiorEsquerda->getX();
-//     unsigned int y = this->superiorEsquerda->getY();
-
-//     switch (this->direcao)
-//     {
-//         case EnumDirecao::DIREITA:
-//             x += this->velocidade; 
-//             break;
-//         case EnumDirecao::ESQUERDA:
-//             x -= this->velocidade;
-//             break; 
-//         case EnumDirecao::CIMA:
-//             y -= this->velocidade;
-//             break; 
-//         case EnumDirecao::BAIXO:
-//             y += this->velocidade;
-//             break;
-//     }
-
-
-//     this->setSuperiorEsquerda(x, y);
-//     this->setSuperiorEsquerda(old_x, old_y); 
-// }
 

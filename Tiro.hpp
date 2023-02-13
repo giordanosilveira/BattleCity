@@ -32,7 +32,6 @@ class Tiro : public Objeto{
         Allegro::Sprite4D *sprites;
     private:
         Tanque *tanque;
-        // Objeto* algumaColisao(const std::list<Objeto *> &objetos);
 
         
 };

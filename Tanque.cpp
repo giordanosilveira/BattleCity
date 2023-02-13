@@ -38,15 +38,6 @@ void Tanque::decrementarTimerTiro(){
         this->timerTiro--;
 }
 
-// bool Tanque::algumaColisao(const std::list<const Objeto *> &objetos) const{
-//     std::list<const Objeto *>::const_iterator it;
-//     it = objetos.begin();
-//     for (; it != objetos.end(); ++it)
-//         if (this->colisao(*it))
-//             return true;
-//     return false;
-// }
-
 // TODO tentar criar uma lista apenas, mas não sei se da tempo
 const bool Tanque::mover(const std::list<Objeto*> &objetos){
         unsigned int old_x = this->superiorEsquerda->getX();

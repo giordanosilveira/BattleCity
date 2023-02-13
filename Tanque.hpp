@@ -27,11 +27,8 @@ class Tanque : public Objeto{
         virtual const bool mover(const std::list<Objeto*> &objetos);
         virtual Tiro* atirar(const unsigned short int tamanhoTiro, const unsigned short int velocidadeTiro);
 
-        // bool algumaColisao(const std::list<const Objeto *> &objetos) const;
-
         // virtual void setDirecao(EnumDirecao direcao);
 
-        // virtual const bool colisao(std::list<Objeto*>&objeto) const;// override;
 
         void decrementarTimerTiro();
         const Allegro::Sprite* getSprite() const;
