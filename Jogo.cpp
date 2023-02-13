@@ -260,12 +260,17 @@ void Jogo::criarInimigos() {
                 break;
                
         }
+
         std::list<Tanque*>::iterator it{this->inimigos.begin()};
         for (; it != this->inimigos.end(); ++it) {
             if ((*it)->colisao(tanque)) {
                 delete tanque;
                 return;
             }
+        }
+        if (this->player->colisao(tanque)){
+            delete tanque;
+            return;
         }
         this->inimigos.push_back(tanque);
     }
