@@ -38,7 +38,7 @@ class Tanque : public Objeto{
 
     private:
         unsigned short int timerTiro;
-        const unsigned short int TIMER_INICIAL_TIRO = 6;
+        const unsigned short int TIMER_INICIAL_TIRO = 15;
 
 };
 

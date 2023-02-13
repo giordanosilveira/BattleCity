@@ -125,8 +125,9 @@ Tiro* Tanque::atirar(const unsigned short int tamanhoTiro, const unsigned short 
     }
 
 
+    Tiro *tiro{nullptr};
     try {
-        return new Tiro{x, y, tamanhoTiro, imortal, EnumEstadoObjeto::VIVO, 1, velocidadeTiro, this->direcao, this->tiroSprites, direcao_tiro};
+        tiro = new Tiro{x, y, tamanhoTiro, imortal, EnumEstadoObjeto::VIVO, 1, velocidadeTiro, this->direcao, this->tiroSprites, direcao_tiro};
     }
     catch (std::bad_alloc& ba) {
         std::cerr << "Erro na alocação do tiro" << std::endl;
@@ -134,6 +135,6 @@ Tiro* Tanque::atirar(const unsigned short int tamanhoTiro, const unsigned short 
     catch (std::runtime_error& re) {
         std::cerr << "Erro na alocação do tiro" << std::endl;
     }
-    return nullptr;
+    return tiro;
 
 }
