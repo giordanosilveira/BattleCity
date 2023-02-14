@@ -54,7 +54,7 @@ void Estado::jogo(){
             Estado::atual = Estado::ENCERRAR;
         }
 
-        if (j->insignia->morto()){
+        if (j->insignia->morto() || ! j->player->getVida()){
             done = true;
             redesenhar = true;
             Estado::atual = Estado::JOGO_PERDIDO;
@@ -66,6 +66,8 @@ void Estado::jogo(){
             tela->desenharRetanguloCheio(0, 0, tela->BUFFER_WIDTH - 32, tela->BUFFER_HEIGHT, 0, 0, 0, 1);
             tela->desenharSprite(j->player->sprites, j->player->getSuperiorEsquerda()->getX(), j->player->getSuperiorEsquerda()->getY());
             tela->desenharSprite(j->backgroudPontuacao, 271, 16);
+            j->desenharPontos();
+            j->desenharVida();
             j->desenharTanquesPontos();
             // tela->desenharSprite(j->insignia->sprite, j->insignia->getSuperiorEsquerda()->getX(), j->insignia->getSuperiorEsquerda()->getY());
             tela->desenharSprite(j->insignia->sprite, j->insignia->getSuperiorEsquerda()->getX(), j->insignia->getSuperiorEsquerda()->getY());

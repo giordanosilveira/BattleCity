@@ -27,6 +27,11 @@ class Tela{
         void desenharRetanguloCheio(const unsigned int x1, const unsigned int y1, const unsigned int x2, const unsigned int y2,
         const unsigned short int r, const unsigned short int g, const unsigned short int b, const float a);
 
+        void desenharFonte(ALLEGRO_FONT * font, unsigned char red, unsigned char green, unsigned char blue, float x, float y, unsigned int pontos) const;
+        void desenharFonte(ALLEGRO_FONT * font, unsigned char red, unsigned char green, unsigned char blue, float x, float y, const char* texto) const;
+
+        ALLEGRO_FONT *getFonte() const;
+
         // define largura e altura do buffer intermediário do jogo
         static const unsigned int BUFFER_WIDTH = 296;
         static const unsigned int BUFFER_HEIGHT = 256;

@@ -58,17 +58,24 @@ class Jogo{
         void desenharInimigos() const;
         void desenharTanquesPontos() const;
         void desenharObjeto(Objeto* const objeto) const;
-
+        void desenharPontos() const;
+        void desenharVida() const;
+        
         Allegro::Sprite *spritesheet;
         Allegro::Sprite *parede;
         Allegro::Sprite *paredeInvencivelSprite;
         Allegro::Sprite4D *tiroSprite;
         Allegro::Sprite *backgroudPontuacao;
         Allegro::Sprite* tanquePonto;
+        Allegro::Sprite* vida;
         std::vector<Allegro::Sprite*>insignias;
 
         void adicionarTiro(Tiro * const tiro);
         void adicionarTirosInimigos(Tiro * const tiro);
+
+        const unsigned int getPontos() const;
+        void aumentarPontos();
+
 
     private:
         Jogo();
@@ -80,7 +87,8 @@ class Jogo{
         /* Funções auxiliares */
         void criarParedesBorda();
         void geraListaColisaoTanque(std::list<Objeto*> &objetos);
-        void geraListaColisaoTiro(std::list<Objeto*> &objetos);
+        void geraListaColisaoTiroPlayer(std::list<Objeto*> &objetos);
+        void geraListaColisaoTiroTanque(std::list<Objeto*> &objetos);
 
         void atualizarTiros();
         void atualizarTirosPlayer();
@@ -90,6 +98,8 @@ class Jogo{
         void atualizarPlayer();
         void atualizarInimigos();
         
+
+        unsigned int pontos;
 
         std::list<std::shared_ptr<Objeto>> elementosTela;
 

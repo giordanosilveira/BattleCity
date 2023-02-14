@@ -56,6 +56,14 @@ void Tela::desenharSprite(const Allegro::Sprite *spr, float x, float y) const{
     al_draw_bitmap(spr->getBitmap(), x, y, 0);
 }
 
+void Tela::desenharFonte(ALLEGRO_FONT * font, unsigned char red, unsigned char green, unsigned char blue, float x, float y, const char* texto) const {
+    al_draw_textf(this->font, al_map_rgb(red, green, blue), y, x, ALLEGRO_ALIGN_CENTER, texto);
+}
+
+void Tela::desenharFonte(ALLEGRO_FONT * font, unsigned char red, unsigned char green, unsigned char blue, float x, float y, unsigned int pontos) const {
+    al_draw_textf(this->font, al_map_rgb(red, green, blue), y, x, ALLEGRO_ALIGN_CENTER, "%d", pontos);
+}
+
 void Tela::desenharRetanguloCheio(const unsigned int x1, const unsigned int y1, const unsigned int x2, const unsigned int y2,
         const unsigned short int r, const unsigned short int g, const unsigned short int b, const float a){
     al_draw_filled_rectangle(x1, y1, x2, y2, al_map_rgba_f(r, g, b, a));
@@ -71,4 +79,8 @@ void Tela::desenharTela() {
     al_flip_display();
     al_set_target_bitmap(this->buffer);
 
+}
+
+ALLEGRO_FONT *Tela::getFonte() const {
+    return this->font;
 }
