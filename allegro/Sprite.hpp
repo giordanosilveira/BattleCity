@@ -12,6 +12,7 @@ class Sprite {
         Sprite(const Sprite *sprite, const unsigned int inicioX, const unsigned int inicioY, const unsigned int larg, const unsigned int alt);
         ~Sprite();
 
+        
         ALLEGRO_BITMAP *getBitmap() const; // TODO mudar pra const (acho que não da por conta das funções do allegro)
 
 

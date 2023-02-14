@@ -47,6 +47,7 @@ Jogo::Jogo(){
     }
 
     this->n_tanques = Jogo::MAX_TANQUES;
+    this->pontos = 0;
     this->insignia = new Insignia{120, 232, this->BLOCO_SIZE, 0, EnumEstadoObjeto::VIVO, 1, 0, EnumDirecao::PARADO, this->insignias[0], this->insignias[1]};
 
     this->criarParedesBorda();
@@ -105,7 +106,7 @@ void Jogo::atualizarEntidades(){
 void Jogo::atualizarTirosPlayer() {
     
     std::list<Objeto*> objetos;
-    this->geraListaColisaoTiro(objetos);
+    this->geraListaColisaoTiroPlayer(objetos);
 
     std::list<Tiro*>::const_iterator it{this->tiros.begin()};
     for (; it != this->tiros.end();){
@@ -127,7 +128,7 @@ void Jogo::atualizarTirosInimigos() {
     for (; it != this->tirosInimigos.end();){
 
         std::list<Objeto*> objetos;
-        this->geraListaColisaoTiro(objetos);
+        this->geraListaColisaoTiroTanque(objetos);
         (*it)->mover(objetos);
 
         if ((*it)->getVida() == 0)
@@ -167,7 +168,7 @@ void Jogo::geraListaColisaoTanque(std::list< Objeto*> &objetos){
 }
 
 
-void Jogo::geraListaColisaoTiro(std::list<Objeto*> &objetos){
+void Jogo::geraListaColisaoTiroPlayer(std::list<Objeto*> &objetos){
 
     for(std::list<Parede*>::const_iterator it{this->paredes.begin()};it != this->paredes.end(); ++it)
         objetos.push_back(static_cast<Objeto*>(*it));
@@ -177,6 +178,24 @@ void Jogo::geraListaColisaoTiro(std::list<Objeto*> &objetos){
 
     for (std::list<Tanque*>::const_iterator it{this->inimigos.begin()}; it != this->inimigos.end(); ++it)
         objetos.push_back(static_cast< Objeto*>(*it));
+
+    for (std::list<Tiro*>::const_iterator it{this->tiros.begin()}; it != this->tiros.end(); ++it)
+        objetos.push_back(static_cast< Objeto*>(*it));
+
+    for (std::list<Tiro*>::const_iterator it{this->tirosInimigos.begin()}; it != this->tirosInimigos.end(); ++it)
+        objetos.push_back(static_cast< Objeto*>(*it));
+
+    objetos.push_back(this->insignia);
+
+    objetos.push_back(this->player);
+}
+
+void Jogo::geraListaColisaoTiroTanque(std::list<Objeto*> &objetos) {
+    for(std::list<Parede*>::const_iterator it{this->paredes.begin()};it != this->paredes.end(); ++it)
+        objetos.push_back(static_cast<Objeto*>(*it));
+
+    for (std::list<Parede*>::const_iterator it{this->paredeInvencivel.begin()}; it != this->paredeInvencivel.end(); ++it)
+        objetos.push_back(static_cast<Objeto*>(*it));
 
     for (std::list<Tiro*>::const_iterator it{this->tiros.begin()}; it != this->tiros.end(); ++it)
         objetos.push_back(static_cast< Objeto*>(*it));
@@ -265,6 +284,7 @@ void Jogo::matarInimigos() {
     std::list<Tanque*>::const_iterator it{this->inimigos.begin()};
     for (; it != this->inimigos.end();){
         if ((*it)->getVida() == 0) {
+            this->pontos += 100;
             it = this->inimigos.erase(it);
             if (this->n_tanques > 0)
                 this->n_tanques--;
@@ -277,7 +297,8 @@ void Jogo::matarInimigos() {
 
 
 void Jogo::criarInimigos() {
-
+    if (this->n_tanques == 0)
+        return;
     Tanque *tanque;
     if (this->inimigos.size() < Jogo::LIMITE_INIMIGOS) {
         switch (rand() % 5)
@@ -415,6 +436,7 @@ void Jogo::adicionarTiro(Tiro * const tiro){
 void Jogo::carregarSprites(){
     // Carrega spritesheet, usar move attribution(?)
     this->spritesheet = new Allegro::Sprite("./data/spritesheet3.png");
+    this->vida = new Allegro::Sprite("./data/vida.png");
 
     this->spritesTanque.resize(2);
 
@@ -465,3 +487,23 @@ void Jogo::carregarSprites(){
 
 
 }
+void Jogo::desenharPontos() const {
+    Allegro::Tela *tela{Allegro::Tela::getInstancia()};
+    tela->desenharTexto("pontos", 130, 280);
+    tela->desenharFonte(tela->getFonte(), 255, 255, 255, 140, 280, this->getPontos());
+}
+
+void Jogo::desenharVida() const {
+    Allegro::Tela *tela{Allegro::Tela::getInstancia()};
+    tela->desenharSprite(this->vida, 266, 180);
+    tela->desenharFonte(tela->getFonte(), 255, 255, 255, 180, 283, this->player->getVida());
+}
+
+const unsigned int Jogo::getPontos() const {
+    return this->pontos;
+}
+
+void Jogo::aumentarPontos () {
+    this->pontos += 100;
+}
+

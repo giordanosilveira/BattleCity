@@ -50,6 +50,7 @@ class ControleJogo{
         ALLEGRO_BITMAP* carregarSpritesheet(const std::string &nomeArquivo);
         ALLEGRO_BITMAP *pegarSprite(ALLEGRO_BITMAP *sheet, int x, int y, int w, int h);
         
+        ALLEGRO_FONT *getFonte() const;
 
         enum evento{
             TEMPO_QUADRO,
