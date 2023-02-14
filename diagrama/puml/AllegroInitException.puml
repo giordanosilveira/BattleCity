@@ -4,6 +4,11 @@
 class "AllegroInitException"{
 
 
+    public:
+        +AllegroInitException(name: std::string)
+        +virtual ~AllegroInitException() = default;
+
+
 }
 
 !endsub

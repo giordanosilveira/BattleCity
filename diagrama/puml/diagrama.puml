@@ -2,13 +2,14 @@
 
 skinparam classAttributeIconSize 0
 
-
 !includesub Sprite.puml!SPRITE
 !includesub AllegroInitException.puml!ALLEGRO_INIT_EXCEPTION
 !includesub ControleJogo.puml!CONTROLE_JOGO
 !includesub Sprite4D.puml!SPRITE_4D
 !includesub Tela.puml!TELA
 !includesub Util.puml!UTIL
+
+Sprite4D -|> Sprite
 
 hide members
 
