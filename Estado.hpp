@@ -5,6 +5,7 @@ class Estado {
     public:
         static void jogo();
         static void encerrar();
+        static void jogoVencido();
         static void jogoPerdido();
         
         static short int atual;
@@ -12,6 +13,7 @@ class Estado {
         enum estado_atual{
             JOGO = 0,
             JOGO_PERDIDO,
+            JOGO_VENCIDO,
             ENCERRAR
         };
 };

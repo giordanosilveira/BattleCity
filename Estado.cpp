@@ -24,10 +24,6 @@ void Estado::jogo(){
     
     al->esvaziarFila();
     for (;;){
-        if (j->n_tanques == 0) {
-            done = true;
-            Estado::atual = Estado::ENCERRAR;
-        }
         al->esperarEvento();
 
         if (al->getEvento() == al->TEMPO_QUADRO){
@@ -54,10 +50,16 @@ void Estado::jogo(){
             Estado::atual = Estado::ENCERRAR;
         }
 
-        if (j->insignia->morto() || ! j->player->getVida()){
+        if (j->insignia->morto() || j->player->getVida() == 0){
             done = true;
             redesenhar = true;
             Estado::atual = Estado::JOGO_PERDIDO;
+        }
+
+        if (j->n_tanques == 0 && j->inimigos.size() == 0) {
+            done = true;
+            redesenhar = true;
+            Estado::atual = Estado::JOGO_VENCIDO;
         }
 
 
@@ -97,6 +99,34 @@ void Estado::jogoPerdido(){
     bool sair = false;
     tela->limparTelaCor(0, 0, 0, 128);
     tela->desenharTexto("Perdeste!", 100, 100);
+    tela->desenharTexto("Aperte ESC para sair.", 50, 120);
+    tela->desenharTela();
+
+    for (;;) {
+        al->esperarEvento();
+
+        if (al->getEvento() == al->TECLA_PRESSIONADA)
+            al->pressionarTecla();
+        
+        if (al->sairJogo())
+                sair = true;
+
+        if (sair)
+            break;
+    }
+
+    Estado::atual = Estado::ENCERRAR;
+}
+
+void Estado::jogoVencido(){
+
+    Allegro::ControleJogo *al{Allegro::ControleJogo::getInstancia()};
+    Allegro::Tela *tela{Allegro::Tela::getInstancia()};
+    Jogo *jogo{Jogo::getInstancia()};
+
+    bool sair = false;
+    tela->limparTelaCor(0, 0, 0, 128);
+    tela->desenharTexto("Venceste!", 100, 100);
     tela->desenharTexto("Aperte ESC para sair.", 50, 120);
     tela->desenharTela();
 

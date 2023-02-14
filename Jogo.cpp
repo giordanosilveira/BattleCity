@@ -297,7 +297,8 @@ void Jogo::matarInimigos() {
 
 
 void Jogo::criarInimigos() {
-
+    if (this->n_tanques == 0)
+        return;
     Tanque *tanque;
     if (this->inimigos.size() < Jogo::LIMITE_INIMIGOS) {
         switch (rand() % 5)
