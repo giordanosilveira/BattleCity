@@ -5,15 +5,13 @@ class Estado {
     public:
         static void jogo();
         static void encerrar();
-        static void jogoVencido();
-        static void jogoPerdido();
+        static void jogoTerminado();
         
         static short int atual;
 
         enum estado_atual{
             JOGO = 0,
-            JOGO_PERDIDO,
-            JOGO_VENCIDO,
+            JOGO_TERMINADO,
             ENCERRAR
         };
 };

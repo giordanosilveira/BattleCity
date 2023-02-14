@@ -433,6 +433,14 @@ void Jogo::adicionarTiro(Tiro * const tiro){
     this->tiros.push_back(tiro);
 }
 
+bool Jogo::getVencido(){
+    return this->vencido;
+}
+
+void Jogo::setVencido(const bool vencido){
+    this->vencido = vencido;
+}
+
 void Jogo::carregarSprites(){
     // Carrega spritesheet, usar move attribution(?)
     this->spritesheet = new Allegro::Sprite("./data/spritesheet3.png");

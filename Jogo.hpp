@@ -70,6 +70,9 @@ class Jogo{
         Allegro::Sprite* vida;
         std::vector<Allegro::Sprite*>insignias;
 
+        bool getVencido();
+        void setVencido(const bool vencido);
+
         void adicionarTiro(Tiro * const tiro);
         void adicionarTirosInimigos(Tiro * const tiro);
 
@@ -107,10 +110,11 @@ class Jogo{
         std::vector<Allegro::Sprite4D*>spritesTanqueInimigos;
         std::vector<Allegro::Sprite4D*>spritesTanquePlayer;
         
+        bool vencido;
 
         const unsigned short int LIMITE_TIROS_PLAYER = 3;
         const unsigned short int LIMITE_INIMIGOS = 3;
-        const unsigned short int MAX_TANQUES = 1;
+        const unsigned short int MAX_TANQUES = 20;
         const unsigned short int LIMITE_TIROS_INIMIGOS = 3;
         
         const unsigned short int TANK_MAT_WID = 8;
