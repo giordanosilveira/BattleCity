@@ -1,0 +1,10 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+Sprite --> Sprite2
+
+!includesub Sprite.puml!SPRITE
+!includesub Sprite2.puml!SPRITE2
+
+@enduml

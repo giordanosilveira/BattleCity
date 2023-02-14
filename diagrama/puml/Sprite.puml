@@ -1,0 +1,16 @@
+@startuml
+!startsub SPRITE
+
+class "Sprite"{
+
++ ALLEGRO_BITMAP *bitmap
+    
+<<constructor>> Sprite()
+<<destructor>> ~Sprite()
++ ALLEGRO_BITMAP *getBitmap() const
+
+
+}
+
+!endsub
+@enduml
