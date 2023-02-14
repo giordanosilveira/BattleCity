@@ -1,0 +1,40 @@
+@startuml
+!startsub OBJETO
+
+skinparam classAttributeIconSize 0
+
+class "Objeto"{
+
+        + <<constructor>>Objeto()
+        + <<constructor>>Objeto(x: const unsigned int, y: const unsigned int, tamanhoSprite: unsigned short int, imortal: const unsigned short, estado: EnumEstadoObjeto, vida: const unsigned short, velocidade: const unsigned short, direcao: EnumDirecao)
+        + <<destructor>> ~Objeto():virtual
+        + getSuperiorEsquerda():virtual  const
+        + getInferiorDireita():virtual const
+        + setSuperiorEsquerda (x: const unsigned short int, y: unsigned short int):  void
+        + setInferiorDireita (x: const unsigned short int, y: unsigned short int):  void
+        + getVelocidade(): const unsigned short int const
+        + setVelocidade(velocidade: const unsigned short int): void
+        + getDirecao(): const EnumDirecao const
+        + setDirecao(EnumDirecao direcao): void
+        + getTamanhoSprite(): const unsigned short int const
+        + setTamanhoSprite(tamanhoSprite: unsigned short int): void 
+        + levarDano(dano: const unsigned short int): void 
+        + morrer(): void
+        + getVida(): unsigned short int
+        + morto(): bool
+        + colisao(obj: const Objeto *):const bool const
+        + algumaColisao(objetos: const std::list<Objeto *> &): Objeto*
+        + sprite: const Allegro::Sprite*
+        # superiorEsquerda: Coordenada *
+        # inferiorDireita: Coordenada *
+        # tamanhoSprite: unsigned char
+        # imortal: unsigned char
+        # estado: unsigned char
+        # vida: unsigned char
+        # velocidade: unsigned char
+        # direcao: EnumDirecao
+
+}
+
+!endsub
+@enduml

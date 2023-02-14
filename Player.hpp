@@ -17,12 +17,6 @@ class Player : public Tanque {
 
         ~Player();
 
-        /**
-         * @todo: a colisão funciona, porém ela não é aqui e é com objeto genérico 
-         */
-
-        
-    private:
 };
 
 
