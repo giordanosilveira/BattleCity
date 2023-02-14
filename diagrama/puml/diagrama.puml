@@ -16,9 +16,13 @@ set separator ::
 !includesub Insignia.puml!INSIGNIA
 !includesub Jogo.puml!JOGO
 !includesub Mapa.puml!MAPA
+!includesub Objeto.puml!OBJETO
+!includesub Parede.puml!PAREDE
+!includesub Player.puml!PLAYER
+!includesub Tanque.puml!TANQUE
+!includesub Tiro.puml!TIRO
 
 Allegro::Sprite4D -|> Allegro::Sprite
 
-hide members
 
 @enduml
