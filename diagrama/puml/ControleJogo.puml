@@ -1,0 +1,10 @@
+@startuml
+!startsub CONTROLE_JOGO
+
+class "ControleJogo"{
+
+
+}
+
+!endsub
+@enduml

@@ -2,9 +2,14 @@
 
 skinparam classAttributeIconSize 0
 
-Sprite --> Sprite2
 
 !includesub Sprite.puml!SPRITE
-!includesub Sprite2.puml!SPRITE2
+!includesub AllegroInitException.puml!ALLEGRO_INIT_EXCEPTION
+!includesub ControleJogo.puml!CONTROLE_JOGO
+!includesub Sprite4D.puml!SPRITE_4D
+!includesub Tela.puml!TELA
+!includesub Util.puml!UTIL
+
+hide members
 
 @enduml

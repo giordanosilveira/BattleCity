@@ -1,0 +1,10 @@
+@startuml
+!startsub SPRITE_4D
+
+class "Sprite4D"{
+
+
+}
+
+!endsub
+@enduml

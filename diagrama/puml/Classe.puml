@@ -1,0 +1,10 @@
+@startuml
+!startsub CLASS
+
+class "Class"{
+
+
+}
+
+!endsub
+@enduml

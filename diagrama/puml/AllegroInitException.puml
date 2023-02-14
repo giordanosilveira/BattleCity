@@ -1,0 +1,10 @@
+@startuml
+!startsub ALLEGRO_INIT_EXCEPTION
+
+class "AllegroInitException"{
+
+
+}
+
+!endsub
+@enduml
