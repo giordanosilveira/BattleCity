@@ -1,0 +1,98 @@
+@startuml
+!startsub JOGO
+
+skinparam classAttributeIconSize 0
+
+enum corTanque {
+    TANQUE_AMARELO
+    TANQUE_VERMELHO
+}
+
+class "Jogo"{
+
+public:
+    - <<constructor>> Jogo()
+    + <<destructor>> ~Jogo()
+    + <<deleted>> Jogo(outro: Jogo &)
+    + <<deleted>> operator=(outro: const Jogo &): void
+
+    + {static} getInstancia(): Jogo *
+    + TIRO_SIZE: const unsigned short int
+    + TIRO_VELOCIDADE: const unsigned short int
+    + TANQUE_SIZE: const unsigned short int
+    + TANQUE_VELOCIDADE: const unsigned short int
+    + mapa: Mapa *
+    + player: Player *
+    + paredes: std::list<Parede*>
+    + paredeInvencivel: std::list<Parede*>
+    + inimigos: std::list<Tanque*>
+    + tiros: std::list<Tiro*>
+    + tirosInimigos: std::list<Tiro*>
+    + n_tanques: unsigned short int 
+    + insignia: Insignia *
+    + moverPlayer(): void
+    + atualizarEntidades(): void
+    + acaoInimigos(): void
+    + moverTanque(tanque: Tanque *): void
+    + decrementarTimerTirosInimigos(): void
+    + matarInimigos(): void
+    + criarInimigos(): void
+    + desenharParedes() const: void
+    + desenharTiros() const: void
+    + desenharInimigos() const: void
+    + desenharTanquesPontos() const: void
+    + desenharObjeto(objeto: Objeto* const) const: void
+    + desenharPontos() const: void
+    + desenharVida() const: void
+    + spritesheet: Allegro::Sprite* 
+    + parede: Allegro::Sprite* 
+    + paredeInvencivelSprite: Allegro::Sprite* 
+    + tiroSprite: Allegro::Sprite4D* 
+    + backgroudPontuacao: Allegro::Sprite* 
+    + tanquePonto: Allegro::Sprite* 
+    + vida: Allegro::Sprite* 
+    + insignias: std::vector<Allegro::Sprite*>
+    + getVencido(): bool 
+    + setVencido(vencido: const bool ): void 
+    + adicionarTiro(tiro: Tiro * const): void 
+    + adicionarTirosInimigos(tiro: Tiro * const): void 
+    + getPontos() const: const unsigned int
+    + aumentarPontos(): void
+
+    - {static} instancia: Jogo *
+    - montarObjetos(): void
+    - carregarSprites(): void
+    - criarParedesBorda(): void
+    - geraListaColisaoTanque(objetos: std::list<Objeto*> &): void
+    - geraListaColisaoTiroPlayer(objetos: std::list<Objeto*> &): void
+    - geraListaColisaoTiroTanque(objetos: std::list<Objeto*> &): void
+    - atualizarTiros(): void
+    - atualizarTirosPlayer(): void
+    - atualizarTirosInimigos(): void
+    - atualizarInsignia(): void
+    - atualizarParedes(): void
+    - atualizarPlayer(): void
+    - atualizarInimigos(): void
+    - pontos: unsigned int 
+    - elementosTela: std::list<std::shared_ptr<Objeto>>
+    - spritesTanque: std::vector<Allegro::Sprite4D*>
+    - spritesTanqueInimigos: std::vector<Allegro::Sprite4D*>
+    - spritesTanquePlayer: std::vector<Allegro::Sprite4D*>
+    - vencido: bool
+
+    - LIMITE_TIROS_PLAYER: const unsigned short int 
+    - LIMITE_INIMIGOS: const unsigned short int 
+    - MAX_TANQUES: const unsigned short int 
+    - LIMITE_TIROS_INIMIGOS: const unsigned short int 
+    - TANK_MAT_WID: const unsigned short int 
+    - TANK_MAT_HEI: const unsigned short int 
+    - TANK_WID: const unsigned short int 
+    - TANK_HEI: const unsigned short int 
+    - PAREDE_SIZE: const unsigned short int 
+    - BLOCO_SIZE: const unsigned short int 
+    - OFFSET: const unsigned short int 
+
+}
+
+!endsub
+@enduml

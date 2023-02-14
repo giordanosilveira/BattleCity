@@ -14,6 +14,8 @@ set separator ::
 !includesub Estado.puml!ESTADO
 !includesub Coordenada.puml!COORDENADA
 !includesub Insignia.puml!INSIGNIA
+!includesub Jogo.puml!JOGO
+!includesub Mapa.puml!MAPA
 
 Allegro::Sprite4D -|> Allegro::Sprite
 

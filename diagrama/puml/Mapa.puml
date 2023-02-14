@@ -1,0 +1,14 @@
+@startuml
+!startsub MAPA
+
+skinparam classAttributeIconSize 0
+
+class "Mapa"{
+    + <<constructor>> Mapa(filename: const std::string &)
+    + <<destructor>> ~Mapa(): virtual
+    + getMatriz() const: const std::vector<std::string>
+    - matriz: std::vector<std::string>
+}
+
+!endsub
+@enduml
