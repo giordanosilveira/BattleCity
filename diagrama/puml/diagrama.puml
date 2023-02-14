@@ -1,0 +1,28 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+set separator ::
+
+!includesub Sprite.puml!SPRITE
+!includesub AllegroInitException.puml!ALLEGRO_INIT_EXCEPTION
+!includesub ControleJogo.puml!CONTROLE_JOGO
+!includesub Sprite4D.puml!SPRITE_4D
+!includesub Tela.puml!TELA
+!includesub Util.puml!UTIL
+
+!includesub Estado.puml!ESTADO
+!includesub Coordenada.puml!COORDENADA
+!includesub Insignia.puml!INSIGNIA
+!includesub Jogo.puml!JOGO
+!includesub Mapa.puml!MAPA
+!includesub Objeto.puml!OBJETO
+!includesub Parede.puml!PAREDE
+!includesub Player.puml!PLAYER
+!includesub Tanque.puml!TANQUE
+!includesub Tiro.puml!TIRO
+
+Allegro::Sprite4D -|> Allegro::Sprite
+
+
+@enduml

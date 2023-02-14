@@ -1,0 +1,44 @@
+@startuml
+!startsub SPRITE_4D
+
+skinparam classAttributeIconSize 0
+
+enum "Allegro::direcao" <<enumeration>> {
+    ESQ
+    BAI
+    DIR
+    CIM
+}
+
+class "Allegro::Sprite4D"{
+
+    + Sprite4D()
+    + virtual ~Sprite4D()
+
+    + inicializarSprite(sprite: Sprite, inicioX: unsigned int, inicioY: unsigned int, larg: unsigned int, alt: unsigned int, direcao: int): void
+
+    + setSpritePrincipal(direcao: int): void
+    + getBitmapPrincipal(): ALLEGRO_BITMAP
+
+    + getBitmapEsquerda(): ALLEGRO_BITMAP
+    + setBitmapEsquerda(bitmapEsquerda: ALLEGRO_BITMAP): void
+
+    + getBitmapBaixo(): ALLEGRO_BITMAP 
+    + setBitmapBaixo(bitmapBaixo: ALLEGRO_BITMAP): void
+
+    + getBitmapDireita(): ALLEGRO_BITMAP
+    + setBitmapDireita(bitmapDireita: ALLEGRO_BITMAP): void
+
+    + getBitmapCima(): ALLEGRO_BITMAP
+    + setBitmapCima(bitmapCima: ALLEGRO_BITMAP): void
+
+    - bitmapEsquerda: ALLEGRO_BITMAP
+    - bitmapBaixo: ALLEGRO_BITMAP
+    - bitmapDireita: ALLEGRO_BITMAP
+    - bitmapCima: ALLEGRO_BITMAP
+
+
+}
+
+!endsub
+@enduml

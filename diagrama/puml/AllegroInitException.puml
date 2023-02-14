@@ -1,0 +1,15 @@
+@startuml
+!startsub ALLEGRO_INIT_EXCEPTION
+
+skinparam classAttributeIconSize 0
+
+class "Allegro::AllegroInitException"{
+    
+    public:
+        +AllegroInitException(name: std::string)
+        +~AllegroInitException();
+
+}
+
+!endsub
+@enduml

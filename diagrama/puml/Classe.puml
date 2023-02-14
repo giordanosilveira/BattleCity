@@ -1,0 +1,12 @@
+@startuml
+!startsub CLASS
+
+skinparam classAttributeIconSize 0
+
+class "Class"{
+
+
+}
+
+!endsub
+@enduml

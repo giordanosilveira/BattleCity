@@ -1,0 +1,42 @@
+@startuml
+!startsub TELA
+
+skinparam classAttributeIconSize 0
+
+class "Allegro::Tela"{
+
+    <<destructor>> ~Tela()
+    <<deleted>> Tela(outro: Tela &)
+    <<deleted>> void operator=(outro: const Tela &)
+    - <<constructor>> Tela()
+
+    + {static} getInstancia(): Tela *
+
+    + desenharTela(): void 
+    + desenharSprite(spr: const Allegro::Sprite *, x: float, y: float) const: void 
+    + limparTelaCor(r: const unsigned short int, g: const unsigned short int, b: const unsigned short int , a: const unsigned short int): void 
+    + desenharTexto(texto: const std::string &, x: const unsigned int, y: const unsigned int ): void 
+    + desenharRetanguloCheio(x1: const unsigned int, y1:  const unsigned int, x2: const unsigned int, y2: const unsigned int, r: const unsigned short int, g: const unsigned short int, b: const unsigned short int, a: const float): void
+
+    + desenharFonte(font: ALLEGRO_FONT *, red: unsigned char, green: unsigned char, blue: unsigned char, x: float, y: float, pontos: unsigned int) const: void
+    + desenharFonte(font: ALLEGRO_FONT *, red: unsigned char, green: unsigned char, blue: unsigned char, x: float, y: float, texto: const char*) const: void
+
+    + getFonte() const: ALLEGRO_FONT *
+
+    + {static} BUFFER_WIDTH: const unsigned int {readOnly}
+    + {static} BUFFER_HEIGHT: const unsigned int {readOnly}
+
+    - {static} instancia: Tela *
+
+    - display: ALLEGRO_DISPLAY*
+    - font: ALLEGRO_FONT*
+    - buffer: ALLEGRO_BITMAP*
+
+    - {static} SCALE: const unsigned int
+    - {static} DISPLAY_WIDTH: const unsigned int
+    - {static} DISPLAY_HEIGHT: const unsigned int
+
+}
+
+!endsub
+@enduml

@@ -1,0 +1,21 @@
+@startuml
+!startsub ESTADO
+
+skinparam classAttributeIconSize 0
+
+enum estado_atual{
+    JOGO
+    JOGO_TERMINADO
+    ENCERRAR
+}
+
+class "Estado"{
+    + {static} jogo(): void
+    + {static} encerrar(): void
+    + {static} jogoTerminado(): void
+    
+    + {static} atual; short int 
+}
+
+!endsub
+@enduml
