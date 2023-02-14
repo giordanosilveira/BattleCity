@@ -1,9 +1,10 @@
 @startuml
 !startsub UTIL
 
-class "Util"{
+skinparam classAttributeIconSize 0
 
-
+class "Allegro::Util"{
+    + {static} testInit(test: bool, message: const string): void
 }
 
 !endsub

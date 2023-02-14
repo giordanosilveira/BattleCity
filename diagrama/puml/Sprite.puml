@@ -1,15 +1,17 @@
 @startuml
 !startsub SPRITE
 
-class "Sprite"{
+skinparam classAttributeIconSize 0
 
-+ ALLEGRO_BITMAP *bitmap
-    
+class "Allegro::Sprite"{
 <<constructor>> Sprite()
+<<constructor>> Sprite(fileName: const std::string &)
+<<constructor>> Sprite(sprite: const Sprite *, inicioX: const unsigned int, inicioY: const unsigned int, larg: const unsigned int, alt: const unsigned int)
 <<destructor>> ~Sprite()
+
 + ALLEGRO_BITMAP *getBitmap() const
-
-
+# void setBitmap(bitmap: ALLEGRO_BITMAP* const);
+# ALLEGRO_BITMAP *bitmap; 
 }
 
 !endsub

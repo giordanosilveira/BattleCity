@@ -1,8 +1,55 @@
 @startuml
 !startsub CONTROLE_JOGO
 
-class "ControleJogo"{
+skinparam classAttributeIconSize 0
 
+enum "Allegro::evento" <<enumeration>> {
+    TEMPO_QUADRO
+    TECLA_PRESSIONADA
+    TECLA_SOLTA
+    FECHAR_DISPLAY
+    INDEFINIDO
+}
+
+enum "Allegro::tecla" <<enumeration>>{
+    ESCAPE
+    SETA_ESQUERDA
+    SETA_DIREITA
+    SETA_CIMA
+    SETA_BAIXO
+}
+
+class "Allegro::ControleJogo"{
+    + <<destructor>> ~ControleJogo()
+    + <<deleted>> ControleJogo(outro: ControleJogo &)
+    + <<deleted>> operator=(outro: const ControleJogo &): void 
+    - <<constructor>>ControleJogo()
+
+    + {static} getInstancia(): ControleJogo *
+    + {static} FRAMERATE: constexpr double
+    + {static} KEY_SEEN: const unsigned int 
+    + {static} KEY_RELEASED: const unsigned int 
+    + inicializar(): void 
+    + sairJogo(): bool 
+    + finalizar(): void 
+    + getEvento(): unsigned short int 
+    + esperarEvento(): void 
+    + esvaziarFila(): void 
+    + visualizarTeclas(): void 
+    + pressionarTecla(): void 
+    + soltarTecla(): void 
+    + teclaPressionada(tecla: const unsigned short int): bool 
+    + atirou() const: bool 
+    + registrarTela(display: ALLEGRO_DISPLAY *): void 
+    + carregarSpritesheet(nomeArquivo: const std::string &): ALLEGRO_BITMAP* 
+    + pegarSprite(sheet: ALLEGRO_BITMAP *, x: int, y: int, w: int, h: int): ALLEGRO_BITMAP* 
+    + getFonte() const: ALLEGRO_FONT *
+
+    - {static} instancia: ControleJogo *
+    - timer: ALLEGRO_TIMER* 
+    - event: ALLEGRO_EVENT 
+    - queue: ALLEGRO_EVENT_QUEUE* 
+    - key: std::vector<unsigned char>
 
 }
 

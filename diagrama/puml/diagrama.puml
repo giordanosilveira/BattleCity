@@ -2,6 +2,8 @@
 
 skinparam classAttributeIconSize 0
 
+set separator ::
+
 !includesub Sprite.puml!SPRITE
 !includesub AllegroInitException.puml!ALLEGRO_INIT_EXCEPTION
 !includesub ControleJogo.puml!CONTROLE_JOGO
@@ -9,7 +11,11 @@ skinparam classAttributeIconSize 0
 !includesub Tela.puml!TELA
 !includesub Util.puml!UTIL
 
-Sprite4D -|> Sprite
+!includesub Estado.puml!ESTADO
+!includesub Coordenada.puml!COORDENADA
+!includesub Insignia.puml!INSIGNIA
+
+Allegro::Sprite4D -|> Allegro::Sprite
 
 hide members
 

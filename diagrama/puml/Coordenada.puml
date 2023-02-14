@@ -1,0 +1,26 @@
+@startuml
+!startsub COORDENADA
+
+skinparam classAttributeIconSize 0
+
+class "Coordenada"{
+
+public:
+    <<constructor>>Coordenada()
+    <<constructor>>Coordenada(x: const unsigned int, y: const unsigned int)
+
+    + getX() const: const unsigned int 
+    + setY(y: const unsigned int): void 
+
+    + getY() const: const unsigned int 
+    + setX(x: const unsigned int): void 
+
+    + ~Coordenada(): virtual
+
+    - x: unsigned int 
+    - y: unsigned int  
+
+}
+
+!endsub
+@enduml
