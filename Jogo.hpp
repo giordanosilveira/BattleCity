@@ -17,7 +17,7 @@
 
 class Jogo{
     public:
-        ~Jogo();
+        virtual ~Jogo();
         Jogo(Jogo &outro) = delete;
         void operator=(const Jogo &outro) = delete;
 
@@ -49,15 +49,11 @@ class Jogo{
         void matarInimigos();
         void criarInimigos();
 
-        /**
-         * @todo: Instanciar todas as classes do jogo aqui
-         */
-        //std::list<>
+
         void desenharParedes() const;
         void desenharTiros() const;
         void desenharInimigos() const;
         void desenharTanquesPontos() const;
-        void desenharObjeto(Objeto* const objeto) const;
         void desenharPontos() const;
         void desenharVida() const;
         
@@ -84,7 +80,6 @@ class Jogo{
         Jogo();
         static Jogo *instancia;
 
-        void montarObjetos();
         void carregarSprites();
 
         /* Funções auxiliares */

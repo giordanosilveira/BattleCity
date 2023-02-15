@@ -21,9 +21,6 @@ Tiro::Tiro(
     this->sprites->setSpritePrincipal(direcao_tiro);
 }
 
-Tiro::~Tiro(){}
-
-
 void Tiro::mover(std::list<Objeto*> objetos){
 
     unsigned int x = this->superiorEsquerda->getX();
@@ -55,3 +52,6 @@ void Tiro::mover(std::list<Objeto*> objetos){
     }
     
 }
+
+Tiro::~Tiro() {}
+    //delete this->sprites;

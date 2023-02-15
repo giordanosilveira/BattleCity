@@ -15,7 +15,7 @@ class Player : public Tanque {
                 const unsigned short imortal, EnumEstadoObjeto estado, const unsigned short vida, const unsigned short velocidade, 
                 EnumDirecao direcao, Allegro::Sprite4D* const &sprites, Allegro::Sprite4D* const &tiroSprites);
 
-        ~Player();
+        virtual ~Player();
 
 };
 

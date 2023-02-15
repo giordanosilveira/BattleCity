@@ -35,7 +35,9 @@ Tela::Tela(){
 Tela::~Tela(){
     al_destroy_font(this->font);
     al_destroy_display(this->display);
+    al_destroy_bitmap(this->buffer);
     al_shutdown_primitives_addon();
+    //delete this->instancia;
 }
 
 Tela *Tela::getInstancia(){

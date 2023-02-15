@@ -26,7 +26,8 @@ Tanque::Tanque(
 }
 
 Tanque::~Tanque(){
-    
+    //delete this->sprites;
+    //delete this->tiroSprites;
 }
 
 void Tanque::setSprite(Allegro::Sprite4D*  sprite){

@@ -126,8 +126,10 @@ void Estado::jogoTerminado(){
 void Estado::encerrar(){
     Allegro::ControleJogo *al{Allegro::ControleJogo::getInstancia()};
     Allegro::Tela *tela{Allegro::Tela::getInstancia()};
+    Jogo *jogo{Jogo::getInstancia()};
     delete al; // TODO ver se faz sentido (ver se chama destrutor)
     delete tela;
+    delete jogo;
     
 
     exit(0);
