@@ -5,7 +5,6 @@
 #include <stdlib.h>
 
 #include "ControleJogo.hpp"
-#include "AllegroInitException.hpp"
 #include "Util.hpp"
 
 #include <iostream>

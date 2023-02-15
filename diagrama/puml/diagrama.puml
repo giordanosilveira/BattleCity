@@ -24,5 +24,63 @@ set separator ::
 
 Allegro::Sprite4D -|> Allegro::Sprite
 
+Allegro::ControleJogo --> Allegro::Util
+
+Allegro::Sprite --> Allegro::Util 
+
+Allegro::Tela --> Allegro::ControleJogo
+Allegro::Tela --> Allegro::Sprite
+Allegro::Tela --> Allegro::Util
+
+Allegro::Util --> Allegro::AllegroInitException
+
+Estado --> Jogo
+Estado --> Allegro::ControleJogo
+Estado --> Allegro::Tela
+
+Insignia "1" --> "2" Allegro::Sprite : contém
+
+Jogo "1" --> "many" Allegro::Sprite : contém
+Jogo "1" --> "many" Player : contém
+Jogo "1" --> "many" Parede : contém
+Jogo "1" --> "many" Allegro::Sprite4D : contém
+Jogo "1" --> "many" Tanque : contém
+Jogo "1" --> "many" Mapa : contém
+Jogo "1" --> "many" Insignia : contém
+
+Jogo --> Objeto
+Jogo --> Tiro
+Jogo --> Allegro::Tela
+Jogo --> Allegro::ControleJogo
+
+Objeto "1" --> "2" Coordenada : "contém"
+Objeto "1" --> "1" Allegro::Sprite : "contém"
+
+Parede -|> Objeto
+
+Player -|> Tanque
+Player --> Allegro::Sprite4D
+Player --> Allegro::Sprite
+Player --> Allegro::ControleJogo
+Player --> EnumDirecao
+Player --> EnumEstadoObjeto
+Player --> Tiro
+
+Tanque -|> Objeto
+Tanque "1" --> "2" Allegro::Sprite4D : contém
+Tanque --> Tiro
+Tanque --> Allegro::Sprite
+Tanque --> Allegro::Sprite4D
+Tanque --> EnumDirecao
+Tanque --> EnumEstadoObjeto
+
+Tiro -|> Objeto
+Tiro "1" --> "1" Allegro::Sprite4D : contém
+Tiro --> Parede
+Tiro --> Tanque
+Tiro --> EnumDirecao
+
+hide methods
+hide attributes
 
 @enduml

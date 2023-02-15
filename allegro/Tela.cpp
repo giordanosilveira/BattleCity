@@ -1,7 +1,6 @@
 #include "Tela.hpp"
 #include "ControleJogo.hpp"
 #include "Sprite.hpp"
-#include "../Objeto.hpp"
 #include "Util.hpp"
 
 #include <allegro5/display.h>

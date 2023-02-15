@@ -4,7 +4,6 @@
 
 #include <string>
 
-#include "AllegroInitException.hpp"
 #include "Sprite.hpp"
 #include "Util.hpp"
 

@@ -17,5 +17,7 @@ class "Estado"{
     + {static} atual; short int 
 }
 
+Estado --> estado_atual
+
 !endsub
 @enduml

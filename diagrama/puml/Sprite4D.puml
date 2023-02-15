@@ -40,5 +40,7 @@ class "Allegro::Sprite4D"{
 
 }
 
+Allegro::Sprite4D --> Allegro::direcao
+
 !endsub
 @enduml
