@@ -3,7 +3,7 @@
 
 skinparam classAttributeIconSize 0
 
-enum estado_atual{
+enum estado_atual <<enumeration>> {
     JOGO
     JOGO_TERMINADO
     ENCERRAR

@@ -21,6 +21,8 @@ set separator ::
 !includesub Player.puml!PLAYER
 !includesub Tanque.puml!TANQUE
 !includesub Tiro.puml!TIRO
+!includesub EnumEstadoObjeto.puml!ENUM_ESTADO_OBJETO
+!includesub EnumDirecao.puml!ENUM_DIRECAO
 
 Allegro::Sprite4D -|> Allegro::Sprite
 
@@ -52,11 +54,17 @@ Jogo --> Objeto
 Jogo --> Tiro
 Jogo --> Allegro::Tela
 Jogo --> Allegro::ControleJogo
+Jogo --> EnumEstadoObjeto
+Jogo --> EnumDirecao
 
 Objeto "1" --> "2" Coordenada : "contém"
 Objeto "1" --> "1" Allegro::Sprite : "contém"
+Objeto "1" --> "1" EnumEstadoObjeto : "contém"
+Objeto "1" --> "1" EnumDirecao : "contém"
 
 Parede -|> Objeto
+Parede --> EnumEstadoObjeto
+Parede --> EnumDirecao
 
 Player -|> Tanque
 Player --> Allegro::Sprite4D
@@ -79,6 +87,7 @@ Tiro "1" --> "1" Allegro::Sprite4D : contém
 Tiro --> Parede
 Tiro --> Tanque
 Tiro --> EnumDirecao
+Tiro --> EnumEstadoObjeto
 
 hide methods
 hide attributes
