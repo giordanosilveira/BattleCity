@@ -3,7 +3,7 @@
 
 skinparam classAttributeIconSize 0
 
-class "Allegro::Util"{
+class "allegro::Util"{
     + {static} testInit(test: bool, message: const string): void
 }
 

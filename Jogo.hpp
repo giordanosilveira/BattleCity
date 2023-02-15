@@ -57,14 +57,14 @@ class Jogo{
         void desenharPontos() const;
         void desenharVida() const;
         
-        Allegro::Sprite *spritesheet;
-        Allegro::Sprite *parede;
-        Allegro::Sprite *paredeInvencivelSprite;
-        Allegro::Sprite4D *tiroSprite;
-        Allegro::Sprite *backgroudPontuacao;
-        Allegro::Sprite* tanquePonto;
-        Allegro::Sprite* vida;
-        std::vector<Allegro::Sprite*>insignias;
+        allegro::Sprite *spritesheet;
+        allegro::Sprite *parede;
+        allegro::Sprite *paredeInvencivelSprite;
+        allegro::Sprite4D *tiroSprite;
+        allegro::Sprite *backgroudPontuacao;
+        allegro::Sprite* tanquePonto;
+        allegro::Sprite* vida;
+        std::vector<allegro::Sprite*>insignias;
 
         bool getVencido();
         void setVencido(const bool vencido);
@@ -101,9 +101,9 @@ class Jogo{
 
         std::list<std::shared_ptr<Objeto>> elementosTela;
 
-        std::vector<Allegro::Sprite4D*>spritesTanque;
-        std::vector<Allegro::Sprite4D*>spritesTanqueInimigos;
-        std::vector<Allegro::Sprite4D*>spritesTanquePlayer;
+        std::vector<allegro::Sprite4D*>spritesTanque;
+        std::vector<allegro::Sprite4D*>spritesTanqueInimigos;
+        std::vector<allegro::Sprite4D*>spritesTanquePlayer;
         
         bool vencido;
 

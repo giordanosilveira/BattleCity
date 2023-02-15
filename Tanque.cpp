@@ -17,20 +17,18 @@ Tanque::Tanque(
     const unsigned short vida, 
     const unsigned short velocidade, 
     EnumDirecao direcao, 
-    Allegro::Sprite4D* const &sprites, 
-    Allegro::Sprite4D* const &tiroSprites) :Objeto{x, y, tamanhoSprite, imortal, estado, vida, velocidade, direcao}, timerTiro{0}
+    allegro::Sprite4D* const &sprites, 
+    allegro::Sprite4D* const &tiroSprites) :Objeto{x, y, tamanhoSprite, imortal, estado, vida, velocidade, direcao}, timerTiro{0}
 {        
-    this->sprites = new Allegro::Sprite4D{*sprites};
+    this->sprites = new allegro::Sprite4D{*sprites};
     this->sprites->setSpritePrincipal(this->sprites->BAI);
     this->tiroSprites = tiroSprites;
 }
 
 Tanque::~Tanque(){
-    //delete this->sprites;
-    //delete this->tiroSprites;
 }
 
-void Tanque::setSprite(Allegro::Sprite4D*  sprite){
+void Tanque::setSprite(allegro::Sprite4D*  sprite){
     this->sprites = sprite;
 }
 
@@ -39,7 +37,6 @@ void Tanque::decrementarTimerTiro(){
         this->timerTiro--;
 }
 
-// TODO tentar criar uma lista apenas, mas não sei se da tempo
 const bool Tanque::mover(const std::list<Objeto*> &objetos){
         unsigned int old_x = this->superiorEsquerda->getX();
         unsigned int old_y = this->superiorEsquerda->getY();
@@ -80,12 +77,6 @@ const bool Tanque::mover(const std::list<Objeto*> &objetos){
 
 }
 
-/**
- * @todo: Colocar a velocidade como uma constante 
- * 
- * TODO tamanho do sprite deve ser atributo
- * TODO repositorio com todos os sprites
- */
 Tiro* Tanque::atirar(const unsigned short int tamanhoTiro, const unsigned short int velocidadeTiro) {
     if (this->timerTiro > 0) return nullptr;
 

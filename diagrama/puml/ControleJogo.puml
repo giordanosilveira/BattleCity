@@ -3,7 +3,7 @@
 
 skinparam classAttributeIconSize 0
 
-enum "Allegro::evento" <<enumeration>> {
+enum "allegro::evento" <<enumeration>> {
     TEMPO_QUADRO
     TECLA_PRESSIONADA
     TECLA_SOLTA
@@ -11,7 +11,7 @@ enum "Allegro::evento" <<enumeration>> {
     INDEFINIDO
 }
 
-enum "Allegro::tecla" <<enumeration>>{
+enum "allegro::tecla" <<enumeration>>{
     ESCAPE
     SETA_ESQUERDA
     SETA_DIREITA
@@ -19,7 +19,7 @@ enum "Allegro::tecla" <<enumeration>>{
     SETA_BAIXO
 }
 
-class "Allegro::ControleJogo"{
+class "allegro::ControleJogo"{
     + <<destructor>> ~ControleJogo()
     + <<deleted>> ControleJogo(outro: ControleJogo &)
     + <<deleted>> operator=(outro: const ControleJogo &): void 
@@ -53,8 +53,8 @@ class "Allegro::ControleJogo"{
 
 }
 
-Allegro::ControleJogo --> Allegro::evento
-Allegro::ControleJogo --> Allegro::tecla
+allegro::ControleJogo --> allegro::evento
+allegro::ControleJogo --> allegro::tecla
 
 !endsub
 @enduml

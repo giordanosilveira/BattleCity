@@ -6,7 +6,7 @@ skinparam classAttributeIconSize 0
 class "Parede"{
 
     + <<constructor>>Parede()
-    + <<constructor>>Parede(x: const unsigned int, y: const unsigned int, tamanhoSprite: unsigned short int, imortal: const unsigned short, estado: EnumEstadoObjeto, vida: const unsigned short, velocidade: const unsigned short, direcao: EnumDirecao, sprite: Allegro::Sprite* const &)
+    + <<constructor>>Parede(x: const unsigned int, y: const unsigned int, tamanhoSprite: unsigned short int, imortal: const unsigned short, estado: EnumEstadoObjeto, vida: const unsigned short, velocidade: const unsigned short, direcao: EnumDirecao, sprite: allegro::Sprite* const &)
 
     + <<destructor>>~Parede() virtual 
 

@@ -3,7 +3,7 @@
 
 #include <string>
 
-using namespace Allegro;
+using namespace allegro;
 
 void Util::testInit(bool test, const std::string message)
 // Testa retorno de função de inicialização do ControleJogo

@@ -1,5 +1,6 @@
 #include "Parede.hpp"
 #include "enums/EnumDirecao.hpp"
+#include "enums/EnumEstadoObjeto.hpp"
 
 Parede::Parede(){}
 
@@ -12,7 +13,7 @@ Parede::Parede(
     const unsigned short int velocidade,
     const unsigned short int vida,
     EnumDirecao direcao, 
-    const Allegro::Sprite *sprite):Objeto{x,y,tamanhoSprite,imortal,estado, vida, velocidade, direcao}{
+    const allegro::Sprite *sprite):Objeto{x,y,tamanhoSprite,imortal,estado, vida, velocidade, direcao}{
     this->vida = (unsigned char)vida;
     this->sprite = sprite;
 }

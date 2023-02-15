@@ -95,22 +95,22 @@ Jogo::~Jogo() {
     for(it_tiro=tiros.begin(); it_tiro!=tiros.end(); it_tiro++)
         delete *it_tiro;
 
-    std::vector<Allegro::Sprite4D*>::iterator it;
+    std::vector<allegro::Sprite4D*>::iterator it;
     for(it=spritesTanque.begin(); it!=spritesTanque.end(); it++)
         delete *it;
     
-    std::vector<Allegro::Sprite4D*>::iterator it_sti;
+    std::vector<allegro::Sprite4D*>::iterator it_sti;
     for(it_sti=spritesTanqueInimigos.begin(); it_sti!=spritesTanqueInimigos.end(); it_sti++)
         delete *it_sti;
     
-    std::vector<Allegro::Sprite4D*>::iterator it_stp;
+    std::vector<allegro::Sprite4D*>::iterator it_stp;
     for(it_stp=spritesTanquePlayer.begin(); it_stp!=spritesTanquePlayer.end(); it_stp++)
         delete *it_stp;
 
 }
 
 void Jogo::desenharParedes() const{
-    Allegro::Tela *tela{Allegro::Tela::getInstancia()};
+    allegro::Tela *tela{allegro::Tela::getInstancia()};
     std::list<Parede *>::const_iterator it{this->paredes.begin()};
     for (; it != this->paredes.end(); ++it)
         tela->desenharSprite((*it)->sprite, (*it)->getSuperiorEsquerda()->getX(), (*it)->getSuperiorEsquerda()->getY());
@@ -122,7 +122,7 @@ void Jogo::desenharParedes() const{
 
 
 void Jogo::desenharTanquesPontos() const {
-    Allegro::Tela *tela{Allegro::Tela::getInstancia()};
+    allegro::Tela *tela{allegro::Tela::getInstancia()};
 
     unsigned short int qtd_tanque = this->n_tanques;
     for (int i = 16; i <= 16 + 80; i += 8) {
@@ -420,7 +420,7 @@ void Jogo::atualizarPlayer(){
 }
 
 void Jogo::desenharTiros() const{
-    Allegro::Tela *tela{Allegro::Tela::getInstancia()};
+    allegro::Tela *tela{allegro::Tela::getInstancia()};
     std::list<Tiro*>::const_iterator it{this->tiros.begin()};
     for (; it != this->tiros.end(); ++it){
         tela->desenharSprite((*it)->sprites, (*it)->getSuperiorEsquerda()->getX(), (*it)->getSuperiorEsquerda()->getY());
@@ -432,7 +432,7 @@ void Jogo::desenharTiros() const{
 }
 
 void Jogo::desenharInimigos() const{
-    Allegro::Tela *tela{Allegro::Tela::getInstancia()};
+    allegro::Tela *tela{allegro::Tela::getInstancia()};
 
     std::list<Tanque*>::const_iterator it2{this->inimigos.begin()};
     for (; it2 != this->inimigos.end(); ++it2){
@@ -441,7 +441,7 @@ void Jogo::desenharInimigos() const{
 }
 
 void Jogo::criarParedesBorda(){
-    Allegro::Tela *tela{Allegro::Tela::getInstancia()};
+    allegro::Tela *tela{allegro::Tela::getInstancia()};
     for (unsigned int x = 0; x < tela->BUFFER_WIDTH - 32; x += 8){
         this->paredeInvencivel.push_back(new Parede{x, 0, this->PAREDE_SIZE, 1, EnumEstadoObjeto::VIVO, 0, 1, EnumDirecao::PARADO, this->paredeInvencivelSprite});
         this->paredeInvencivel.push_back(new Parede{x, tela->BUFFER_HEIGHT-8, this->PAREDE_SIZE, 1, EnumEstadoObjeto::VIVO, 0, 1,EnumDirecao::PARADO, this->paredeInvencivelSprite});
@@ -453,7 +453,7 @@ void Jogo::criarParedesBorda(){
 }
 
 void Jogo::moverPlayer(){
-    Allegro::ControleJogo *al = Allegro::ControleJogo::getInstancia();
+    allegro::ControleJogo *al = allegro::ControleJogo::getInstancia();
     if (al->teclaPressionada(al->SETA_CIMA)) {
         this->player->setVelocidade(this->TANQUE_VELOCIDADE);
         this->player->setDirecao(EnumDirecao::CIMA);
@@ -493,15 +493,15 @@ void Jogo::setVencido(const bool vencido){
 
 void Jogo::carregarSprites(){
     // Carrega spritesheet, usar move attribution(?)
-    this->spritesheet = new Allegro::Sprite("./data/spritesheet3.png");
-    this->vida = new Allegro::Sprite("./data/vida.png");
+    this->spritesheet = new allegro::Sprite("./data/spritesheet3.png");
+    this->vida = new allegro::Sprite("./data/vida.png");
 
     this->spritesTanque.resize(2);
 
-    Allegro::Tela *tela = Allegro::Tela::getInstancia();
+    allegro::Tela *tela = allegro::Tela::getInstancia();
     
     for (unsigned int i{0}; i <= 16; i += 16) {
-        Allegro::Sprite4D *spritesTanque = new Allegro::Sprite4D();
+        allegro::Sprite4D *spritesTanque = new allegro::Sprite4D();
 
         spritesTanque->inicializarSprite(this->spritesheet, i, 0, this->BLOCO_SIZE, this->BLOCO_SIZE, spritesTanque->CIM);
         spritesTanque->inicializarSprite(this->spritesheet, i+32, 0, this->BLOCO_SIZE, this->BLOCO_SIZE, spritesTanque->ESQ);
@@ -511,7 +511,7 @@ void Jogo::carregarSprites(){
     }
     
     for (unsigned int i{128}; i <= 144; i += 16) {
-        Allegro::Sprite4D *spritesTanque = new Allegro::Sprite4D();
+        allegro::Sprite4D *spritesTanque = new allegro::Sprite4D();
 
         spritesTanque->inicializarSprite(this->spritesheet, i, 128, this->BLOCO_SIZE, this->BLOCO_SIZE, spritesTanque->CIM);
         spritesTanque->inicializarSprite(this->spritesheet, i+32, 128, this->BLOCO_SIZE, this->BLOCO_SIZE, spritesTanque->ESQ);
@@ -520,39 +520,39 @@ void Jogo::carregarSprites(){
         this->spritesTanqueInimigos.push_back(spritesTanque);
     }
 
-    Allegro::Sprite4D *spritesTiro = new Allegro::Sprite4D();
+    allegro::Sprite4D *spritesTiro = new allegro::Sprite4D();
     spritesTiro->inicializarSprite(this->spritesheet, 323, 102, this->TIRO_SIZE, this->TIRO_SIZE, spritesTiro->CIM);
     spritesTiro->inicializarSprite(this->spritesheet, 330, 102, this->TIRO_SIZE, this->TIRO_SIZE, spritesTiro->ESQ);
     spritesTiro->inicializarSprite(this->spritesheet, 339, 102, this->TIRO_SIZE, this->TIRO_SIZE, spritesTiro->BAI);
     spritesTiro->inicializarSprite(this->spritesheet, 346, 102, this->TIRO_SIZE, this->TIRO_SIZE, spritesTiro->DIR);
     this->tiroSprite = spritesTiro;
 
-    Allegro::Sprite *parede{new Allegro::Sprite{this->spritesheet, 256, 64, this->PAREDE_SIZE, this->PAREDE_SIZE}};
+    allegro::Sprite *parede{new allegro::Sprite{this->spritesheet, 256, 64, this->PAREDE_SIZE, this->PAREDE_SIZE}};
     this->parede = parede;
 
-    Allegro::Sprite *paredeInvencivelSprite{new Allegro::Sprite{this->spritesheet, 256, 72, this->PAREDE_SIZE, this->PAREDE_SIZE}};
+    allegro::Sprite *paredeInvencivelSprite{new allegro::Sprite{this->spritesheet, 256, 72, this->PAREDE_SIZE, this->PAREDE_SIZE}};
     this->paredeInvencivelSprite = paredeInvencivelSprite;
 
-    this->insignias.push_back(new Allegro::Sprite(this->spritesheet, 304, 32, this->BLOCO_SIZE, this->BLOCO_SIZE));
-    this->insignias.push_back(new Allegro::Sprite(this->spritesheet, 320, 32, this->BLOCO_SIZE, this->BLOCO_SIZE));
+    this->insignias.push_back(new allegro::Sprite(this->spritesheet, 304, 32, this->BLOCO_SIZE, this->BLOCO_SIZE));
+    this->insignias.push_back(new allegro::Sprite(this->spritesheet, 320, 32, this->BLOCO_SIZE, this->BLOCO_SIZE));
 
 
-    Allegro::Sprite *backgroudPontuacao{new Allegro::Sprite{this->spritesheet, 376, 24, 16, 80}};
+    allegro::Sprite *backgroudPontuacao{new allegro::Sprite{this->spritesheet, 376, 24, 16, 80}};
     this->backgroudPontuacao = backgroudPontuacao;
 
-    Allegro::Sprite *tanquePonto{new Allegro::Sprite{this->spritesheet, 376, 168, this->PAREDE_SIZE, this->PAREDE_SIZE}};
+    allegro::Sprite *tanquePonto{new allegro::Sprite{this->spritesheet, 376, 168, this->PAREDE_SIZE, this->PAREDE_SIZE}};
     this->tanquePonto = tanquePonto;
 
 
 }
 void Jogo::desenharPontos() const {
-    Allegro::Tela *tela{Allegro::Tela::getInstancia()};
+    allegro::Tela *tela{allegro::Tela::getInstancia()};
     tela->desenharTexto("pontos", 130, 280);
     tela->desenharFonte(tela->getFonte(), 255, 255, 255, 140, 280, this->getPontos());
 }
 
 void Jogo::desenharVida() const {
-    Allegro::Tela *tela{Allegro::Tela::getInstancia()};
+    allegro::Tela *tela{allegro::Tela::getInstancia()};
     tela->desenharSprite(this->vida, 266, 180);
     tela->desenharFonte(tela->getFonte(), 255, 255, 255, 180, 283, this->player->getVida());
 }

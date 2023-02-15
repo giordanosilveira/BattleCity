@@ -1,8 +1,8 @@
 #include "AllegroInitException.hpp"
 #include <string>
 
-using namespace Allegro;
+using namespace allegro;
 
 AllegroInitException::AllegroInitException(const std::string &name)
-    :std::runtime_error{"Erro de inicialização de '" + name + "' da biblioteca Allegro!"}{
+    :std::runtime_error{"Erro de inicialização de '" + name + "' da biblioteca allegro!"}{
 }

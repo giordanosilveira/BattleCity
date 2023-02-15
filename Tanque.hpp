@@ -18,7 +18,7 @@ class Tanque : public Objeto{
 
     public:
         Tanque();
-        Tanque(const unsigned int x, const unsigned int y, unsigned short int tamanhoSprite, const unsigned short imortal, EnumEstadoObjeto estado, const unsigned short vida, const unsigned short velocidade, EnumDirecao direcao, Allegro::Sprite4D* const &sprites, Allegro::Sprite4D* const &tiroSprites);
+        Tanque(const unsigned int x, const unsigned int y, unsigned short int tamanhoSprite, const unsigned short imortal, EnumEstadoObjeto estado, const unsigned short vida, const unsigned short velocidade, EnumDirecao direcao, allegro::Sprite4D* const &sprites, allegro::Sprite4D* const &tiroSprites);
         
         virtual ~Tanque();
 
@@ -31,10 +31,10 @@ class Tanque : public Objeto{
 
 
         void decrementarTimerTiro();
-        const Allegro::Sprite* getSprite() const;
-        void setSprite(Allegro::Sprite4D*  sprite);
-        Allegro::Sprite4D * sprites;
-        Allegro::Sprite4D * tiroSprites;
+        const allegro::Sprite* getSprite() const;
+        void setSprite(allegro::Sprite4D*  sprite);
+        allegro::Sprite4D * sprites;
+        allegro::Sprite4D * tiroSprites;
 
     private:
         unsigned short int timerTiro;

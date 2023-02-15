@@ -116,8 +116,7 @@ class Objeto {
         Objeto* algumaColisao(const std::list<Objeto *> &objetos);
 
 
-        // TODO: MUITO FEIO, DEIXAR PRIVADO DEPOIS
-        const Allegro::Sprite* sprite;
+        const allegro::Sprite* sprite;
         
     protected:
         Coordenada *superiorEsquerda;

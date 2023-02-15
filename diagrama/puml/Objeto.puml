@@ -24,7 +24,7 @@ class "Objeto"{
         + morto(): bool
         + colisao(obj: const Objeto *):const bool const
         + algumaColisao(objetos: const std::list<Objeto *> &): Objeto*
-        + sprite: const Allegro::Sprite*
+        + sprite: const allegro::Sprite*
         # superiorEsquerda: Coordenada *
         # inferiorDireita: Coordenada *
         # tamanhoSprite: unsigned char

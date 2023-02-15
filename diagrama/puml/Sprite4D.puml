@@ -3,14 +3,14 @@
 
 skinparam classAttributeIconSize 0
 
-enum "Allegro::direcao" <<enumeration>> {
+enum "allegro::direcao" <<enumeration>> {
     ESQ
     BAI
     DIR
     CIM
 }
 
-class "Allegro::Sprite4D"{
+class "allegro::Sprite4D"{
 
     + Sprite4D()
     + virtual ~Sprite4D()
@@ -40,7 +40,7 @@ class "Allegro::Sprite4D"{
 
 }
 
-Allegro::Sprite4D --> Allegro::direcao
+allegro::Sprite4D --> allegro::direcao
 
 !endsub
 @enduml

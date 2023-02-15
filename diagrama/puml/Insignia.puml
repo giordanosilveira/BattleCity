@@ -4,11 +4,11 @@
 skinparam classAttributeIconSize 0
 
 class "Insignia"{
-    <<constructor>> Insignia(x: const unsigned int, y: const unsigned int, tamanhoSprite: const unsigned short int, imortal: const unsigned short, estado:  EnumEstadoObjeto, vida: const unsigned short, velocidade: const unsigned short, direcao: EnumDirecao, spriteVivo: Allegro::Sprite *, spriteMorto: Allegro::Sprite *)
+    <<constructor>> Insignia(x: const unsigned int, y: const unsigned int, tamanhoSprite: const unsigned short int, imortal: const unsigned short, estado:  EnumEstadoObjeto, vida: const unsigned short, velocidade: const unsigned short, direcao: EnumDirecao, spriteVivo: allegro::Sprite *, spriteMorto: allegro::Sprite *)
 
     + atualizarSprite(): void 
-    - spriteVivo: Allegro::Sprite *
-    - spriteMorto: Allegro::Sprite *
+    - spriteVivo: allegro::Sprite *
+    - spriteMorto: allegro::Sprite *
 }
 
 !endsub

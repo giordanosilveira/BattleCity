@@ -4,7 +4,7 @@
 skinparam classAttributeIconSize 0
 
 class "Player"{
-    + <<constructor>>Player(x:const unsigned int, y:const unsigned int, tamanhoSprite: unsigned short int, imortal: const unsigned short, estado: EnumEstadoObjeto, vida: const unsigned short, velocidade: const unsigned short, direcao: EnumDirecao, sprites: Allegro::Sprite4D* const &, tiroSprites: Allegro::Sprite4D* const &)
+    + <<constructor>>Player(x:const unsigned int, y:const unsigned int, tamanhoSprite: unsigned short int, imortal: const unsigned short, estado: EnumEstadoObjeto, vida: const unsigned short, velocidade: const unsigned short, direcao: EnumDirecao, sprites: allegro::Sprite4D* const &, tiroSprites: allegro::Sprite4D* const &)
 
     + <<destructor>>~Player()
 

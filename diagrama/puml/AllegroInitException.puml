@@ -3,7 +3,7 @@
 
 skinparam classAttributeIconSize 0
 
-class "Allegro::AllegroInitException"{
+class "allegro::AllegroInitException"{
     
     public:
         +AllegroInitException(name: std::string)

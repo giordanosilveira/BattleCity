@@ -5,7 +5,7 @@ skinparam classAttributeIconSize 0
 
 class "Tanque"{
         + <<constructor>>Tanque()
-        + <<constructor>>Tanque(x:const unsigned int, y:const unsigned int, tamanhoSprite: unsigned short int, imortal: const unsigned short, estado: EnumEstadoObjeto, vida: const unsigned short, velocidade: const unsigned short, direcao: EnumDirecao, sprites: Allegro::Sprite4D* const &, tiroSprites: Allegro::Sprite4D* const &)
+        + <<constructor>>Tanque(x:const unsigned int, y:const unsigned int, tamanhoSprite: unsigned short int, imortal: const unsigned short, estado: EnumEstadoObjeto, vida: const unsigned short, velocidade: const unsigned short, direcao: EnumDirecao, sprites: allegro::Sprite4D* const &, tiroSprites: allegro::Sprite4D* const &)
         
         + <<destructor>>~Tanque() virtual
 
@@ -13,10 +13,10 @@ class "Tanque"{
         + atirar(const unsigned short int tamanhoTiro, const unsigned short int velocidadeTiro): virtual Tiro*
 
         + decrementarTimerTiro(): virtual Tiro*
-        + getSprite(): const Allegro::Sprite* const
-        + setSprite(Allegro::Sprite4D*  sprite): void
-        + sprites: Allegro::Sprite4D *
-        + tiroSprites: Allegro::Sprite4D *
+        + getSprite(): const allegro::Sprite* const
+        + setSprite(allegro::Sprite4D*  sprite): void
+        + sprites: allegro::Sprite4D *
+        + tiroSprites: allegro::Sprite4D *
 
         - timerTiro: unsigned short int 
         - TIMER_INICIAL_TIRO: const unsigned short int

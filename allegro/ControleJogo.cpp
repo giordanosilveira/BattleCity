@@ -11,7 +11,7 @@
 #include <vector>
 #include <string>
 
-using namespace Allegro;
+using namespace allegro;
 
 ControleJogo* ControleJogo::instancia{nullptr};
 

@@ -5,14 +5,14 @@ skinparam classAttributeIconSize 0
 
 class "Tiro"{
     <<constructor>>Tiro()
-    <<constructor>>Tiro(x: const unsigned int, y: const unsigned int, tamanhoSprite:  const unsigned short, imortal: const unsigned short, estado: EnumEstadoObjeto, vida: const unsigned short, velocidade: const unsigned short, direcao: EnumDirecao, sprites: Allegro::Sprite4D* const &, direcao_tiro: const unsigned int)
+    <<constructor>>Tiro(x: const unsigned int, y: const unsigned int, tamanhoSprite:  const unsigned short, imortal: const unsigned short, estado: EnumEstadoObjeto, vida: const unsigned short, velocidade: const unsigned short, direcao: EnumDirecao, sprites: allegro::Sprite4D* const &, direcao_tiro: const unsigned int)
         
     + <<destructor>>virtual ~Tiro()
 
     + mover(std::list<Objeto*> objetos): void
 
 
-    + sprites: Allegro::Sprite4D *
+    + sprites: allegro::Sprite4D *
 
     - tanque: Tanque*
 

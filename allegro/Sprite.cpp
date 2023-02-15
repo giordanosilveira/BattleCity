@@ -7,7 +7,7 @@
 #include "Sprite.hpp"
 #include "Util.hpp"
 
-using namespace Allegro;
+using namespace allegro;
 
 
 Sprite::Sprite()

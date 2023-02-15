@@ -44,14 +44,14 @@ public:
     + desenharObjeto(objeto: Objeto* const) const: void
     + desenharPontos() const: void
     + desenharVida() const: void
-    + spritesheet: Allegro::Sprite* 
-    + parede: Allegro::Sprite* 
-    + paredeInvencivelSprite: Allegro::Sprite* 
-    + tiroSprite: Allegro::Sprite4D* 
-    + backgroudPontuacao: Allegro::Sprite* 
-    + tanquePonto: Allegro::Sprite* 
-    + vida: Allegro::Sprite* 
-    + insignias: std::vector<Allegro::Sprite*>
+    + spritesheet: allegro::Sprite* 
+    + parede: allegro::Sprite* 
+    + paredeInvencivelSprite: allegro::Sprite* 
+    + tiroSprite: allegro::Sprite4D* 
+    + backgroudPontuacao: allegro::Sprite* 
+    + tanquePonto: allegro::Sprite* 
+    + vida: allegro::Sprite* 
+    + insignias: std::vector<allegro::Sprite*>
     + getVencido(): bool 
     + setVencido(vencido: const bool ): void 
     + adicionarTiro(tiro: Tiro * const): void 
@@ -75,9 +75,9 @@ public:
     - atualizarInimigos(): void
     - pontos: unsigned int 
     - elementosTela: std::list<std::shared_ptr<Objeto>>
-    - spritesTanque: std::vector<Allegro::Sprite4D*>
-    - spritesTanqueInimigos: std::vector<Allegro::Sprite4D*>
-    - spritesTanquePlayer: std::vector<Allegro::Sprite4D*>
+    - spritesTanque: std::vector<allegro::Sprite4D*>
+    - spritesTanqueInimigos: std::vector<allegro::Sprite4D*>
+    - spritesTanquePlayer: std::vector<allegro::Sprite4D*>
     - vencido: bool
 
     - LIMITE_TIROS_PLAYER: const unsigned short int 

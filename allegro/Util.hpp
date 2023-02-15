@@ -3,7 +3,7 @@
 
 #include <string>
 
-namespace Allegro{
+namespace allegro{
 
 class Util{
     public:

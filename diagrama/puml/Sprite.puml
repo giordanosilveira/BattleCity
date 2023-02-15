@@ -3,7 +3,7 @@
 
 skinparam classAttributeIconSize 0
 
-class "Allegro::Sprite"{
+class "allegro::Sprite"{
 <<constructor>> Sprite()
 <<constructor>> Sprite(fileName: const std::string &)
 <<constructor>> Sprite(sprite: const Sprite *, inicioX: const unsigned int, inicioY: const unsigned int, larg: const unsigned int, alt: const unsigned int)

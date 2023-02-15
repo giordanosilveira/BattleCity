@@ -16,8 +16,8 @@ short int Estado::atual = Estado::JOGO;
 void Estado::jogo(){
     bool done = false;
 
-    Allegro::ControleJogo *al = Allegro::ControleJogo::getInstancia();
-    Allegro::Tela *tela = Allegro::Tela::getInstancia();
+    allegro::ControleJogo *al = allegro::ControleJogo::getInstancia();
+    allegro::Tela *tela = allegro::Tela::getInstancia();
     
     Jogo *j{Jogo::getInstancia()};
     bool redesenhar = false;
@@ -93,8 +93,8 @@ void Estado::jogo(){
 
 void Estado::jogoTerminado(){
 
-    Allegro::ControleJogo *al{Allegro::ControleJogo::getInstancia()};
-    Allegro::Tela *tela{Allegro::Tela::getInstancia()};
+    allegro::ControleJogo *al{allegro::ControleJogo::getInstancia()};
+    allegro::Tela *tela{allegro::Tela::getInstancia()};
     Jogo *j{Jogo::getInstancia()};
 
     bool sair = false;
@@ -124,10 +124,10 @@ void Estado::jogoTerminado(){
 }
 
 void Estado::encerrar(){
-    Allegro::ControleJogo *al{Allegro::ControleJogo::getInstancia()};
-    Allegro::Tela *tela{Allegro::Tela::getInstancia()};
+    allegro::ControleJogo *al{allegro::ControleJogo::getInstancia()};
+    allegro::Tela *tela{allegro::Tela::getInstancia()};
     Jogo *jogo{Jogo::getInstancia()};
-    delete al; // TODO ver se faz sentido (ver se chama destrutor)
+    delete al;
     delete tela;
     delete jogo;
     
