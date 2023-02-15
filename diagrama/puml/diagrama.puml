@@ -1,8 +1,11 @@
 @startuml
 
 skinparam classAttributeIconSize 0
+skinparam linetype polyline
+skinparam linetype ortho
 
 set separator ::
+
 
 !includesub Sprite.puml!SPRITE
 !includesub AllegroInitException.puml!ALLEGRO_INIT_EXCEPTION
@@ -37,57 +40,64 @@ Allegro::Tela --> Allegro::Util
 Allegro::Util --> Allegro::AllegroInitException
 
 Estado --> Jogo
-Estado --> Allegro::ControleJogo
-Estado --> Allegro::Tela
+Estado -[#blue]-> Allegro::ControleJogo
+Estado -[#blue]-> Allegro::Tela
 
-Insignia "1" --> "2" Allegro::Sprite : contém
+Insignia "1" -[#blue]-> "2" Allegro::Sprite : contém
+Insignia -[#red]-|> Objeto
 
-Jogo "1" --> "many" Allegro::Sprite : contém
+Jogo "1" -[#blue]-> "many" Allegro::Sprite : contém
 Jogo "1" --> "many" Player : contém
 Jogo "1" --> "many" Parede : contém
-Jogo "1" --> "many" Allegro::Sprite4D : contém
+Jogo "1" -[#blue]-> "many" Allegro::Sprite4D : contém
 Jogo "1" --> "many" Tanque : contém
 Jogo "1" --> "many" Mapa : contém
 Jogo "1" --> "many" Insignia : contém
 
 Jogo --> Objeto
 Jogo --> Tiro
-Jogo --> Allegro::Tela
-Jogo --> Allegro::ControleJogo
+Jogo -[#blue]-> Allegro::Tela
+Jogo -[#blue]-> Allegro::ControleJogo
 Jogo --> EnumEstadoObjeto
 Jogo --> EnumDirecao
 
 Objeto "1" --> "2" Coordenada : "contém"
-Objeto "1" --> "1" Allegro::Sprite : "contém"
+Objeto "1" -[#blue]-> "1" Allegro::Sprite : "contém"
 Objeto "1" --> "1" EnumEstadoObjeto : "contém"
 Objeto "1" --> "1" EnumDirecao : "contém"
 
-Parede -|> Objeto
+Parede -[#red]-|> Objeto
 Parede --> EnumEstadoObjeto
 Parede --> EnumDirecao
 
-Player -|> Tanque
-Player --> Allegro::Sprite4D
-Player --> Allegro::Sprite
-Player --> Allegro::ControleJogo
+Player -down[#red]-|> Tanque
+Player -[#blue]-> Allegro::Sprite4D
+Player -[#blue]-> Allegro::Sprite
+Player -[#blue]-> Allegro::ControleJogo
 Player --> EnumDirecao
 Player --> EnumEstadoObjeto
 Player --> Tiro
 
-Tanque -|> Objeto
+Tanque -[#red]--|> Objeto
 Tanque "1" --> "2" Allegro::Sprite4D : contém
 Tanque --> Tiro
-Tanque --> Allegro::Sprite
-Tanque --> Allegro::Sprite4D
+Tanque -[#blue]-> Allegro::Sprite
+Tanque -[#blue]-> Allegro::Sprite4D
 Tanque --> EnumDirecao
 Tanque --> EnumEstadoObjeto
 
-Tiro -|> Objeto
-Tiro "1" --> "1" Allegro::Sprite4D : contém
+Tiro -[#red]-|> Objeto
+Tiro "1" -[#blue]-> "1" Allegro::Sprite4D : contém
 Tiro --> Parede
 Tiro --> Tanque
 Tiro --> EnumDirecao
 Tiro --> EnumEstadoObjeto
+
+legend right
+    |Cor de Seta| Tipo |
+    |<#blue>| Relações de fora para dentro do namespace allegro |
+    |<#red>| Relações de herança |
+endlegend
 
 hide methods
 hide attributes
