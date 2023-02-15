@@ -17,10 +17,10 @@ Tanque::Tanque(
     const unsigned short vida, 
     const unsigned short velocidade, 
     EnumDirecao direcao, 
-    Allegro::Sprite4D* const &sprites, 
-    Allegro::Sprite4D* const &tiroSprites) :Objeto{x, y, tamanhoSprite, imortal, estado, vida, velocidade, direcao}, timerTiro{0}
+    allegro::Sprite4D* const &sprites, 
+    allegro::Sprite4D* const &tiroSprites) :Objeto{x, y, tamanhoSprite, imortal, estado, vida, velocidade, direcao}, timerTiro{0}
 {        
-    this->sprites = new Allegro::Sprite4D{*sprites};
+    this->sprites = new allegro::Sprite4D{*sprites};
     this->sprites->setSpritePrincipal(this->sprites->BAI);
     this->tiroSprites = tiroSprites;
 }
@@ -30,7 +30,7 @@ Tanque::~Tanque(){
     //delete this->tiroSprites;
 }
 
-void Tanque::setSprite(Allegro::Sprite4D*  sprite){
+void Tanque::setSprite(allegro::Sprite4D*  sprite){
     this->sprites = sprite;
 }
 

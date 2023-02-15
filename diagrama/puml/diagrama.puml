@@ -27,42 +27,42 @@ set separator ::
 !includesub EnumEstadoObjeto.puml!ENUM_ESTADO_OBJETO
 !includesub EnumDirecao.puml!ENUM_DIRECAO
 
-Allegro::Sprite4D -|> Allegro::Sprite
+allegro::Sprite4D -|> allegro::Sprite
 
-Allegro::ControleJogo --> Allegro::Util
+allegro::ControleJogo --> allegro::Util
 
-Allegro::Sprite --> Allegro::Util 
+allegro::Sprite --> allegro::Util 
 
-Allegro::Tela --> Allegro::ControleJogo
-Allegro::Tela --> Allegro::Sprite
-Allegro::Tela --> Allegro::Util
+allegro::Tela --> allegro::ControleJogo
+allegro::Tela --> allegro::Sprite
+allegro::Tela --> allegro::Util
 
-Allegro::Util --> Allegro::AllegroInitException
+allegro::Util --> allegro::AllegroInitException
 
 Estado --> Jogo
-Estado -[#blue]-> Allegro::ControleJogo
-Estado -[#blue]-> Allegro::Tela
+Estado -[#blue]-> allegro::ControleJogo
+Estado -[#blue]-> allegro::Tela
 
-Insignia "1" -[#blue]-> "2" Allegro::Sprite : contém
+Insignia "1" -[#blue]-> "2" allegro::Sprite : contém
 Insignia -[#red]-|> Objeto
 
-Jogo "1" -[#blue]-> "many" Allegro::Sprite : contém
+Jogo "1" -[#blue]-> "many" allegro::Sprite : contém
 Jogo "1" --> "many" Player : contém
 Jogo "1" --> "many" Parede : contém
-Jogo "1" -[#blue]-> "many" Allegro::Sprite4D : contém
+Jogo "1" -[#blue]-> "many" allegro::Sprite4D : contém
 Jogo "1" --> "many" Tanque : contém
 Jogo "1" --> "many" Mapa : contém
 Jogo "1" --> "many" Insignia : contém
 
 Jogo --> Objeto
 Jogo --> Tiro
-Jogo -[#blue]-> Allegro::Tela
-Jogo -[#blue]-> Allegro::ControleJogo
+Jogo -[#blue]-> allegro::Tela
+Jogo -[#blue]-> allegro::ControleJogo
 Jogo --> EnumEstadoObjeto
 Jogo --> EnumDirecao
 
 Objeto "1" --> "2" Coordenada : "contém"
-Objeto "1" -[#blue]-> "1" Allegro::Sprite : "contém"
+Objeto "1" -[#blue]-> "1" allegro::Sprite : "contém"
 Objeto "1" --> "1" EnumEstadoObjeto : "contém"
 Objeto "1" --> "1" EnumDirecao : "contém"
 
@@ -71,23 +71,23 @@ Parede --> EnumEstadoObjeto
 Parede --> EnumDirecao
 
 Player -down[#red]-|> Tanque
-Player -[#blue]-> Allegro::Sprite4D
-Player -[#blue]-> Allegro::Sprite
-Player -[#blue]-> Allegro::ControleJogo
+Player -[#blue]-> allegro::Sprite4D
+Player -[#blue]-> allegro::Sprite
+Player -[#blue]-> allegro::ControleJogo
 Player --> EnumDirecao
 Player --> EnumEstadoObjeto
 Player --> Tiro
 
 Tanque -[#red]--|> Objeto
-Tanque "1" --> "2" Allegro::Sprite4D : contém
+Tanque "1" --> "2" allegro::Sprite4D : contém
 Tanque --> Tiro
-Tanque -[#blue]-> Allegro::Sprite
-Tanque -[#blue]-> Allegro::Sprite4D
+Tanque -[#blue]-> allegro::Sprite
+Tanque -[#blue]-> allegro::Sprite4D
 Tanque --> EnumDirecao
 Tanque --> EnumEstadoObjeto
 
 Tiro -[#red]-|> Objeto
-Tiro "1" -[#blue]-> "1" Allegro::Sprite4D : contém
+Tiro "1" -[#blue]-> "1" allegro::Sprite4D : contém
 Tiro --> Parede
 Tiro --> Tanque
 Tiro --> EnumDirecao

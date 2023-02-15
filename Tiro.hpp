@@ -21,7 +21,7 @@ class Tiro : public Objeto{
             const unsigned short vida,
             const unsigned short velocidade, 
             EnumDirecao direcao,
-            Allegro::Sprite4D* const &sprites,
+            allegro::Sprite4D* const &sprites,
             const unsigned int direcao_tiro);
         
         virtual ~Tiro();
@@ -29,7 +29,7 @@ class Tiro : public Objeto{
         void mover(std::list<Objeto*> objetos);
 
 
-        Allegro::Sprite4D *sprites;
+        allegro::Sprite4D *sprites;
 
         
 };

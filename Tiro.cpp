@@ -15,9 +15,9 @@ Tiro::Tiro(
         const unsigned short vida,
         const unsigned short velocidade, 
         EnumDirecao direcao,
-        Allegro::Sprite4D* const &sprites, const unsigned int direcao_tiro)
+        allegro::Sprite4D* const &sprites, const unsigned int direcao_tiro)
         : Objeto{x,y,tamanhoSprite, imortal, estado, vida, velocidade, direcao}{
-    this->sprites = new Allegro::Sprite4D{*sprites}; // shallow copy
+    this->sprites = new allegro::Sprite4D{*sprites}; // shallow copy
     this->sprites->setSpritePrincipal(direcao_tiro);
 }
 

@@ -3,8 +3,8 @@
 
 #include "Sprite.hpp"
 
-namespace Allegro {
-    class Sprite4D: public Allegro::Sprite {
+namespace allegro {
+    class Sprite4D: public allegro::Sprite {
         public:
 
             Sprite4D();

@@ -3,7 +3,7 @@
 
 skinparam classAttributeIconSize 0
 
-class "Allegro::Tela"{
+class "allegro::Tela"{
 
     <<destructor>> ~Tela()
     <<deleted>> Tela(outro: Tela &)
@@ -13,7 +13,7 @@ class "Allegro::Tela"{
     + {static} getInstancia(): Tela *
 
     + desenharTela(): void 
-    + desenharSprite(spr: const Allegro::Sprite *, x: float, y: float) const: void 
+    + desenharSprite(spr: const allegro::Sprite *, x: float, y: float) const: void 
     + limparTelaCor(r: const unsigned short int, g: const unsigned short int, b: const unsigned short int , a: const unsigned short int): void 
     + desenharTexto(texto: const std::string &, x: const unsigned int, y: const unsigned int ): void 
     + desenharRetanguloCheio(x1: const unsigned int, y1:  const unsigned int, x2: const unsigned int, y2: const unsigned int, r: const unsigned short int, g: const unsigned short int, b: const unsigned short int, a: const float): void

@@ -7,13 +7,13 @@
 class Insignia : public Objeto {
 
     public:
-        Insignia(const unsigned int x, const unsigned int y, const unsigned short int tamanhoSprite, const unsigned short imortal, EnumEstadoObjeto estado, const unsigned short vida, const unsigned short velocidade, EnumDirecao direcao, Allegro::Sprite *spriteVivo, Allegro::Sprite *spriteMorto);
+        Insignia(const unsigned int x, const unsigned int y, const unsigned short int tamanhoSprite, const unsigned short imortal, EnumEstadoObjeto estado, const unsigned short vida, const unsigned short velocidade, EnumDirecao direcao, allegro::Sprite *spriteVivo, allegro::Sprite *spriteMorto);
         
         void atualizarSprite(); // TODO fazer para outras classes se der tempo
 
     private:
-        Allegro::Sprite *spriteVivo;
-        Allegro::Sprite *spriteMorto;
+        allegro::Sprite *spriteVivo;
+        allegro::Sprite *spriteMorto;
 
 };
 

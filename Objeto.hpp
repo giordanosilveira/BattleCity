@@ -117,7 +117,7 @@ class Objeto {
 
 
         // TODO: MUITO FEIO, DEIXAR PRIVADO DEPOIS
-        const Allegro::Sprite* sprite;
+        const allegro::Sprite* sprite;
         
     protected:
         Coordenada *superiorEsquerda;

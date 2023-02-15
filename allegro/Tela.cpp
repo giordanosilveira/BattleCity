@@ -6,7 +6,7 @@
 #include <allegro5/display.h>
 #include <allegro5/allegro_primitives.h>
 
-using namespace Allegro;
+using namespace allegro;
 
 Tela *Tela::instancia{nullptr};
 
@@ -53,7 +53,7 @@ void Tela::desenharTexto(const std::string &texto, const unsigned int x, const u
     al_draw_text(this->font, al_map_rgb(0, 255, 255), x, y, 0, texto.c_str());
 }   
 
-void Tela::desenharSprite(const Allegro::Sprite *spr, float x, float y) const{
+void Tela::desenharSprite(const allegro::Sprite *spr, float x, float y) const{
     al_draw_bitmap(spr->getBitmap(), x, y, 0);
 }
 

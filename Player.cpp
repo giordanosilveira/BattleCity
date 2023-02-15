@@ -16,8 +16,8 @@ Player::Player(
     const unsigned short vida, 
     const unsigned short velocidade, 
     EnumDirecao direcao, 
-    Allegro::Sprite4D* const &sprites, 
-    Allegro::Sprite4D* const &tiroSprites
+    allegro::Sprite4D* const &sprites, 
+    allegro::Sprite4D* const &tiroSprites
     ):Tanque{x, y, tamanhoSprite, imortal, estado, vida, velocidade, direcao, sprites, tiroSprites}
 {
 

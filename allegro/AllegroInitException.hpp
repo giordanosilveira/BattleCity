@@ -4,7 +4,7 @@
 #include <string>
 #include <stdexcept>
 
-namespace Allegro{
+namespace allegro{
 class AllegroInitException : public std::runtime_error{
     public:
         AllegroInitException(const std::string &name);

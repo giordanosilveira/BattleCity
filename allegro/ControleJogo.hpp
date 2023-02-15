@@ -8,7 +8,7 @@
 #include <string>
 
 
-namespace Allegro{
+namespace allegro{
 
 // Utiliza padrão singleton 
 class ControleJogo{

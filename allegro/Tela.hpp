@@ -9,7 +9,7 @@
 
 #include "Sprite.hpp"
 
-namespace Allegro{
+namespace allegro{
 
 class Tela{
     public:
@@ -20,7 +20,7 @@ class Tela{
         static Tela *getInstancia();
 
         void desenharTela();
-        void desenharSprite(const Allegro::Sprite *spr, float x, float y) const;
+        void desenharSprite(const allegro::Sprite *spr, float x, float y) const;
         void limparTelaCor(const unsigned short int r, const unsigned short int g, const unsigned short int b, const unsigned short int a);
         void desenharTexto(const std::string &texto, const unsigned int x, const unsigned int y);
         void desenharRetanguloCheio(const unsigned int x1, const unsigned int y1, const unsigned int x2, const unsigned int y2,
