@@ -53,5 +53,8 @@ class "Allegro::ControleJogo"{
 
 }
 
+Allegro::ControleJogo --> Allegro::evento
+Allegro::ControleJogo --> Allegro::tecla
+
 !endsub
 @enduml

@@ -8,7 +8,6 @@
 #include <vector>
 
 #include "Sprite.hpp"
-#include "../Objeto.hpp"
 
 namespace Allegro{
 

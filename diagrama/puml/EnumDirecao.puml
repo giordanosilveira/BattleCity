@@ -1,0 +1,15 @@
+@startuml
+!startsub ENUM_DIRECAO
+
+skinparam classAttributeIconSize 0
+
+enum "EnumDirecao" <<enumeration>>{
+    DIREITA
+    ESQUERDA
+    CIMA
+    BAIXO
+    PARADO
+}
+
+!endsub
+@enduml

@@ -1,0 +1,13 @@
+@startuml
+!startsub ENUM_ESTADO_OBJETO
+
+skinparam classAttributeIconSize 0
+
+enum "EnumEstadoObjeto" <<enumeration>>{
+    MORTO
+    MORRENDO
+    VIVO
+}
+
+!endsub
+@enduml

@@ -3,7 +3,7 @@
 
 skinparam classAttributeIconSize 0
 
-enum estado_atual{
+enum estado_atual <<enumeration>> {
     JOGO
     JOGO_TERMINADO
     ENCERRAR
@@ -16,6 +16,8 @@ class "Estado"{
     
     + {static} atual; short int 
 }
+
+Estado --> estado_atual
 
 !endsub
 @enduml

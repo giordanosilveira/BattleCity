@@ -3,7 +3,7 @@
 
 skinparam classAttributeIconSize 0
 
-enum corTanque {
+enum corTanque <<enumeration>> {
     TANQUE_AMARELO
     TANQUE_VERMELHO
 }
@@ -93,6 +93,8 @@ public:
     - OFFSET: const unsigned short int 
 
 }
+
+Jogo --> corTanque
 
 !endsub
 @enduml
