@@ -1,5 +1,6 @@
 #include "Parede.hpp"
 #include "enums/EnumDirecao.hpp"
+#include "enums/EnumEstadoObjeto.hpp"
 
 Parede::Parede(){}
 

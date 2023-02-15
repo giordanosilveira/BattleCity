@@ -26,8 +26,6 @@ Tanque::Tanque(
 }
 
 Tanque::~Tanque(){
-    //delete this->sprites;
-    //delete this->tiroSprites;
 }
 
 void Tanque::setSprite(allegro::Sprite4D*  sprite){
@@ -39,7 +37,6 @@ void Tanque::decrementarTimerTiro(){
         this->timerTiro--;
 }
 
-// TODO tentar criar uma lista apenas, mas não sei se da tempo
 const bool Tanque::mover(const std::list<Objeto*> &objetos){
         unsigned int old_x = this->superiorEsquerda->getX();
         unsigned int old_y = this->superiorEsquerda->getY();
@@ -80,12 +77,6 @@ const bool Tanque::mover(const std::list<Objeto*> &objetos){
 
 }
 
-/**
- * @todo: Colocar a velocidade como uma constante 
- * 
- * TODO tamanho do sprite deve ser atributo
- * TODO repositorio com todos os sprites
- */
 Tiro* Tanque::atirar(const unsigned short int tamanhoTiro, const unsigned short int velocidadeTiro) {
     if (this->timerTiro > 0) return nullptr;
 

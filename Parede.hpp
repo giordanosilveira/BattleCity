@@ -2,6 +2,8 @@
 #define PAREDE_HPP
 
 #include "Objeto.hpp"
+#include "enums/EnumDirecao.hpp"
+#include "enums/EnumEstadoObjeto.hpp"
 
 class Parede : public Objeto {
     public:

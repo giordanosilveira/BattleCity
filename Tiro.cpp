@@ -3,6 +3,7 @@
 #include "Parede.hpp"
 #include "Tanque.hpp"
 #include "enums/EnumDirecao.hpp"
+#include "enums/EnumEstadoObjeto.hpp"
 
 Tiro::Tiro(){}
 

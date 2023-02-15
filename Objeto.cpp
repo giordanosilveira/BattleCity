@@ -52,7 +52,6 @@ void Objeto::setSuperiorEsquerda (const unsigned short int x, unsigned short int
     this->superiorEsquerda->setX(x);
     this->superiorEsquerda->setY(y);
     
-    // TODO Talvez mudar para updateInferiorDireita (só diferença semântica mesmo)
     this->setInferiorDireita(x, y);
 }
 void Objeto::setInferiorDireita (const unsigned short int x, unsigned short int y){

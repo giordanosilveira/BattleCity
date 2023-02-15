@@ -116,7 +116,6 @@ class Objeto {
         Objeto* algumaColisao(const std::list<Objeto *> &objetos);
 
 
-        // TODO: MUITO FEIO, DEIXAR PRIVADO DEPOIS
         const allegro::Sprite* sprite;
         
     protected:

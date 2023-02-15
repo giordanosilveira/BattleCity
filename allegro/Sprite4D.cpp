@@ -11,7 +11,6 @@ allegro::Sprite4D::Sprite4D()
 allegro::Sprite4D::~Sprite4D(){}
 
 void allegro::Sprite4D::setSpritePrincipal(int direcao){
-    // TODO meio ruim essas constantes mas n sei como fazer melhor
     switch (direcao){
         case ESQ:
             this->bitmap = this->bitmapEsquerda;

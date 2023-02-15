@@ -13,7 +13,7 @@ class Sprite {
         ~Sprite();
 
         
-        ALLEGRO_BITMAP *getBitmap() const; // TODO mudar pra const (acho que não da por conta das funções do allegro)
+        ALLEGRO_BITMAP *getBitmap() const;
 
 
     protected:
