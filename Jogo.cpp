@@ -61,7 +61,51 @@ Jogo *Jogo::getInstancia(){
 }
 
 
-void desenharObjeto(Objeto* const objeto){
+Jogo::~Jogo() {
+
+
+    delete this->player;
+    delete this->mapa;
+    delete this->insignia;
+    delete this->spritesheet;
+    delete this->parede;
+    delete this->paredeInvencivelSprite;
+    delete this->tiroSprite;
+    delete this->backgroudPontuacao;
+    delete this->tanquePonto;
+    delete this->vida;
+
+    std::list<Parede*>::iterator it_parede;
+    for(it_parede=paredes.begin(); it_parede!=paredes.end(); it_parede++)
+        delete *it_parede;
+
+    std::list<Parede*>::iterator it_parede_invencivel;
+    for(it_parede_invencivel=paredeInvencivel.begin(); it_parede_invencivel!=paredeInvencivel.end(); it_parede_invencivel++)
+        delete *it_parede_invencivel;
+
+    std::list<Tanque*>::iterator it_tanque;
+    for(it_tanque=inimigos.begin(); it_tanque!=inimigos.end(); it_tanque++)
+        delete *it_tanque;
+    
+    std::list<Tiro*>::iterator it_tiro_inimigos;
+    for(it_tiro_inimigos=tirosInimigos.begin(); it_tiro_inimigos!=tirosInimigos.end(); it_tiro_inimigos++)
+        delete *it_tiro_inimigos;
+    
+    std::list<Tiro*>::iterator it_tiro;
+    for(it_tiro=tiros.begin(); it_tiro!=tiros.end(); it_tiro++)
+        delete *it_tiro;
+
+    std::vector<Allegro::Sprite4D*>::iterator it;
+    for(it=spritesTanque.begin(); it!=spritesTanque.end(); it++)
+        delete *it;
+    
+    std::vector<Allegro::Sprite4D*>::iterator it_sti;
+    for(it_sti=spritesTanqueInimigos.begin(); it_sti!=spritesTanqueInimigos.end(); it_sti++)
+        delete *it_sti;
+    
+    std::vector<Allegro::Sprite4D*>::iterator it_stp;
+    for(it_stp=spritesTanquePlayer.begin(); it_stp!=spritesTanquePlayer.end(); it_stp++)
+        delete *it_stp;
 
 }
 
@@ -108,15 +152,17 @@ void Jogo::atualizarTirosPlayer() {
     std::list<Objeto*> objetos;
     this->geraListaColisaoTiroPlayer(objetos);
 
-    std::list<Tiro*>::const_iterator it{this->tiros.begin()};
+    std::list<Tiro*>::iterator it{this->tiros.begin()};
     for (; it != this->tiros.end();){
 
         
         std::list<Tanque*>::const_iterator it2{this->inimigos.begin()};
         (*it)->mover(objetos);
         
-        if ((*it)->getVida() == 0)
+        if ((*it)->getVida() == 0) {
+            //delete *it;
             it = this->tiros.erase(it);
+        }
         else 
             ++it;
     }
@@ -131,8 +177,10 @@ void Jogo::atualizarTirosInimigos() {
         this->geraListaColisaoTiroTanque(objetos);
         (*it)->mover(objetos);
 
-        if ((*it)->getVida() == 0)
+        if ((*it)->getVida() == 0) {
+            delete *it;
             it = this->tirosInimigos.erase(it);
+        }
         else 
             ++it;
     }
@@ -356,8 +404,10 @@ void Jogo::atualizarInsignia(){
 void Jogo::atualizarParedes(){
     std::list<Parede*>::const_iterator it{this->paredes.begin()};
     for (; it != this->paredes.end();){
-        if ((*it)->getVida() == 0)
+        if ((*it)->getVida() == 0) {
+            delete *it;
             it = this->paredes.erase(it);
+        }
         else 
             ++it;
     }

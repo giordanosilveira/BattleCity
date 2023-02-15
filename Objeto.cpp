@@ -34,7 +34,11 @@ Objeto::Objeto(
 // }
 
 
-Objeto::~Objeto(){}
+Objeto::~Objeto(){
+
+    delete this->inferiorDireita;
+    delete this->superiorEsquerda;
+}
 
 const Coordenada* Objeto::getSuperiorEsquerda() const{
     return this->superiorEsquerda;

@@ -30,8 +30,6 @@ class Tiro : public Objeto{
 
 
         Allegro::Sprite4D *sprites;
-    private:
-        Tanque *tanque;
 
         
 };
